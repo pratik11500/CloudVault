@@ -156,55 +156,119 @@ body {
 .nav-item {
     display: flex;
     align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     cursor: pointer;
-    transition: var(--transition-fast);
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     position: relative;
-    border-left: 2px solid transparent;
-    margin-bottom: 3px;
-    border-radius: 0 4px 4px 0;
-    font-size: 0.9rem;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to right, transparent 0%, transparent 100%);
+    overflow: hidden;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0)
+    );
+    transition: 0.5s;
+    z-index: 2;
 }
 
 .nav-icon-glow {
     position: relative;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item i {
     font-size: 1.2rem;
     color: var(--text-secondary);
-    transition: var(--transition-fast);
-    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
 }
 
 .nav-item span {
     white-space: nowrap;
     color: var(--text-secondary);
-    transition: var(--transition-fast);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 500;
+    z-index: 3;
+    letter-spacing: 0.5px;
 }
 
 .nav-item:hover {
-    background-color: rgba(157, 78, 221, 0.15);
-    border-left: 3px solid var(--primary);
+    transform: translateX(8px);
+    padding-left: var(--spacing-xl);
 }
 
-.nav-item:hover i,
-.nav-item:hover span,
+.nav-item:hover::before {
+    opacity: 0.15;
+}
+
+.nav-item:hover::after {
+    left: 100%;
+}
+
+.nav-item:hover .nav-icon-glow {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.nav-item:hover i {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+.nav-item:hover span {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.nav-item.active {
+    background: rgba(157, 78, 221, 0.15);
+    transform: translateX(8px);
+}
+
+.nav-item.active::before {
+    opacity: 0.2;
+}
+
 .nav-item.active i,
 .nav-item.active span {
     color: var(--primary);
 }
 
-.nav-item.active {
-    background: rgba(157, 78, 221, 0.2);
-    border-left: 3px solid var(--primary);
+.nav-item.active i {
+    text-shadow: 0 0 15px var(--primary);
 }
 
 .sidebar-footer {
