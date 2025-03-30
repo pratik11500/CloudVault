@@ -926,7 +926,7 @@ body {
 }
 
 .website-card {
-    background: rgba(16, 16, 31, 0.8);
+    background: rgba(16, 16, 31, 0.9);
     border: 1px solid var(--primary);
     position: relative;
     overflow: hidden;
@@ -946,10 +946,8 @@ body {
 .website-card::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: 
-        repeating-linear-gradient(90deg, transparent 0%, transparent 48%, var(--primary) 50%, transparent 52%) 0 0 / 10px 100%,
-        repeating-linear-gradient(0deg, transparent 0%, transparent 48%, var(--secondary) 50%, transparent 52%) 0 0 / 100% 10px;
+    inset: -2px;
+    background: var(--primary);
     opacity: 0.1;
     z-index: 0;
 }
@@ -957,15 +955,10 @@ body {
 .website-card::after {
     content: '';
     position: absolute;
-    inset: 1px;
-    background: linear-gradient(45deg, 
-        transparent 0%, 
-        rgba(157, 78, 221, 0.1) 15%, 
-        transparent 30%,
-        rgba(0, 245, 212, 0.1) 45%,
-        transparent 60%,
-        rgba(157, 78, 221, 0.1) 75%,
-        transparent 90%
+    inset: 0;
+    background: linear-gradient(135deg,
+        transparent,
+        rgba(157, 78, 221, 0.05)
     );
     opacity: 0;
     transition: opacity 0.4s;
