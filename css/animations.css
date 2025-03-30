@@ -606,3 +606,11 @@
 .contact-card-icon {
     animation: float 4s ease-in-out infinite;
 }
+
+.website-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-glow), var(--shadow-md);
+    border-color: transparent;
+    border-image: var(--gradient-1);
+    border-image-slice: 1;
+}
