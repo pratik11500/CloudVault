@@ -121,9 +121,9 @@ class UIManager {
         // Adjust content margin
         const content = document.querySelector('.content');
         if (this.sidebar.classList.contains('sidebar-collapsed')) {
-            content.style.marginLeft = 'var(--sidebar-collapsed-width)';
+            content.style.marginRight = 'var(--sidebar-collapsed-width)';
         } else {
-            content.style.marginLeft = 'var(--sidebar-width)';
+            content.style.marginRight = 'var(--sidebar-width)';
         }
     }
 
@@ -179,19 +179,20 @@ class UIManager {
      */
     getWebsitesByCurrentSection() {
         switch (this.currentSection) {
-            case 'favorites':
-                return storageManager.getFavoriteWebsites();
-            case 'recent':
-                return storageManager.getRecentWebsites();
-            case 'categories':
-                // If we're in the categories section, respect the filter
-                if (this.currentFilter !== 'all') {
-                    return storageManager.getWebsitesByCategory(this.currentFilter);
-                }
-                return storageManager.getAllWebsites();
-            case 'trash':
-                // Trash would be implemented if needed
+            case 'photos':
+                return storageManager.getWebsitesByCategory('photos');
+            case 'videos':
+                return storageManager.getWebsitesByCategory('videos');
+            case 'hacks':
+                return storageManager.getWebsitesByCategory('hacks');
+            case 'ai':
+                return storageManager.getWebsitesByCategory('ai');
+            case 'contact':
+                // Contact section would have a different UI
                 return [];
+            case 'all':
+                // All websites from all categories
+                return storageManager.getAllWebsites();
             default: // 'all'
                 return storageManager.getAllWebsites();
         }
@@ -213,8 +214,8 @@ class UIManager {
             websites = storageManager.searchWebsites(searchQuery);
         }
         
-        // Apply filter (if not already handled by section)
-        if (this.currentSection !== 'categories') {
+        // Apply filter if in the home page section
+        if (this.currentSection === 'all') {
             websites = storageManager.filterWebsites(websites, this.currentFilter);
         }
         

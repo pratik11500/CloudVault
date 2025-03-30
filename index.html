@@ -15,11 +15,11 @@
             <div class="sidebar-header">
                 <div class="logo">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 17L12 22L22 17" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 12L12 17L22 12" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <h1>LinkVault</h1>
+                    <h1>CloudVault</h1>
                 </div>
                 <button class="menu-toggle" id="menuToggle">
                     <span></span>
@@ -29,24 +29,28 @@
             </div>
             <ul class="nav-links">
                 <li class="nav-item active" data-section="all">
-                    <i class="fas fa-globe"></i>
-                    <span>All Websites</span>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
                 </li>
-                <li class="nav-item" data-section="favorites">
-                    <i class="fas fa-star"></i>
-                    <span>Favorites</span>
+                <li class="nav-item" data-section="photos">
+                    <i class="fas fa-image"></i>
+                    <span>Photos</span>
                 </li>
-                <li class="nav-item" data-section="recent">
-                    <i class="fas fa-clock"></i>
-                    <span>Recently Added</span>
+                <li class="nav-item" data-section="videos">
+                    <i class="fas fa-video"></i>
+                    <span>Videos</span>
                 </li>
-                <li class="nav-item" data-section="categories">
-                    <i class="fas fa-folder"></i>
-                    <span>Categories</span>
+                <li class="nav-item" data-section="hacks">
+                    <i class="fas fa-code"></i>
+                    <span>Hacks</span>
                 </li>
-                <li class="nav-item" data-section="trash">
-                    <i class="fas fa-trash"></i>
-                    <span>Trash</span>
+                <li class="nav-item" data-section="ai">
+                    <i class="fas fa-robot"></i>
+                    <span>AI</span>
+                </li>
+                <li class="nav-item" data-section="contact">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contact</span>
                 </li>
             </ul>
             <div class="sidebar-footer">
@@ -84,10 +88,10 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="#" data-filter="all">All</a>
-                            <a href="#" data-filter="work">Work</a>
-                            <a href="#" data-filter="personal">Personal</a>
-                            <a href="#" data-filter="social">Social</a>
-                            <a href="#" data-filter="education">Education</a>
+                            <a href="#" data-filter="photos">Photos</a>
+                            <a href="#" data-filter="videos">Videos</a>
+                            <a href="#" data-filter="hacks">Hacks</a>
+                            <a href="#" data-filter="ai">AI</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -113,9 +117,9 @@
                 <!-- Websites will be dynamically added here -->
                 <div class="empty-state" id="emptyState">
                     <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M7 10L12 15L17 10" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 15V3" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 10L12 15L17 10" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15V3" stroke="#00ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <h2>No websites added yet</h2>
                     <p>Add your first website using the button above</p>
@@ -147,10 +151,10 @@
                         <label for="websiteCategory">Category</label>
                         <select id="websiteCategory">
                             <option value="general">General</option>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="social">Social</option>
-                            <option value="education">Education</option>
+                            <option value="photos">Photos</option>
+                            <option value="videos">Videos</option>
+                            <option value="hacks">Hacks</option>
+                            <option value="ai">AI</option>
                         </select>
                     </div>
                     <div class="form-group checkbox-group">
@@ -190,10 +194,10 @@
                         <label for="editWebsiteCategory">Category</label>
                         <select id="editWebsiteCategory">
                             <option value="general">General</option>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="social">Social</option>
-                            <option value="education">Education</option>
+                            <option value="photos">Photos</option>
+                            <option value="videos">Videos</option>
+                            <option value="hacks">Hacks</option>
+                            <option value="ai">AI</option>
                         </select>
                     </div>
                     <div class="form-group checkbox-group">
