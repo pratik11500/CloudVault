@@ -1237,6 +1237,59 @@ body {
     backdrop-filter: blur(5px);
 }
 
+/* Thumbnail background for contact cards */
+.contact-card-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: all 0.5s ease;
+}
+
+/* Color overlay for contact cards */
+.contact-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.contact-card-overlay-primary {
+    background: linear-gradient(135deg, 
+        rgba(157, 78, 221, 0.85) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+}
+
+.contact-card-overlay-secondary {
+    background: linear-gradient(135deg, 
+        rgba(0, 245, 212, 0.85) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+}
+
+.contact-card-overlay-accent {
+    background: linear-gradient(135deg, 
+        rgba(255, 133, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+}
+
+.contact-card-overlay-info {
+    background: linear-gradient(135deg, 
+        rgba(0, 176, 255, 0.85) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+}
+
 .contact-card-content {
     position: relative;
     z-index: 2;
@@ -1261,7 +1314,7 @@ body {
         rgba(255, 255, 255, 0.05) 50%,
         rgba(255, 255, 255, 0) 100%
     );
-    z-index: 1;
+    z-index: 3;
     transform: translateX(-100%);
     transition: transform 0.6s ease;
 }
@@ -1274,14 +1327,22 @@ body {
     transform: translateY(-10px) scale(1.03);
 }
 
+.contact-card:hover .contact-card-thumbnail {
+    transform: scale(1.1);
+}
+
+.contact-card:hover .contact-card-overlay {
+    opacity: 0.7;
+}
+
 .contact-card-primary {
     border-color: rgba(157, 78, 221, 0.3);
 }
 
 .contact-card-primary .contact-card-icon {
-    background-color: rgba(157, 78, 221, 0.15);
-    color: var(--primary);
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+    background-color: rgba(157, 78, 221, 0.3);
+    color: white;
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
 }
 
 .contact-card-secondary {
@@ -1289,9 +1350,9 @@ body {
 }
 
 .contact-card-secondary .contact-card-icon {
-    background-color: rgba(0, 245, 212, 0.15);
-    color: var(--secondary);
-    box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+    background-color: rgba(0, 245, 212, 0.3);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
 }
 
 .contact-card-accent {
@@ -1299,9 +1360,9 @@ body {
 }
 
 .contact-card-accent .contact-card-icon {
-    background-color: rgba(255, 133, 0, 0.15);
-    color: var(--accent);
-    box-shadow: 0 0 20px rgba(255, 133, 0, 0.3);
+    background-color: rgba(255, 133, 0, 0.3);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 133, 0, 0.5);
 }
 
 .contact-card-info {
@@ -1309,9 +1370,9 @@ body {
 }
 
 .contact-card-info .contact-card-icon {
-    background-color: rgba(0, 176, 255, 0.15);
-    color: var(--info);
-    box-shadow: 0 0 20px rgba(0, 176, 255, 0.3);
+    background-color: rgba(0, 176, 255, 0.3);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 176, 255, 0.5);
 }
 
 .contact-card-icon {
@@ -1324,6 +1385,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.8rem;
     position: relative;
+    backdrop-filter: blur(3px);
 }
 
 .contact-card-icon::after {
@@ -1332,47 +1394,35 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(157, 78, 221, 0.3) 0%, rgba(157, 78, 221, 0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
     animation: pulse 2s infinite;
 }
 
 .contact-card h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: var(--text-primary);
+    color: white;
     font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .contact-card .contact-info {
     font-size: 1rem;
     margin-bottom: 15px;
-    color: var(--primary);
+    color: white;
     font-weight: 500;
     padding: 5px 15px;
-    background-color: rgba(157, 78, 221, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     display: inline-block;
-}
-
-.contact-card-secondary .contact-info {
-    color: var(--secondary);
-    background-color: rgba(0, 245, 212, 0.1);
-}
-
-.contact-card-accent .contact-info {
-    color: var(--accent);
-    background-color: rgba(255, 133, 0, 0.1);
-}
-
-.contact-card-info .contact-info {
-    color: var(--info);
-    background-color: rgba(0, 176, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .contact-card p {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.95rem;
     line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Feedback Section */

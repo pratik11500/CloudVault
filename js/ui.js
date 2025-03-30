@@ -157,17 +157,59 @@ class UIManager {
         const searchContainer = document.querySelector('.search-container');
         const viewFilterContainer = document.querySelector('.view-filter-container');
         const welcomeSection = document.querySelector('.welcome-section');
+        const viewToggleBtns = document.querySelectorAll('.view-toggle button');
+        const websitesContainer = document.querySelector('.websites-container');
         
         if (section === 'contact') {
             // Hide search bar, welcome section and filter options on contact page
             if (searchContainer) searchContainer.style.display = 'none';
             if (viewFilterContainer) viewFilterContainer.style.display = 'none';
             if (welcomeSection) welcomeSection.style.display = 'none';
+            
+            // Force list view for contact page by disabling grid view
+            if (websitesContainer) {
+                websitesContainer.classList.remove('grid-view');
+                websitesContainer.classList.add('list-view');
+            }
+            
+            // Disable view toggle buttons for contact page
+            if (viewToggleBtns) {
+                viewToggleBtns.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+            }
+            
+            // Render contact page
+            this.currentSection = section;
+            this.renderContactPage();
+            return; // Exit early to prevent renderWebsites call at the end
         } else {
-            // Show them on other pages
+            // Show elements on other pages
             if (searchContainer) searchContainer.style.display = 'flex';
             if (viewFilterContainer) viewFilterContainer.style.display = 'flex';
             if (welcomeSection) welcomeSection.style.display = 'block';
+            
+            // Re-enable view toggle buttons
+            if (viewToggleBtns) {
+                viewToggleBtns.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+            }
+            
+            // Apply current view setting
+            if (websitesContainer) {
+                if (this.currentView === 'grid') {
+                    websitesContainer.classList.add('grid-view');
+                    websitesContainer.classList.remove('list-view');
+                } else {
+                    websitesContainer.classList.remove('grid-view');
+                    websitesContainer.classList.add('list-view');
+                }
+            }
         }
         
         this.currentSection = section;
@@ -319,35 +361,39 @@ class UIManager {
         const contactCards = document.createElement('div');
         contactCards.className = 'contact-cards';
         
-        // Create contact cards with hover effects
+        // Create contact cards with hover effects and thumbnails
         const contactOptions = [
             {
                 icon: 'fas fa-envelope',
                 title: 'Email Us',
                 info: 'support@linkvault.com',
                 description: 'Send us an email anytime. Our support team responds within 24 hours.',
-                color: 'primary'
+                color: 'primary',
+                thumbnail: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             },
             {
                 icon: 'fas fa-comment-dots',
                 title: 'Live Chat',
                 info: 'Available 9am-5pm ET',
                 description: 'Get instant answers to your questions through our live chat support.',
-                color: 'secondary'
+                color: 'secondary',
+                thumbnail: 'https://images.unsplash.com/photo-1611746869696-d09bce200020?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             },
             {
                 icon: 'fas fa-phone-alt',
                 title: 'Call Us',
                 info: '+1 (555) 123-4567',
                 description: 'Speak directly with our customer support team for urgent matters.',
-                color: 'accent'
+                color: 'accent',
+                thumbnail: 'https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             },
             {
                 icon: 'fas fa-map-marker-alt',
                 title: 'Visit Us',
                 info: 'Tech Plaza, Suite 404',
                 description: 'Schedule an in-person meeting at our headquarters in Silicon Valley.',
-                color: 'info'
+                color: 'info',
+                thumbnail: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             }
         ];
         
@@ -355,17 +401,36 @@ class UIManager {
             const card = document.createElement('div');
             card.className = `contact-card contact-card-${option.color}`;
             
-            card.innerHTML = `
-                <div class="contact-card-content">
-                    <div class="contact-card-icon">
-                        <i class="${option.icon}"></i>
-                    </div>
-                    <h3>${option.title}</h3>
-                    <div class="contact-info">${option.info}</div>
-                    <p>${option.description}</p>
+            // Create thumbnail background
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'contact-card-thumbnail';
+            thumbnail.style.backgroundImage = `url(${option.thumbnail})`;
+            
+            // Create gradient overlay that matches the card color
+            const overlay = document.createElement('div');
+            overlay.className = `contact-card-overlay contact-card-overlay-${option.color}`;
+            
+            card.appendChild(thumbnail);
+            card.appendChild(overlay);
+            
+            // Create content
+            const content = document.createElement('div');
+            content.className = 'contact-card-content';
+            content.innerHTML = `
+                <div class="contact-card-icon">
+                    <i class="${option.icon}"></i>
                 </div>
-                <div class="contact-card-shine"></div>
+                <h3>${option.title}</h3>
+                <div class="contact-info">${option.info}</div>
+                <p>${option.description}</p>
             `;
+            
+            // Add shine effect
+            const shine = document.createElement('div');
+            shine.className = 'contact-card-shine';
+            
+            card.appendChild(content);
+            card.appendChild(shine);
             
             contactCards.appendChild(card);
         });
@@ -439,6 +504,12 @@ class UIManager {
         // Clear the container
         this.websitesContainer.innerHTML = '';
         
+        // If we're on the contact page, render the contact page instead and exit
+        if (this.currentSection === 'contact') {
+            this.renderContactPage();
+            return;
+        }
+        
         // Get websites based on section
         let websites = this.getWebsitesByCurrentSection();
         
@@ -455,7 +526,7 @@ class UIManager {
         // Apply sort
         websites = storageManager.sortWebsites(websites, this.currentSort);
         
-        // Show empty state if no websites
+        // Show empty state if no websites (but not on contact page)
         if (websites.length === 0) {
             this.emptyState.style.display = 'flex';
             this.websitesContainer.appendChild(this.emptyState);
