@@ -509,6 +509,9 @@ class UIManager {
         if (this.currentSection === 'all') {
             websites = storageManager.filterWebsites(websites, this.currentFilter);
         }
+        
+        // Update category counters
+        this.updateCategoryCounts();
 
         // Apply sort
         websites = storageManager.sortWebsites(websites, this.currentSort);
@@ -892,6 +895,22 @@ class UIManager {
                 toast.parentNode.removeChild(toast);
             }
         }, 500);
+    }
+
+    /**
+     * Update category counts in the filter dropdown
+     */
+    updateCategoryCounts() {
+        // Get all websites
+        const allWebsites = storageManager.getAllWebsites();
+        document.getElementById('count-all').textContent = allWebsites.length;
+        
+        // Count websites in each category
+        const categories = ['photos', 'videos', 'hacks', 'ai', 'web'];
+        categories.forEach(category => {
+            const count = storageManager.getWebsitesByCategory(category).length;
+            document.getElementById(`count-${category}`).textContent = count;
+        });
     }
 
     /**

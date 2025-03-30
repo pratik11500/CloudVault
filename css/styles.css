@@ -1086,6 +1086,22 @@ body {
     display: block;
 }
 
+.category-count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    margin-left: 8px;
+    background-color: rgba(157, 78, 221, 0.2);
+    color: var(--text-primary);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 0 5px rgba(157, 78, 221, 0.2);
+}
+
 .add-website-btn {
     display: flex;
     align-items: center;
