@@ -397,18 +397,130 @@ body {
 .mega-search-bar {
     display: flex;
     align-items: center;
-    background-color: var(--background-card);
-    border-radius: var(--border-radius-xl);
-    padding: var(--spacing-md) var(--spacing-lg);
+    background: linear-gradient(145deg, rgba(16, 16, 31, 0.8), rgba(25, 25, 45, 0.9));
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 5px;
     width: 100%;
     max-width: 700px;
-    border: 2px solid var(--primary);
-    box-shadow: var(--shadow-glow);
-    transition: all var(--transition-normal);
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 10;
     overflow: hidden;
-    
+}
+
+.search-icon-wrapper {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 25px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    transition: all 0.4s ease;
+}
+
+.mega-search-bar i {
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+}
+
+.mega-search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    outline: none;
+    letter-spacing: 0.5px;
+}
+
+.mega-search-bar:hover,
+.mega-search-bar:focus-within {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(157, 78, 221, 0.3);
+}
+
+.mega-search-bar:hover .search-icon-wrapper,
+.mega-search-bar:focus-within .search-icon-wrapper {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+.search-decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.search-glow {
+    position: absolute;
+    background: radial-gradient(circle at center, var(--primary) 0%, transparent 70%);
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mega-search-bar:focus-within .search-glow {
+    opacity: 0.1;
+    animation: pulse 2s infinite;
+}
+
+.search-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.mega-search-bar:focus-within .search-particle:nth-child(1) {
+    animation: particle1 2s infinite;
+}
+
+.mega-search-bar:focus-within .search-particle:nth-child(2) {
+    animation: particle2 2.5s infinite;
+}
+
+.mega-search-bar:focus-within .search-particle:nth-child(3) {
+    animation: particle3 3s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.2; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+}
+
+@keyframes particle1 {
+    0% { left: 10%; top: 50%; opacity: 0; }
+    50% { left: 30%; top: 20%; opacity: 0.5; }
+    100% { left: 50%; top: 50%; opacity: 0; }
+}
+
+@keyframes particle2 {
+    0% { right: 10%; top: 50%; opacity: 0; }
+    50% { right: 30%; top: 80%; opacity: 0.5; }
+    100% { right: 50%; top: 50%; opacity: 0; }
+}
+
+@keyframes particle3 {
+    0% { left: 50%; bottom: 10%; opacity: 0; }
+    50% { left: 20%; bottom: 40%; opacity: 0.5; }
+    100% { left: 50%; bottom: 70%; opacity: 0; }
 }
 
 .mega-search-bar::before {
