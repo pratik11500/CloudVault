@@ -119,6 +119,7 @@ body {
     z-index: 1000;
     overflow-x: hidden;
     left: 0;
+    justify-content: space-between; /* This pushes the footer to the bottom */
 }
 
 .sidebar-collapsed {
