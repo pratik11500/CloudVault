@@ -690,13 +690,13 @@ class UIManager {
         const name = document.getElementById('websiteName').value;
         const url = document.getElementById('websiteUrl').value;
         const category = document.getElementById('websiteCategory').value;
-        const isFavorite = document.getElementById('addToFavorites').checked;
+        const thumbnailUrl = document.getElementById('websiteThumbnailUrl')?.value || '';
         
         const newWebsite = storageManager.addWebsite({
             name,
             url,
             category,
-            isFavorite
+            thumbnailUrl: thumbnailUrl.trim() || null
         });
         
         // Close modal
@@ -729,7 +729,12 @@ class UIManager {
         document.getElementById('editWebsiteName').value = website.name;
         document.getElementById('editWebsiteUrl').value = website.url;
         document.getElementById('editWebsiteCategory').value = website.category;
-        document.getElementById('editAddToFavorites').checked = website.isFavorite;
+        
+        // Set thumbnail URL if available
+        const thumbnailUrlField = document.getElementById('editWebsiteThumbnailUrl');
+        if (thumbnailUrlField) {
+            thumbnailUrlField.value = website.thumbnailUrl || '';
+        }
         
         // Show modal
         this.editWebsiteModal.classList.add('show');
@@ -759,13 +764,13 @@ class UIManager {
         const name = document.getElementById('editWebsiteName').value;
         const url = document.getElementById('editWebsiteUrl').value;
         const category = document.getElementById('editWebsiteCategory').value;
-        const isFavorite = document.getElementById('editAddToFavorites').checked;
+        const thumbnailUrl = document.getElementById('editWebsiteThumbnailUrl')?.value || '';
         
         const updatedWebsite = storageManager.updateWebsite(id, {
             name,
             url,
             category,
-            isFavorite
+            thumbnailUrl: thumbnailUrl.trim() || null
         });
         
         if (updatedWebsite) {

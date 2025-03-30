@@ -60,11 +60,12 @@ class StorageManager {
     }
 
     /**
-     * Get favorite websites
-     * @returns {Array} Array of website objects that are marked as favorites
+     * This function is deprecated and returns an empty array.
+     * Favorite functionality has been removed.
+     * @returns {Array} Empty array
      */
     getFavoriteWebsites() {
-        return this.websites.filter(website => website.isFavorite);
+        return [];
     }
 
     /**
@@ -88,9 +89,8 @@ class StorageManager {
             name: websiteData.name.trim(),
             url: this.formatUrl(websiteData.url),
             category: websiteData.category,
-            isFavorite: websiteData.isFavorite || false,
             dateAdded: new Date().toISOString(),
-            thumbnail: websiteData.thumbnail || null
+            thumbnailUrl: websiteData.thumbnailUrl || null // Custom thumbnail URL
         };
 
         this.websites.unshift(newWebsite);
@@ -116,9 +116,13 @@ class StorageManager {
             name: websiteData.name.trim(),
             url: this.formatUrl(websiteData.url),
             category: websiteData.category,
-            isFavorite: websiteData.isFavorite,
             dateModified: new Date().toISOString()
         };
+        
+        // Only update thumbnail if provided
+        if (websiteData.thumbnailUrl) {
+            updatedWebsite.thumbnailUrl = websiteData.thumbnailUrl;
+        }
 
         this.websites[index] = updatedWebsite;
         this.saveWebsites();
@@ -143,20 +147,14 @@ class StorageManager {
     }
 
     /**
-     * Toggle favorite status of a website
+     * This method is deprecated and does nothing.
+     * Favorite functionality has been removed.
      * @param {String} id Website ID
-     * @returns {Object|null} Updated website object or null if not found
+     * @returns {Object|null} Website object or null if not found
      */
     toggleFavorite(id) {
-        const index = this.websites.findIndex(website => website.id === id);
-        
-        if (index === -1) {
-            return null;
-        }
-
-        this.websites[index].isFavorite = !this.websites[index].isFavorite;
-        this.saveWebsites();
-        return this.websites[index];
+        const website = this.getWebsiteById(id);
+        return website;
     }
 
     /**

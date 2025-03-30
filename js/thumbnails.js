@@ -151,27 +151,45 @@ class ThumbnailManager {
         const thumbnailContainer = document.createElement('div');
         thumbnailContainer.className = 'website-thumbnail';
         
-        // Try to get favicon
-        const faviconUrl = this.getFaviconUrl(website.url);
-        
-        if (faviconUrl) {
-            // Create a styled placeholder with favicon
-            const placeholderDiv = document.createElement('div');
-            placeholderDiv.className = 'placeholder';
-            placeholderDiv.style.backgroundColor = this.getDominantColor(website.url);
+        // Check if the website has a custom thumbnail URL
+        if (website.thumbnailUrl) {
+            // Create a styled thumbnail with custom image
+            const customThumbnail = document.createElement('div');
+            customThumbnail.className = 'custom-thumbnail';
+            customThumbnail.style.backgroundImage = `url(${website.thumbnailUrl})`;
+            customThumbnail.style.backgroundSize = 'cover';
+            customThumbnail.style.backgroundPosition = 'center';
             
-            const favicon = document.createElement('img');
-            favicon.src = faviconUrl;
-            favicon.alt = `${website.name} favicon`;
-            favicon.style.width = '32px';
-            favicon.style.height = '32px';
-            favicon.style.objectFit = 'contain';
+            // Add a gradient overlay for better visibility of text
+            const overlay = document.createElement('div');
+            overlay.className = 'thumbnail-overlay';
             
-            placeholderDiv.appendChild(favicon);
-            thumbnailContainer.appendChild(placeholderDiv);
-        } else {
-            // Fallback to letter placeholder
-            thumbnailContainer.appendChild(this.createPlaceholderThumbnail(website.name, website.url));
+            customThumbnail.appendChild(overlay);
+            thumbnailContainer.appendChild(customThumbnail);
+        } 
+        // Try to get favicon as fallback
+        else {
+            const faviconUrl = this.getFaviconUrl(website.url);
+            
+            if (faviconUrl) {
+                // Create a styled placeholder with favicon
+                const placeholderDiv = document.createElement('div');
+                placeholderDiv.className = 'placeholder';
+                placeholderDiv.style.backgroundColor = this.getDominantColor(website.url);
+                
+                const favicon = document.createElement('img');
+                favicon.src = faviconUrl;
+                favicon.alt = `${website.name} favicon`;
+                favicon.style.width = '32px';
+                favicon.style.height = '32px';
+                favicon.style.objectFit = 'contain';
+                
+                placeholderDiv.appendChild(favicon);
+                thumbnailContainer.appendChild(placeholderDiv);
+            } else {
+                // Fallback to letter placeholder
+                thumbnailContainer.appendChild(this.createPlaceholderThumbnail(website.name, website.url));
+            }
         }
         
         return thumbnailContainer;
