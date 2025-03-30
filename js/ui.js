@@ -8,9 +8,7 @@ class UIManager {
         this.websitesContainer = document.getElementById('websitesContainer');
         this.emptyState = document.getElementById('emptyState');
         this.searchInput = document.getElementById('search-input');
-        this.gridViewBtn = document.getElementById('grid-view');
-        this.listViewBtn = document.getElementById('list-view');
-        // this.menuToggle removed as per user request
+        // View options removed as per user request
         this.sidebar = document.querySelector('.sidebar');
         this.navItems = document.querySelectorAll('.nav-item');
         this.addWebsiteModal = document.getElementById('addWebsiteModal');
@@ -22,7 +20,6 @@ class UIManager {
         this.starField = document.getElementById('starField');
         
         // Current state
-        this.currentView = 'grid'; // grid or list
         this.currentSection = 'all'; // all, favorites, recent, etc.
         this.currentFilter = 'all'; // all, work, personal, etc.
         this.currentSort = 'date-new'; // name-asc, name-desc, date-new, date-old
@@ -37,9 +34,7 @@ class UIManager {
      * Initialize all event listeners
      */
     initEventListeners() {
-        // View toggle
-        this.gridViewBtn.addEventListener('click', () => this.changeView('grid'));
-        this.listViewBtn.addEventListener('click', () => this.changeView('list'));
+        // View toggle removed as per user request
         
         // Logo toggle for sidebar
         document.getElementById('sidebarToggle').addEventListener('click', () => this.toggleSidebar());
@@ -93,25 +88,13 @@ class UIManager {
     }
 
     /**
-     * Change the current view (grid or list)
-     * @param {String} view View type ('grid' or 'list')
+     * Change the current view (grid only as per user request)
+     * @param {String} view View type (only 'grid' supported now)
      */
     changeView(view) {
-        if (this.currentView === view) return;
-        
-        this.currentView = view;
-        
-        if (view === 'grid') {
-            this.websitesContainer.classList.remove('list-view');
-            this.websitesContainer.classList.add('grid-view');
-            this.gridViewBtn.classList.add('active');
-            this.listViewBtn.classList.remove('active');
-        } else {
-            this.websitesContainer.classList.remove('grid-view');
-            this.websitesContainer.classList.add('list-view');
-            this.gridViewBtn.classList.remove('active');
-            this.listViewBtn.classList.add('active');
-        }
+        // Always use grid view as per user request
+        this.websitesContainer.classList.remove('list-view');
+        this.websitesContainer.classList.add('grid-view');
         
         this.renderWebsites(); // Re-render to adjust layouts
     }
@@ -918,21 +901,24 @@ class UIManager {
         // Clear existing stars first
         this.starField.innerHTML = '';
         
-        // Create static stars
-        const starCount = 60; // Reduced number of stars
+        // Create static stars (no animation)
+        const starCount = 100; // More stars for better effect
         
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
-            star.className = 'star static';
+            star.className = 'star static'; // Add static class to disable animation
             
             // Random position
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
             
-            // Random size between 1-3px
-            const size = Math.random() * 2 + 1;
+            // Random size between 1-4px with larger stars
+            const size = Math.random() * 3 + 1;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
+            
+            // Random opacity for depth effect
+            star.style.opacity = Math.random() * 0.5 + 0.3;
             
             // Assign different colors
             const colorType = Math.floor(Math.random() * 4);
