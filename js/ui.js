@@ -553,13 +553,11 @@ class UIManager {
         card.className = 'website-card';
         card.dataset.id = website.id;
         
-        // Create thumbnail
+        // Create thumbnail - now positioned at the top of the card
         const thumbnail = thumbnailManager.createThumbnail(website);
-        
-        // Favorites functionality has been removed
         card.appendChild(thumbnail);
         
-        // Create info section
+        // Create info section - now positioned below the thumbnail
         const infoDiv = document.createElement('div');
         infoDiv.className = 'website-info';
         

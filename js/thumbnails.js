@@ -153,19 +153,13 @@ class ThumbnailManager {
         
         // Always use custom thumbnail URL if available
         if (website.thumbnailUrl) {
-            // Create a styled thumbnail with custom image
-            const customThumbnail = document.createElement('div');
-            customThumbnail.className = 'custom-thumbnail';
-            customThumbnail.style.backgroundImage = `url(${website.thumbnailUrl})`;
-            customThumbnail.style.backgroundSize = 'cover';
-            customThumbnail.style.backgroundPosition = 'center';
+            // Create an image element for the thumbnail
+            const thumbnailImg = document.createElement('img');
+            thumbnailImg.src = website.thumbnailUrl;
+            thumbnailImg.alt = `${website.name} thumbnail`;
+            thumbnailImg.className = 'thumbnail-image';
             
-            // Add a gradient overlay for better visibility of text
-            const overlay = document.createElement('div');
-            overlay.className = 'thumbnail-overlay';
-            
-            customThumbnail.appendChild(overlay);
-            thumbnailContainer.appendChild(customThumbnail);
+            thumbnailContainer.appendChild(thumbnailImg);
             return thumbnailContainer;
         } 
         

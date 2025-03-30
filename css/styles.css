@@ -540,72 +540,52 @@ body {
 }
 
 .website-thumbnail {
-    height: 150px;
     width: 100%;
+    max-height: 180px;
     background-color: var(--background-modal);
     position: relative;
     overflow: hidden;
 }
 
-/* Custom thumbnail styling */
-.custom-thumbnail {
-    height: 100%;
+/* New thumbnail image styling */
+.thumbnail-image {
     width: 100%;
-    position: relative;
-    overflow: hidden;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
     transition: transform var(--transition-normal);
+    display: block;
 }
 
-.website-card:hover .custom-thumbnail {
+.website-card:hover .thumbnail-image {
     transform: scale(1.1);
 }
 
-.thumbnail-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg,
-        rgba(10, 10, 27, 0.7) 0%,
-        rgba(10, 10, 27, 0.3) 70%,
-        rgba(10, 10, 27, 0.1) 100%);
-}
-
-.list-view .website-thumbnail {
-    height: 80px;
-    width: 120px;
-}
-
-.website-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* Maintain placeholder styling */
 .website-thumbnail .placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 180px;
     width: 100%;
     color: var(--text-tertiary);
     font-size: 2rem;
 }
 
-/* Additional styling for list view thumbnails */
-.list-view .custom-thumbnail {
-    transform: none !important;
+/* List view thumbnails */
+.list-view .website-thumbnail {
+    height: 80px;
+    width: 120px;
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
 }
 
-.list-view .thumbnail-overlay {
-    height: 100%;
-    background: linear-gradient(90deg, 
-        rgba(10, 10, 27, 0.8) 0%, 
-        rgba(10, 10, 27, 0.3) 100%);
+.list-view .thumbnail-image {
+    height: 80px;
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+}
+
+.list-view .website-thumbnail .placeholder {
+    height: 80px;
 }
 
 .website-info {
