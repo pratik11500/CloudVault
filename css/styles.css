@@ -857,42 +857,120 @@ body {
 }
 
 .website-card {
-    background-color: var(--background-card);
+    background-color: rgba(16, 16, 31, 0.8);
+    backdrop-filter: blur(10px);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
-    transition: all var(--transition-normal);
+    transition: all 0.3s ease;
     box-shadow: var(--shadow-sm);
     position: relative;
-    border: 1px solid var(--border-color);
-    
+    border: 2px solid rgba(157, 78, 221, 0.3);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.website-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
 }
 
 .website-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(157, 78, 221, 0.05) 0%, 
-        rgba(157, 78, 221, 0) 40%,
-        rgba(0, 245, 212, 0) 60%,
-        rgba(0, 245, 212, 0.05) 100%
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(157, 78, 221, 0.1) 0%,
+        rgba(0, 245, 212, 0.1) 100%
     );
-    z-index: 1;
     opacity: 0;
-    transition: opacity var(--transition-normal);
-    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
 }
 
 .website-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-glow), var(--shadow-md);
-    border-color: transparent;
-    border-image: var(--gradient-1);
-    border-image-slice: 1;
-    
+    transform: translateY(-8px) rotateX(5deg);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+}
+
+.website-card:hover::before {
+    opacity: 0.2;
+}
+
+.website-card:hover::after {
+    opacity: 1;
+}
+
+.website-card .glow-line {
+    position: absolute;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--primary),
+        var(--secondary),
+        transparent
+    );
+    top: 50%;
+    left: -200%;
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.website-card:hover .glow-line {
+    left: 100%;
+}
+
+.website-card .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--primary);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.website-card .corner.top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.website-card .corner.top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.website-card .corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.website-card .corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.website-card:hover .corner {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
 }
 
 .website-card:hover::after {
