@@ -926,113 +926,27 @@ body {
 }
 
 .website-card {
-    background: rgba(16, 16, 31, 0.9);
-    border: 1px solid var(--primary);
-    position: relative;
+    background-color: rgba(16, 16, 31, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    clip-path: polygon(
-        0 15px,
-        15px 0,
-        calc(100% - 15px) 0,
-        100% 15px,
-        100% calc(100% - 15px),
-        calc(100% - 15px) 100%,
-        15px 100%,
-        0 calc(100% - 15px)
-    );
-}
-
-.website-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: var(--primary);
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.website-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        transparent,
-        rgba(157, 78, 221, 0.05)
-    );
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.website-card::before,
-.website-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-}
-
-.website-card::before {
-    background: 
-        linear-gradient(45deg, transparent 48%, var(--primary) 50%, transparent 52%) 0 0 / 10px 10px,
-        linear-gradient(-45deg, transparent 48%, var(--secondary) 50%, transparent 52%) 0 0 / 10px 10px;
-    opacity: 0.3;
-}
-
-.website-card::after {
-    background: 
-        linear-gradient(90deg, var(--primary) 1px, transparent 1px) 0 0 / 20px 20px,
-        linear-gradient(0deg, var(--secondary) 1px, transparent 1px) 0 0 / 20px 20px;
-    opacity: 0.1;
-}
-
-.website-card:hover {
-    transform: translateY(-10px) rotateX(10deg);
-    border-color: var(--primary);
-    box-shadow: 
-        0 15px 30px rgba(157, 78, 221, 0.3),
-        0 0 0 1px rgba(157, 78, 221, 0.3),
-        inset 0 0 30px rgba(157, 78, 221, 0.2);
-}
-
-.website-card:hover::before {
-    opacity: 0.5;
-    background-size: 15px 15px;
-    animation: patternSlide 3s linear infinite;
-}
-
-.website-card:hover::after {
-    opacity: 0.2;
-    background-size: 25px 25px;
-    animation: gridRotate 10s linear infinite;
-}
-
-@keyframes patternSlide {
-    0% { background-position: 0 0; }
-    100% { background-position: 20px 20px; }
-}
-
-@keyframes gridRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.website-card .corner {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary);
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.website-card:hover .corner {
-    opacity: 1;
-    width: 30px;
-    height: 30px;
-    border-color: var(--primary);
-    box-shadow: 0 0 15px var(--primary);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    border: 2px solid rgba(157, 78, 221, 0.1);
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    isolation: isolate;
+    clip-path: polygon(
+        calc(0% + 10px) 0%,
+        calc(100% - 10px) 0%,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0% calc(100% - 10px),
+        0% 10px
+    );
 }
 
 .website-card::before {
@@ -1201,58 +1115,41 @@ body {
 }
 
 .website-card:hover {
-    transform: scale(1.02) translateY(-5px);
-    border-color: var(--primary);
+    transform: translateY(-15px) rotateX(10deg) rotateY(5deg);
+    border-color: transparent;
     box-shadow: 
-        0 0 20px var(--primary),
-        0 0 40px rgba(157, 78, 221, 0.3),
-        inset 0 0 15px rgba(157, 78, 221, 0.2);
+        0 25px 50px -12px rgba(157, 78, 221, 0.4),
+        0 0 20px rgba(157, 78, 221, 0.2),
+        inset 0 0 20px rgba(157, 78, 221, 0.1);
 }
 
 .website-card:hover::before {
     opacity: 0.2;
-    animation: gridScan 3s linear infinite;
 }
 
 .website-card:hover::after {
     opacity: 1;
-    animation: scanline 2s linear infinite;
 }
 
-@keyframes gridScan {
-    0% { background-position: 0 0; }
-    100% { background-position: 10px 10px; }
-}
-
-@keyframes scanline {
-    0% { transform: translateY(-100%) rotate(45deg); }
-    100% { transform: translateY(100%) rotate(45deg); }
-}
-
-.website-card .scan-line {
+.website-card .glow-line {
     position: absolute;
     width: 200%;
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        var(--primary) 50%,
-        transparent 100%
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--primary),
+        var(--secondary),
+        transparent
     );
-    top: -50%;
-    left: -50%;
-    transform-origin: 0 0;
-    animation: scan 4s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s;
+    top: 50%;
+    left: -200%;
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+    pointer-events: none;
 }
 
-.website-card:hover .scan-line {
-    opacity: 1;
-}
-
-@keyframes scan {
-    0% { transform: rotate(45deg) translateY(-100%); }
-    100% { transform: rotate(45deg) translateY(100%); }
+.website-card:hover .glow-line {
+    left: 100%;
 }
 
 .website-card .corner {
