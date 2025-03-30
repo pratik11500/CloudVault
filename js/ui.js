@@ -556,16 +556,7 @@ class UIManager {
         // Create thumbnail
         const thumbnail = thumbnailManager.createThumbnail(website);
         
-        // Create favorite button
-        const favoriteBtn = document.createElement('button');
-        favoriteBtn.className = `website-favorite ${website.isFavorite ? 'active' : ''}`;
-        favoriteBtn.innerHTML = `<i class="fas ${website.isFavorite ? 'fa-star' : 'fa-star'}"></i>`;
-        favoriteBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleFavorite(website.id);
-        });
-        
-        thumbnail.appendChild(favoriteBtn);
+        // Favorites functionality has been removed
         card.appendChild(thumbnail);
         
         // Create info section

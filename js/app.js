@@ -46,7 +46,7 @@ class App {
                     name: 'OpenAI',
                     url: 'https://openai.com',
                     category: 'ai',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg'
                 },
                 {
                     name: 'Google Bard',
