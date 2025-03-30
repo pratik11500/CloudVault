@@ -462,19 +462,12 @@ body {
     background-color: var(--primary-hover);
 }
 
-/* Website Grid/List Views */
+/* Website Grid View */
 .websites-container {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: var(--spacing-lg);
     margin-top: var(--spacing-xl);
-}
-
-.grid-view {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.list-view {
-    grid-template-columns: 1fr;
 }
 
 .website-card {
@@ -485,7 +478,7 @@ body {
     box-shadow: var(--shadow-sm);
     position: relative;
     border: 1px solid var(--border-color);
-    
+    cursor: pointer;
 }
 
 .website-card::after {
