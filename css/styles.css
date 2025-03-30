@@ -590,21 +590,21 @@ body {
 }
 
 .website-description {
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
     font-size: 0.95rem;
     margin: var(--spacing-sm) 0;
-    display: block !important;
-    max-height: none;
+    display: block;
     line-height: 1.5;
     border-left: 3px solid var(--primary);
     padding: var(--spacing-sm) var(--spacing-sm);
     background-color: rgba(157, 78, 221, 0.1);
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
-    opacity: 1 !important;
-    visibility: visible !important;
+    opacity: 1;
+    visibility: visible;
     position: relative;
     overflow: visible;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1;
 }
 
 .website-url {
