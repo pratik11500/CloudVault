@@ -237,89 +237,171 @@ class UIManager {
         const contactContainer = document.createElement('div');
         contactContainer.className = 'contact-container';
         
-        // Create header section
-        const headerSection = document.createElement('div');
-        headerSection.className = 'contact-header';
+        // Create hero section with animated background
+        const heroSection = document.createElement('div');
+        heroSection.className = 'contact-hero';
+        
+        // Create animated background
+        const animatedBg = document.createElement('div');
+        animatedBg.className = 'contact-animated-bg';
+        for (let i = 0; i < 5; i++) {
+            const circle = document.createElement('div');
+            circle.className = 'animated-circle';
+            circle.style.animationDelay = `${i * 0.5}s`;
+            animatedBg.appendChild(circle);
+        }
+        
+        // Create hero content
+        const heroContent = document.createElement('div');
+        heroContent.className = 'contact-hero-content';
         
         const header = document.createElement('h1');
-        header.textContent = 'Connect With Us';
+        header.textContent = 'Get In Touch';
+        header.className = 'contact-hero-title';
+        
+        const subtitle = document.createElement('span');
+        subtitle.textContent = 'We\'d love to hear from you';
+        subtitle.className = 'contact-hero-subtitle';
         
         const description = document.createElement('p');
-        description.textContent = 'Have questions or suggestions about LinkVault? We\'d love to hear from you! Choose how you\'d like to connect with our team below.';
+        description.textContent = 'Have questions or suggestions about LinkVault? Our team is just a click away. Connect with us through any of these channels.';
+        description.className = 'contact-hero-description';
         
-        // Create social links section (now right after the header)
-        const socialLinks = document.createElement('div');
-        socialLinks.className = 'social-links-inline';
+        // Create social links tabs
+        const socialTabs = document.createElement('div');
+        socialTabs.className = 'social-tabs';
         
-        // Add social media links
+        // Add social media links with labels
         const socialPlatforms = [
-            { icon: 'fab fa-github', url: 'https://github.com' },
-            { icon: 'fab fa-twitter', url: 'https://twitter.com' },
-            { icon: 'fab fa-discord', url: 'https://discord.com' },
-            { icon: 'fab fa-youtube', url: 'https://youtube.com' },
-            { icon: 'fab fa-reddit', url: 'https://reddit.com' },
-            { icon: 'fab fa-instagram', url: 'https://instagram.com' },
-            { icon: 'fab fa-linkedin', url: 'https://linkedin.com' }
+            { icon: 'fab fa-github', name: 'GitHub', url: 'https://github.com' },
+            { icon: 'fab fa-twitter', name: 'Twitter', url: 'https://twitter.com' },
+            { icon: 'fab fa-discord', name: 'Discord', url: 'https://discord.com' },
+            { icon: 'fab fa-instagram', name: 'Instagram', url: 'https://instagram.com' },
+            { icon: 'fab fa-linkedin', name: 'LinkedIn', url: 'https://linkedin.com' },
+            { icon: 'fab fa-youtube', name: 'YouTube', url: 'https://youtube.com' },
+            { icon: 'fab fa-reddit', name: 'Reddit', url: 'https://reddit.com' }
         ];
         
         socialPlatforms.forEach(platform => {
-            const link = document.createElement('a');
-            link.className = 'social-link';
-            link.href = platform.url;
-            link.target = '_blank';
-            link.innerHTML = `<i class="${platform.icon}"></i>`;
-            socialLinks.appendChild(link);
+            const tab = document.createElement('a');
+            tab.className = 'social-tab';
+            tab.href = platform.url;
+            tab.target = '_blank';
+            tab.innerHTML = `
+                <div class="social-tab-icon">
+                    <i class="${platform.icon}"></i>
+                </div>
+                <span class="social-tab-name">${platform.name}</span>
+            `;
+            socialTabs.appendChild(tab);
         });
         
-        headerSection.appendChild(header);
-        headerSection.appendChild(description);
-        headerSection.appendChild(socialLinks);
+        // Append hero content elements
+        heroContent.appendChild(header);
+        heroContent.appendChild(subtitle);
+        heroContent.appendChild(description);
+        heroContent.appendChild(socialTabs);
         
-        // Create contact cards container
+        // Append hero elements
+        heroSection.appendChild(animatedBg);
+        heroSection.appendChild(heroContent);
+        
+        // Create contact methods section
+        const contactMethods = document.createElement('div');
+        contactMethods.className = 'contact-methods';
+        
+        // Create section title
+        const methodsTitle = document.createElement('h2');
+        methodsTitle.textContent = 'Ways to Connect';
+        methodsTitle.className = 'contact-methods-title';
+        
+        // Create contact cards grid
         const contactCards = document.createElement('div');
         contactCards.className = 'contact-cards';
         
-        // Email contact card
-        const emailCard = this.createContactCard(
-            'fas fa-envelope', 
-            'Email Support', 
-            'support@linkvault.com', 
-            'Our support team typically responds within 24 hours to all inquiries. We\'re here to help with any questions about our service!'
-        );
+        // Create contact cards with hover effects
+        const contactOptions = [
+            {
+                icon: 'fas fa-envelope',
+                title: 'Email Us',
+                info: 'support@linkvault.com',
+                description: 'Send us an email anytime. Our support team responds within 24 hours.',
+                color: 'primary'
+            },
+            {
+                icon: 'fas fa-comment-dots',
+                title: 'Live Chat',
+                info: 'Available 9am-5pm ET',
+                description: 'Get instant answers to your questions through our live chat support.',
+                color: 'secondary'
+            },
+            {
+                icon: 'fas fa-phone-alt',
+                title: 'Call Us',
+                info: '+1 (555) 123-4567',
+                description: 'Speak directly with our customer support team for urgent matters.',
+                color: 'accent'
+            },
+            {
+                icon: 'fas fa-map-marker-alt',
+                title: 'Visit Us',
+                info: 'Tech Plaza, Suite 404',
+                description: 'Schedule an in-person meeting at our headquarters in Silicon Valley.',
+                color: 'info'
+            }
+        ];
         
-        // GitHub card
-        const githubCard = this.createContactCard(
-            'fab fa-github', 
-            'GitHub', 
-            'github.com/linkvault', 
-            'Check out our open source projects, report bugs, or contribute to the development of LinkVault on our GitHub page.'
-        );
+        contactOptions.forEach(option => {
+            const card = document.createElement('div');
+            card.className = `contact-card contact-card-${option.color}`;
+            
+            card.innerHTML = `
+                <div class="contact-card-content">
+                    <div class="contact-card-icon">
+                        <i class="${option.icon}"></i>
+                    </div>
+                    <h3>${option.title}</h3>
+                    <div class="contact-info">${option.info}</div>
+                    <p>${option.description}</p>
+                </div>
+                <div class="contact-card-shine"></div>
+            `;
+            
+            contactCards.appendChild(card);
+        });
         
-        // Twitter card
-        const twitterCard = this.createContactCard(
-            'fab fa-twitter', 
-            'Twitter', 
-            '@LinkVault', 
-            'Follow us for the latest updates, tips and tricks. You can also reach out to us directly through Twitter for quick responses.'
-        );
+        // Create feedback form section
+        const feedbackSection = document.createElement('div');
+        feedbackSection.className = 'contact-feedback';
         
-        // Discord card
-        const discordCard = this.createContactCard(
-            'fab fa-discord', 
-            'Discord Community', 
-            'discord.gg/linkvault', 
-            'Join our Discord community to chat with other users, share your website collections, and get help from our team.'
-        );
+        const feedbackTitle = document.createElement('h2');
+        feedbackTitle.textContent = 'Leave Feedback';
+        feedbackTitle.className = 'feedback-title';
         
-        // Append all cards to container
-        contactCards.appendChild(emailCard);
-        contactCards.appendChild(githubCard);
-        contactCards.appendChild(twitterCard);
-        contactCards.appendChild(discordCard);
+        const feedbackMsg = document.createElement('p');
+        feedbackMsg.textContent = 'We value your input. Share your thoughts about LinkVault and help us improve your experience.';
+        feedbackMsg.className = 'feedback-description';
         
-        // Append all elements to the contact container
-        contactContainer.appendChild(headerSection);
-        contactContainer.appendChild(contactCards);
+        const feedbackBtn = document.createElement('button');
+        feedbackBtn.className = 'feedback-button';
+        feedbackBtn.textContent = 'Send Feedback';
+        feedbackBtn.innerHTML = `
+            <span>Send Feedback</span>
+            <i class="fas fa-paper-plane"></i>
+        `;
+        
+        feedbackSection.appendChild(feedbackTitle);
+        feedbackSection.appendChild(feedbackMsg);
+        feedbackSection.appendChild(feedbackBtn);
+        
+        // Append methods section elements
+        contactMethods.appendChild(methodsTitle);
+        contactMethods.appendChild(contactCards);
+        
+        // Append all sections to contact container
+        contactContainer.appendChild(heroSection);
+        contactContainer.appendChild(contactMethods);
+        contactContainer.appendChild(feedbackSection);
         
         // Append contact container to the main container
         this.websitesContainer.appendChild(contactContainer);
