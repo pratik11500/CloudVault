@@ -41,11 +41,9 @@ class App {
         const cursorDotOutline = document.createElement('div');
         cursorDotOutline.className = 'cursor-dot-outline';
         
-        // Set initial position to prevent flicker
-        cursorDot.style.left = '50%';
-        cursorDot.style.top = '50%';
-        cursorDotOutline.style.left = '50%';
-        cursorDotOutline.style.top = '50%';
+        // Hide cursors initially until mouse moves
+        cursorDot.style.opacity = '0';
+        cursorDotOutline.style.opacity = '0';
         
         // Create trail container
         const trailsContainer = document.createElement('div');
@@ -69,15 +67,25 @@ class App {
         let lastY = 0;
         let trailElements = [];
         const MAX_TRAILS = 15;
+        let isFirstMove = true;
         
         // Handle mouse movement
         document.addEventListener('mousemove', (e) => {
-            // Update cursor position
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
+            // Show cursors on first mouse move
+            if (isFirstMove) {
+                cursorDot.style.opacity = '1';
+                cursorDotOutline.style.opacity = '1';
+                isFirstMove = false;
+            }
             
-            cursorDotOutline.style.left = `${e.clientX}px`;
-            cursorDotOutline.style.top = `${e.clientY}px`;
+            // Update cursor position exactly at the mouse pointer
+            requestAnimationFrame(() => {
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+                
+                cursorDotOutline.style.left = `${e.clientX}px`;
+                cursorDotOutline.style.top = `${e.clientY}px`;
+            });
             
             // Calculate distance moved
             const dist = Math.sqrt(Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2));
