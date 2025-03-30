@@ -22,6 +22,133 @@ class App {
         
         // Initialize sample websites if none exist
         this.initSampleIfEmpty();
+        
+        // Add web category websites
+        this.addWebWebsites();
+    }
+    
+    /**
+     * Add web-related websites to the collection
+     */
+    addWebWebsites() {
+        const webWebsites = [
+            // Icon websites
+            {
+                name: 'Noticons',
+                url: 'https://www.noticons.com/',
+                category: 'web',
+                description: 'Beautiful icon collection for web design',
+                thumbnailUrl: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'FLATICON',
+                url: 'https://www.flaticon.com/',
+                category: 'web',
+                description: 'Free vector icons and stickers',
+                thumbnailUrl: 'https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'PHOSPHOR',
+                url: 'https://phosphoricons.com/',
+                category: 'web',
+                description: 'Flexible icon family for interfaces',
+                thumbnailUrl: 'https://images.pexels.com/photos/5474295/pexels-photo-5474295.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'THE NOUN PROJECT',
+                url: 'https://getcustomblocks.com/',
+                category: 'web',
+                description: 'Custom blocks for designing websites',
+                thumbnailUrl: 'https://images.pexels.com/photos/5935794/pexels-photo-5935794.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'SUPER',
+                url: 'https://super.so/icons',
+                category: 'web',
+                description: 'Super icons collection for websites',
+                thumbnailUrl: 'https://images.pexels.com/photos/5926389/pexels-photo-5926389.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'SIMPLE',
+                url: 'https://notionicons.simple.ink/',
+                category: 'web',
+                description: 'Simple icons for Notion pages',
+                thumbnailUrl: 'https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'FEATHER ICONS',
+                url: 'https://feathericons.com/',
+                category: 'web',
+                description: 'Beautiful, customizable icons',
+                thumbnailUrl: 'https://images.pexels.com/photos/5926395/pexels-photo-5926395.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            
+            // UI Framework websites
+            {
+                name: 'Chakra UI',
+                url: 'https://chakra-ui.com/',
+                category: 'web',
+                description: 'Simple, modular component library',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Daisy UI',
+                url: 'https://daisyui.com/',
+                category: 'web',
+                description: 'Tailwind CSS component library',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Mantine',
+                url: 'https://mantine.dev/',
+                category: 'web',
+                description: 'React components and hooks library',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035516/pexels-photo-11035516.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Headless UI',
+                url: 'https://headlessui.com/',
+                category: 'web',
+                description: 'Unstyled UI components for React',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035381/pexels-photo-11035381.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Hero UI',
+                url: 'https://www.heroui.com/',
+                category: 'web',
+                description: 'Customizable UI component library',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035382/pexels-photo-11035382.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'UI Shadcn',
+                url: 'https://ui.shadcn.com/',
+                category: 'web',
+                description: 'Shadcn's beautiful UI components',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035384/pexels-photo-11035384.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Material UI',
+                url: 'https://mui.com/material-ui/getting-started/',
+                category: 'web',
+                description: 'React components for faster development',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035385/pexels-photo-11035385.jpeg?auto=compress&cs=tinysrgb&w=600'
+            },
+            {
+                name: 'Universe.io',
+                url: 'https://universe.io/elements',
+                category: 'web',
+                description: 'UI elements for creative websites',
+                thumbnailUrl: 'https://images.pexels.com/photos/11035383/pexels-photo-11035383.jpeg?auto=compress&cs=tinysrgb&w=600'
+            }
+        ];
+        
+        // Add all web websites
+        webWebsites.forEach(website => {
+            storageManager.addWebsite(website);
+        });
+        
+        // Re-render the website display
+        uiManager.renderWebsites();
     }
 
     /**
