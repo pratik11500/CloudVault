@@ -437,6 +437,7 @@ body {
     position: relative;
     padding: 3rem 0;
     overflow: hidden;
+    background: radial-gradient(circle at center, rgba(157, 78, 221, 0.2) 0%, transparent 70%);
 }
 
 .cyber-welcome {
@@ -444,166 +445,160 @@ body {
     z-index: 2;
 }
 
-.glitch-container {
+.glitch-box {
     position: relative;
     display: inline-block;
-    margin-bottom: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
-.cyber-heading {
-    font-size: 4.5rem;
-    font-weight: 800;
-    color: var(--primary);
+.cyber-glitch {
+    font-size: 5rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    color: var(--text-primary);
     position: relative;
     text-shadow: 
-        2px 2px var(--accent),
-        0 0 10px var(--primary),
-        0 0 20px var(--secondary);
-    animation: textGlitch 3s infinite, outlineLight 4s linear infinite;
-    -webkit-text-stroke: 2px rgba(157, 78, 221, 0.5);
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary));
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+        2px 2px var(--primary),
+        -2px -2px var(--secondary);
+    animation: textflicker 0.3s infinite;
+    mix-blend-mode: screen;
 }
 
-@keyframes outlineLight {
-    0% {
-        -webkit-text-stroke-color: rgba(157, 78, 221, 0.5);
-        text-shadow: 
-            2px 2px var(--accent),
-            0 0 10px var(--primary),
-            0 0 20px var(--secondary);
-    }
-    50% {
-        -webkit-text-stroke-color: rgba(0, 245, 212, 0.5);
-        text-shadow: 
-            2px 2px var(--primary),
-            0 0 20px var(--secondary),
-            0 0 40px var(--accent);
-    }
-    100% {
-        -webkit-text-stroke-color: rgba(157, 78, 221, 0.5);
-        text-shadow: 
-            2px 2px var(--accent),
-            0 0 10px var(--primary),
-            0 0 20px var(--secondary);
-    }
-}
-
-.cyber-heading::before,
-.cyber-heading::after {
+.cyber-glitch::before,
+.cyber-glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    clip: rect(0, 900px, 0, 0);
-    background: inherit;
-    -webkit-background-clip: text;
-    background-clip: text;
+    opacity: 0.8;
 }
 
-.cyber-heading::before {
-    text-shadow: -2px 0 var(--secondary);
-    animation: glitch-1 3s infinite linear alternate-reverse;
+.cyber-glitch::before {
+    animation: glitch-1 0.4s infinite;
+    color: var(--primary);
+    transform: translateX(-2px);
 }
 
-.cyber-heading::after {
-    text-shadow: 2px 0 var(--accent);
-    animation: glitch-2 2s infinite linear alternate-reverse;
+.cyber-glitch::after {
+    animation: glitch-2 0.3s infinite;
+    color: var(--secondary);
+    transform: translateX(2px);
 }
 
-.cyber-lines {
+@keyframes textflicker {
+    0% { text-shadow: 2px 2px var(--primary), -2px -2px var(--secondary); }
+    25% { text-shadow: -2px 2px var(--accent), 2px -2px var(--primary); }
+    50% { text-shadow: 2px -2px var(--secondary), -2px 2px var(--accent); }
+    75% { text-shadow: -2px -2px var(--primary), 2px 2px var(--secondary); }
+    100% { text-shadow: 2px 2px var(--primary), -2px -2px var(--secondary); }
+}
+
+.scan-lines {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: repeating-linear-gradient(
-        transparent 0%,
-        rgba(157, 78, 221, 0.1) 1px,
-        transparent 2px,
-        transparent 5px
+        0deg,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
     );
+    pointer-events: none;
     animation: scanlines 8s linear infinite;
 }
 
-.cyber-subheading {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-    padding: 0.5rem 2rem;
-    background: rgba(157, 78, 221, 0.1);
-    border: 1px solid var(--primary);
-    animation: pulseBackground 4s infinite;
-}
-
-.cyber-decorations {
+.noise {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.cyber-circle {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary), transparent);
-    opacity: 0.2;
-    animation: rotate 20s linear infinite;
-}
-
-.cyber-circle:nth-child(1) {
-    width: 400px;
-    height: 400px;
-    top: -200px;
-    left: -100px;
-}
-
-.cyber-circle:nth-child(2) {
-    width: 300px;
-    height: 300px;
-    bottom: -100px;
-    right: -50px;
-    animation-direction: reverse;
-}
-
-.cyber-grid {
-    position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: 
-        linear-gradient(90deg, rgba(157, 78, 221, 0.1) 1px, transparent 1px) 0 0 / 50px 50px,
-        linear-gradient(0deg, rgba(157, 78, 221, 0.1) 1px, transparent 1px) 0 0 / 50px 50px;
-    transform: perspective(500px) rotateX(60deg);
-    transform-origin: top;
-    animation: gridMove 20s linear infinite;
+        repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px 2500px,
+        repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 50%/2500px 2500px;
+    background-blend-mode: difference;
+    opacity: 0.05;
+    animation: noise 0.5s steps(2) infinite;
 }
 
-@keyframes textGlitch {
-    0%, 100% { transform: none; }
-    92% { transform: skew(2deg); }
-    94% { transform: skew(-2deg); }
-    96% { transform: skew(2deg); }
-    98% { transform: none; }
+.cyber-subtitle {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-@keyframes gridMove {
-    0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-    100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+.cyber-bracket {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bold;
+    animation: bracketPulse 2s infinite;
 }
 
-@keyframes pulseBackground {
-    0%, 100% { background: rgba(157, 78, 221, 0.1); }
-    50% { background: rgba(157, 78, 221, 0.2); }
+.cyber-text {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 0 1rem;
+}
+
+.cyber-matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 50%, rgba(157, 78, 221, 0.1) 50%),
+        linear-gradient(rgba(157, 78, 221, 0.1) 50%, transparent 50%);
+    background-size: 4px 4px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: matrix 20s linear infinite;
+}
+
+@keyframes bracketPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes noise {
+    100% { transform: translate3d(50%, 50%, 0); }
+}
+
+@keyframes matrix {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}
+
+@keyframes glitch-1 {
+    0% { clip-path: inset(80% 0 0 0); }
+    20% { clip-path: inset(20% 0 40% 0); }
+    40% { clip-path: inset(60% 0 20% 0); }
+    60% { clip-path: inset(40% 0 60% 0); }
+    80% { clip-path: inset(0 0 80% 0); }
+    100% { clip-path: inset(50% 0 30% 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip-path: inset(20% 0 60% 0); }
+    20% { clip-path: inset(60% 0 20% 0); }
+    40% { clip-path: inset(40% 0 40% 0); }
+    60% { clip-path: inset(80% 0 0 0); }
+    80% { clip-path: inset(0 0 80% 0); }
+    100% { clip-path: inset(30% 0 50% 0); }
 }
 
 .search-container {
@@ -1464,7 +1459,7 @@ body {
     border: 1px solid rgba(157, 78, 221, 0.2);
     transition: all var(--transition-normal);
     z-index: 2;
-    
+
     letter-spacing: 0.5px;
 }
 
@@ -1852,7 +1847,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(157, 78, 221, 0.3);
 }
@@ -1876,7 +1871,7 @@ body {
         rgba(255, 133, 0, 0.4)
     );
     animation: float 10s infinite ease-in-out;
-    
+
     opacity: 0.5;
 }
 
@@ -2007,7 +2002,7 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border: 1px solid rgba(157, 78, 221, 0.3);
-    
+
     gap: 10px;
 }
 
@@ -2084,7 +2079,7 @@ body {
     transition: all 0.4s ease;
     border: 1px solid rgba(157, 78, 221, 0.2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    
+
 }
 
 /* Thumbnail background for contact cards */
@@ -2235,7 +2230,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.8rem;
     position: relative;
-    
+
 }
 
 .contact-card-icon::after {
@@ -2265,7 +2260,7 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     display: inline-block;
-    
+
 }
 
 .contact-card p {
@@ -2284,7 +2279,7 @@ body {
     text-align: center;
     margin-bottom: 50px;
     border: 1px solid rgba(157, 78, 221, 0.2);
-    
+
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
