@@ -1,3 +1,12 @@
+/* Desktop zoom scaling - 80% for PC view only */
+@media (min-width: 1024px) {
+    html {
+        zoom: 0.8;
+        -moz-transform: scale(0.8);
+        -moz-transform-origin: 0 0;
+    }
+}
+
 /* Variables & CSS Reset */
 :root {
     /* Colors - Cyberpunk Purple Theme */
@@ -1051,13 +1060,13 @@ body {
     align-items: center;
     gap: var(--spacing-sm);
     background: rgba(0, 0, 0, 0.7);
-    border: 2px solid rgba(0, 245, 212, 0.7);
-    color: var(--secondary);
+    border: 2px solid rgba(157, 78, 221, 0.7);
+    color: var(--primary);
     border-radius: 0;
     padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 245, 212, 0.4), inset 0 0 5px rgba(0, 245, 212, 0.3);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.4), inset 0 0 5px rgba(157, 78, 221, 0.3);
     font-family: monospace;
     letter-spacing: 1px;
     position: relative;
@@ -1077,17 +1086,17 @@ body {
     left: -100%;
     width: 100%;
     height: 3px;
-    background: rgba(0, 245, 212, 0.8);
+    background: rgba(157, 78, 221, 0.8);
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
 }
 
 .dropdown-btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
-    color: var(--secondary);
-    box-shadow: 0 0 15px rgba(0, 245, 212, 0.6), inset 0 0 8px rgba(0, 245, 212, 0.4);
+    color: var(--primary);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6), inset 0 0 8px rgba(157, 78, 221, 0.4);
 }
 
 .dropdown-btn:hover::after {
@@ -1135,8 +1144,8 @@ body {
     margin-left: 0;
     border-radius: 0;
     position: relative;
-    border: 2px solid rgba(0, 245, 212, 0.7);
-    box-shadow: 0 0 10px rgba(0, 245, 212, 0.4), inset 0 0 5px rgba(0, 245, 212, 0.3);
+    border: 2px solid rgba(157, 78, 221, 0.7);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.4), inset 0 0 5px rgba(157, 78, 221, 0.3);
     overflow: hidden;
     padding: 0 15px;
     transition: all 0.3s ease;
@@ -1154,9 +1163,9 @@ body {
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg, 
-        rgba(0, 245, 212, 0.1), 
-        rgba(0, 245, 212, 0.3), 
-        rgba(0, 245, 212, 0.1)
+        rgba(157, 78, 221, 0.1), 
+        rgba(157, 78, 221, 0.3), 
+        rgba(157, 78, 221, 0.1)
     );
     opacity: 0.7;
     z-index: -1;
@@ -1169,11 +1178,11 @@ body {
     left: -100%;
     width: 100%;
     height: 3px;
-    background: rgba(0, 245, 212, 0.8);
+    background: rgba(157, 78, 221, 0.8);
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
 }
 
 @keyframes scanline {
@@ -1187,14 +1196,14 @@ body {
 }
 
 .websites-counter:hover {
-    box-shadow: 0 0 15px rgba(0, 245, 212, 0.6), inset 0 0 8px rgba(0, 245, 212, 0.4);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6), inset 0 0 8px rgba(157, 78, 221, 0.4);
 }
 
 #current-count {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--secondary);
-    text-shadow: 0 0 10px rgba(0, 245, 212, 0.7);
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.7);
     padding: 0 5px;
     transition: all 0.3s ease;
     font-family: monospace;
@@ -1204,7 +1213,7 @@ body {
 .count-updating {
     transform: scale(1.2);
     opacity: 0.8;
-    text-shadow: 0 0 15px var(--secondary);
+    text-shadow: 0 0 15px var(--primary);
     animation: digitalFlicker 0.5s infinite;
 }
 
