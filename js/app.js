@@ -46,19 +46,25 @@ class App {
                     name: 'OpenAI',
                     url: 'https://openai.com',
                     category: 'ai',
-                    thumbnailUrl: 'https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg'
+                    thumbnailUrl: 'https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Google Bard',
                     url: 'https://bard.google.com',
                     category: 'ai',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1655720031554-a929595b5004?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Hugging Face',
                     url: 'https://huggingface.co',
                     category: 'ai',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1676999661373-e92b4f5dca19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/2599245/pexels-photo-2599245.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Anthropic Claude',
+                    url: 'https://claude.ai',
+                    category: 'ai',
+                    thumbnailUrl: 'https://images.pexels.com/photos/8294554/pexels-photo-8294554.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 
                 // Photos Category
@@ -66,19 +72,25 @@ class App {
                     name: 'Unsplash',
                     url: 'https://unsplash.com',
                     category: 'photos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1554147090-e1221a04a025?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/1496373/pexels-photo-1496373.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Pexels',
                     url: 'https://pexels.com',
                     category: 'photos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1545240932-9fe0994097ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/3817676/pexels-photo-3817676.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Flickr',
                     url: 'https://flickr.com',
                     category: 'photos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/3844788/pexels-photo-3844788.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Pixabay',
+                    url: 'https://pixabay.com',
+                    category: 'photos',
+                    thumbnailUrl: 'https://images.pexels.com/photos/3534924/pexels-photo-3534924.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 
                 // Videos Category
@@ -86,19 +98,25 @@ class App {
                     name: 'YouTube',
                     url: 'https://youtube.com',
                     category: 'videos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/3379942/pexels-photo-3379942.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Vimeo',
                     url: 'https://vimeo.com',
                     category: 'videos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1578022761797-b8636ac1773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/7257770/pexels-photo-7257770.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'TikTok',
                     url: 'https://tiktok.com',
                     category: 'videos',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1586861636835-182c95f909ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/6953868/pexels-photo-6953868.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Netflix',
+                    url: 'https://netflix.com',
+                    category: 'videos',
+                    thumbnailUrl: 'https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 
                 // Hacks Category
@@ -106,19 +124,25 @@ class App {
                     name: 'GitHub',
                     url: 'https://github.com',
                     category: 'hacks',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/11035386/pexels-photo-11035386.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'Stack Overflow',
                     url: 'https://stackoverflow.com',
                     category: 'hacks',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
                     name: 'CodePen',
                     url: 'https://codepen.io',
                     category: 'hacks',
-                    thumbnailUrl: 'https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    thumbnailUrl: 'https://images.pexels.com/photos/4709289/pexels-photo-4709289.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Replit',
+                    url: 'https://replit.com',
+                    category: 'hacks',
+                    thumbnailUrl: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600'
                 }
             ];
             

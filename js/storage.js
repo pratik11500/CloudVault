@@ -119,10 +119,8 @@ class StorageManager {
             dateModified: new Date().toISOString()
         };
         
-        // Only update thumbnail if provided
-        if (websiteData.thumbnailUrl) {
-            updatedWebsite.thumbnailUrl = websiteData.thumbnailUrl;
-        }
+        // Always update thumbnail URL (set or clear)
+        updatedWebsite.thumbnailUrl = websiteData.thumbnailUrl;
 
         this.websites[index] = updatedWebsite;
         this.saveWebsites();
