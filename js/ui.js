@@ -533,14 +533,14 @@ class UIManager {
      */
     createWebsiteCard(website) {
         const card = document.createElement('div');
-        card.className = 'website-card';
+        card.className = 'website-card grid-view';
         card.dataset.id = website.id;
 
-        // Create thumbnail - now positioned at the top of the card
+        // Create thumbnail
         const thumbnail = thumbnailManager.createThumbnail(website);
         card.appendChild(thumbnail);
 
-        // Create info section - now positioned below the thumbnail
+        // Create info section
         const infoDiv = document.createElement('div');
         infoDiv.className = 'website-info';
 
@@ -548,20 +548,9 @@ class UIManager {
         title.className = 'website-title';
         title.textContent = website.name;
 
-        // Add description if available (with stronger visibility enforcement)
         const description = document.createElement('p');
         description.className = 'website-description';
         description.textContent = website.description || 'No description available';
-
-        // Force display through multiple approaches for maximum compatibility
-        description.style.display = 'block !important';
-        description.style.visibility = 'visible !important';
-        description.style.opacity = '1 !important';
-        description.style.height = 'auto';
-        description.style.overflow = 'visible';
-        description.style.margin = '10px 0';
-        description.style.padding = '8px 10px';
-        description.style.backgroundColor = 'rgba(157, 78, 221, 0.15)';
 
         const url = document.createElement('p');
         url.className = 'website-url';
@@ -571,21 +560,20 @@ class UIManager {
         const categories = document.createElement('div');
         categories.className = 'website-categories';
 
-        // Add the category tag with proper styling
+        // Add category tag
         const category = document.createElement('span');
         category.className = `website-category category-${website.category.toLowerCase()}`;
         category.textContent = website.category;
 
-        // Add category to categories container
+        // Build card structure
         categories.appendChild(category);
         infoDiv.appendChild(title);
-        infoDiv.appendChild(description); // Description immediately after title
+        infoDiv.appendChild(description);
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
-
         card.appendChild(infoDiv);
 
-        // Open website when clicking on the card (except when clicking buttons)
+        // Card click handler
         card.addEventListener('click', () => {
             window.open(website.url, '_blank');
         });
