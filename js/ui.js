@@ -548,18 +548,67 @@ class UIManager {
         card.className = 'website-card';
         card.dataset.id = website.id;
 
-        // Create thumbnail
+        // Add cyberpunk elements
+        const cardGlow = document.createElement('div');
+        cardGlow.className = 'card-glow';
+        
+        // Add circuit lines
+        const circuitLines = document.createElement('div');
+        circuitLines.className = 'circuit-lines';
+        
+        // Add corner decorations
+        const corners = [];
+        ['top-left', 'top-right', 'bottom-left', 'bottom-right'].forEach(position => {
+            const corner = document.createElement('div');
+            corner.className = `corner ${position}`;
+            corners.push(corner);
+            card.appendChild(corner);
+        });
+        
+        // Add glow lines
+        const glowLines = [];
+        ['top', 'right', 'bottom', 'left'].forEach(position => {
+            const glowLine = document.createElement('div');
+            glowLine.className = `glow-line glow-line-${position}`;
+            glowLines.push(glowLine);
+            card.appendChild(glowLine);
+        });
+        
+        // Add holographic effect
+        const holoEffect = document.createElement('div');
+        holoEffect.className = 'holo-effect';
+        
+        // Create thumbnail with enhanced styling
         const thumbnail = thumbnailManager.createThumbnail(website);
+        thumbnail.classList.add('enhanced-thumbnail');
+        
+        // Add scan line effect over thumbnail
+        const scanLines = document.createElement('div');
+        scanLines.className = 'scan-lines';
+        thumbnail.appendChild(scanLines);
+        
         card.appendChild(thumbnail);
+        
+        // Add ripple effect container
+        const rippleContainer = document.createElement('div');
+        rippleContainer.className = 'ripple-container';
+        card.appendChild(rippleContainer);
 
-        // Create info section
+        // Create info section with enhanced styling
         const infoDiv = document.createElement('div');
         infoDiv.className = 'website-info';
 
+        // Add glitch effect to title
+        const titleContainer = document.createElement('div');
+        titleContainer.className = 'title-container';
+        
         const title = document.createElement('h3');
         title.className = 'website-title';
         title.textContent = website.name;
-
+        title.setAttribute('data-text', website.name); // For glitch effect
+        
+        titleContainer.appendChild(title);
+        
         const description = document.createElement('p');
         description.className = 'website-description';
         description.textContent = website.description || 'No description available';
@@ -567,49 +616,151 @@ class UIManager {
         const url = document.createElement('p');
         url.className = 'website-url';
         url.textContent = website.url;
+        
+        // Add URL icon
+        const urlIcon = document.createElement('i');
+        urlIcon.className = 'fas fa-link url-icon';
+        url.prepend(urlIcon);
 
-        // Create categories container
+        // Create categories container with enhanced styling
         const categories = document.createElement('div');
         categories.className = 'website-categories';
 
-        // Add category tag
+        // Add category tag with icon based on category
         const category = document.createElement('span');
         category.className = `website-category category-${website.category.toLowerCase()}`;
-        category.textContent = website.category;
+        
+        // Add category icon
+        const categoryIcon = document.createElement('i');
+        
+        // Select icon based on category
+        let iconClass = 'fa-tag';
+        if (website.category.toLowerCase() === 'work') {
+            iconClass = 'fa-briefcase';
+        } else if (website.category.toLowerCase() === 'personal') {
+            iconClass = 'fa-user';
+        } else if (website.category.toLowerCase() === 'social') {
+            iconClass = 'fa-users';
+        } else if (website.category.toLowerCase() === 'entertainment') {
+            iconClass = 'fa-gamepad';
+        } else if (website.category.toLowerCase() === 'web') {
+            iconClass = 'fa-globe';
+        }
+        
+        categoryIcon.className = `fas ${iconClass} category-icon`;
+        category.appendChild(categoryIcon);
+        
+        const categoryText = document.createElement('span');
+        categoryText.className = 'category-text';
+        categoryText.textContent = website.category;
+        category.appendChild(categoryText);
 
-        // Build card structure
+        // Build card structure with enhanced elements
         categories.appendChild(category);
-        infoDiv.appendChild(title);
+        infoDiv.appendChild(titleContainer);
         infoDiv.appendChild(description);
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
+        
+        // Add action buttons container
+        const actionButtons = document.createElement('div');
+        actionButtons.className = 'action-buttons';
+        
+        // Visit button
+        const visitButton = document.createElement('button');
+        visitButton.className = 'cyber-button visit-button';
+        visitButton.innerHTML = '<i class="fas fa-external-link-alt"></i><span>Visit</span>';
+        visitButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(website.url, '_blank');
+        });
+        
+        // Edit button
+        const editButton = document.createElement('button');
+        editButton.className = 'cyber-button edit-button';
+        editButton.innerHTML = '<i class="fas fa-edit"></i><span>Edit</span>';
+        editButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.openEditWebsiteModal(website.id);
+        });
+        
+        actionButtons.appendChild(visitButton);
+        actionButtons.appendChild(editButton);
+        infoDiv.appendChild(actionButtons);
+        
+        // Add card elements
+        card.appendChild(circuitLines);
+        card.appendChild(cardGlow);
+        card.appendChild(holoEffect);
         card.appendChild(infoDiv);
 
-        // Mouse movement effect
+        // Enhanced mouse movement effects
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / card.offsetWidth) * 100;
             const y = ((e.clientY - rect.top) / card.offsetHeight) * 100;
             
+            // Set CSS variables for spotlight effect
             card.style.setProperty('--mouse-x', `${x}%`);
             card.style.setProperty('--mouse-y', `${y}%`);
             
             // 3D rotation effect
-            const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-            const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+            const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+            const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
             
+            // Apply transform with enhanced perspective effect
             card.style.transform = `
                 translateY(-15px)
+                perspective(1000px)
                 rotateX(${rotateX}deg)
                 rotateY(${rotateY}deg)
+                scale3d(1.05, 1.05, 1.05)
             `;
+            
+            // Animate holo-effect based on mouse position
+            holoEffect.style.opacity = '1';
+            holoEffect.style.background = `
+                radial-gradient(
+                    circle at ${x}% ${y}%, 
+                    rgba(157, 78, 221, 0.2) 0%, 
+                    transparent 50%
+                )
+            `;
+            
+            // Move corner elements slightly for extra depth
+            corners.forEach(corner => {
+                const cornerX = corner.classList.contains('right') ? -1 : 1;
+                const cornerY = corner.classList.contains('bottom') ? -1 : 1;
+                corner.style.transform = `translate(${cornerX * rotateY * 0.5}px, ${cornerY * rotateX * 0.5}px)`;
+            });
+            
+            // Create ripple effect on mouse move
+            if (Math.random() > 0.92) { // Occasionally create ripples
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = `${x}%`;
+                ripple.style.top = `${y}%`;
+                rippleContainer.appendChild(ripple);
+                
+                // Remove ripple after animation completes
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+            }
         });
 
+        // Reset styles on mouse leave
         card.addEventListener('mouseleave', () => {
             card.style.transform = '';
+            holoEffect.style.opacity = '0';
+            
+            // Reset corner elements
+            corners.forEach(corner => {
+                corner.style.transform = '';
+            });
         });
 
-        // Card click handler
+        // Card click handler - now handled by Visit button
         card.addEventListener('click', () => {
             window.open(website.url, '_blank');
         });
