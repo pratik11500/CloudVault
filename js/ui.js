@@ -49,6 +49,12 @@ class UIManager {
                 this.changeSection(section);
             });
         });
+        
+        // Contact button in sidebar
+        document.querySelector('.contact-btn-sidebar').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.changeSection('contact');
+        });
 
         // Window resize event for stars regeneration
         window.addEventListener('resize', () => {
