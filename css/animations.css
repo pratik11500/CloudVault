@@ -1,0 +1,424 @@
+/* Animation Utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Applied Animations */
+
+/* Navigation Item Hover */
+.nav-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* Button Animations */
+.add-website-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.add-website-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.add-website-btn:hover::after {
+    width: 300%;
+    height: 300%;
+}
+
+.add-website-btn i {
+    transition: transform 0.3s ease;
+}
+
+.add-website-btn:hover i {
+    transform: rotate(90deg);
+}
+
+/* Card Hover Effects */
+.website-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.website-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, transparent 50%, rgba(124, 58, 237, 0.05) 100%);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.website-card:hover::before {
+    opacity: 1;
+}
+
+.website-card .website-info {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.website-card:hover .website-info {
+    transform: translateY(-5px);
+}
+
+.website-card .website-thumbnail img {
+    transition: transform 0.5s ease;
+}
+
+.website-card:hover .website-thumbnail img {
+    transform: scale(1.1);
+}
+
+/* Favorite Button Animation */
+.website-favorite {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+}
+
+.website-favorite:hover {
+    transform: scale(1.2);
+}
+
+.website-favorite.active {
+    animation: pulse 0.5s ease;
+}
+
+/* Dropdown Animation */
+.dropdown-content {
+    transform-origin: top right;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease, display 0s linear 0.2s;
+}
+
+.dropdown:hover .dropdown-content {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Modal Animations */
+.modal.show .modal-content {
+    animation: slideInUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal-closing .modal-content {
+    animation: fadeOut 0.3s ease forwards;
+    transform: scale(0.95);
+}
+
+/* Toast Notification Animation */
+.toast {
+    animation: slideInRight 0.5s ease forwards;
+}
+
+.toast.hiding {
+    animation: slideOutRight 0.5s ease forwards;
+}
+
+/* Loading Animation */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--background-card), 
+        var(--background-modal), 
+        var(--background-card));
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Empty State Animation */
+.empty-state svg {
+    animation: bounce 2s infinite;
+}
+
+/* Menu Toggle Animation */
+.menu-toggle span {
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Grid/List View Transition */
+.websites-container {
+    transition: grid-template-columns 0.3s ease;
+}
+
+.website-card {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Sidebar Collapse Animation */
+.sidebar {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar .logo h1,
+.sidebar .nav-item span,
+.sidebar .theme-toggle span,
+.sidebar .settings span {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-collapsed .logo h1,
+.sidebar-collapsed .nav-item span,
+.sidebar-collapsed .theme-toggle span,
+.sidebar-collapsed .settings span {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+/* Navigation Icon Animation */
+.nav-item i {
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Search Bar Animation */
+.search-bar {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 0 0 2px var(--primary-light);
+    border-color: var(--primary);
+}
+
+.search-bar input {
+    transition: transform 0.3s ease;
+}
+
+.search-bar:focus-within input {
+    transform: translateX(5px);
+}
+
+.search-bar i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.search-bar:focus-within i {
+    transform: scale(1.1);
+    color: var(--primary);
+}
+
+/* Form Inputs Animation */
+.form-group input:not([type="checkbox"]),
+.form-group select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.form-group input:focus:not([type="checkbox"]),
+.form-group select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add Website Animation */
+@keyframes addWebsite {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.website-card.new {
+    animation: addWebsite 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Delete Website Animation */
+@keyframes deleteWebsite {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+.website-card.deleting {
+    animation: deleteWebsite 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Category Tag Animation */
+.website-category {
+    position: relative;
+    overflow: hidden;
+}
+
+.website-category::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.5s ease;
+}
+
+.website-card:hover .website-category::before {
+    left: 100%;
+}

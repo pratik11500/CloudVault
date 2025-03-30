@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkVault - Website URL Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Navigation Bar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>LinkVault</h1>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" data-section="all">
+                    <i class="fas fa-globe"></i>
+                    <span>All Websites</span>
+                </li>
+                <li class="nav-item" data-section="favorites">
+                    <i class="fas fa-star"></i>
+                    <span>Favorites</span>
+                </li>
+                <li class="nav-item" data-section="recent">
+                    <i class="fas fa-clock"></i>
+                    <span>Recently Added</span>
+                </li>
+                <li class="nav-item" data-section="categories">
+                    <i class="fas fa-folder"></i>
+                    <span>Categories</span>
+                </li>
+                <li class="nav-item" data-section="trash">
+                    <i class="fas fa-trash"></i>
+                    <span>Trash</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </div>
+                <div class="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <header class="content-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search websites...">
+                </div>
+                <div class="view-options">
+                    <button id="grid-view" class="view-btn active">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button id="list-view" class="view-btn">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+                <div class="filter-sort">
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <i class="fas fa-filter"></i>
+                            <span>Filter</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" data-filter="all">All</a>
+                            <a href="#" data-filter="work">Work</a>
+                            <a href="#" data-filter="personal">Personal</a>
+                            <a href="#" data-filter="social">Social</a>
+                            <a href="#" data-filter="education">Education</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <i class="fas fa-sort"></i>
+                            <span>Sort</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" data-sort="name-asc">Name (A-Z)</a>
+                            <a href="#" data-sort="name-desc">Name (Z-A)</a>
+                            <a href="#" data-sort="date-new">Newest First</a>
+                            <a href="#" data-sort="date-old">Oldest First</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-website-btn" id="addWebsiteBtn">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Website</span>
+                </button>
+            </header>
+
+            <section class="websites-container grid-view" id="websitesContainer">
+                <!-- Websites will be dynamically added here -->
+                <div class="empty-state" id="emptyState">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 10L12 15L17 10" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15V3" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>No websites added yet</h2>
+                    <p>Add your first website using the button above</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Website Modal -->
+    <div class="modal" id="addWebsiteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Website</h2>
+                <button class="close-modal" id="closeAddModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addWebsiteForm">
+                    <div class="form-group">
+                        <label for="websiteName">Website Name</label>
+                        <input type="text" id="websiteName" placeholder="e.g. Google" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteUrl">Website URL</label>
+                        <input type="url" id="websiteUrl" placeholder="e.g. https://www.google.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteCategory">Category</label>
+                        <select id="websiteCategory">
+                            <option value="general">General</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="social">Social</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="addToFavorites">
+                        <label for="addToFavorites">Add to Favorites</label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelAddWebsite">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Website</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Website Modal -->
+    <div class="modal" id="editWebsiteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Website</h2>
+                <button class="close-modal" id="closeEditModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editWebsiteForm">
+                    <input type="hidden" id="editWebsiteId">
+                    <div class="form-group">
+                        <label for="editWebsiteName">Website Name</label>
+                        <input type="text" id="editWebsiteName" placeholder="e.g. Google" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWebsiteUrl">Website URL</label>
+                        <input type="url" id="editWebsiteUrl" placeholder="e.g. https://www.google.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWebsiteCategory">Category</label>
+                        <select id="editWebsiteCategory">
+                            <option value="general">General</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="social">Social</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="editAddToFavorites">
+                        <label for="editAddToFavorites">Add to Favorites</label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-danger" id="deleteWebsite">Delete</button>
+                        <button type="button" class="btn-secondary" id="cancelEditWebsite">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Delete</h2>
+                <button class="close-modal" id="closeConfirmModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this website?</p>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelDelete">Cancel</button>
+                    <button type="button" class="btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/thumbnails.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
