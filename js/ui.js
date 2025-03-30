@@ -662,31 +662,15 @@ class UIManager {
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
         
-        // Add action buttons container
-        const actionButtons = document.createElement('div');
-        actionButtons.className = 'action-buttons';
-        
-        // Visit button
-        const visitButton = document.createElement('button');
-        visitButton.className = 'cyber-button visit-button';
-        visitButton.innerHTML = '<i class="fas fa-external-link-alt"></i><span>Visit</span>';
-        visitButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            window.open(website.url, '_blank');
-        });
-        
-        // Edit button
-        const editButton = document.createElement('button');
-        editButton.className = 'cyber-button edit-button';
-        editButton.innerHTML = '<i class="fas fa-edit"></i><span>Edit</span>';
-        editButton.addEventListener('click', (e) => {
+        // Add edit icon in top-right corner
+        const editIcon = document.createElement('div');
+        editIcon.className = 'edit-icon';
+        editIcon.innerHTML = '<i class="fas fa-edit"></i>';
+        editIcon.addEventListener('click', (e) => {
             e.stopPropagation();
             this.openEditWebsiteModal(website.id);
         });
-        
-        actionButtons.appendChild(visitButton);
-        actionButtons.appendChild(editButton);
-        infoDiv.appendChild(actionButtons);
+        card.appendChild(editIcon);
         
         // Add card elements
         card.appendChild(circuitLines);
