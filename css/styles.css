@@ -349,7 +349,7 @@ body {
 }
 
 .contact-btn-sidebar {
-    display: none; /* Hidden by default (on desktop) */
+    display: flex; /* Visible on desktop now */
     align-items: center;
     gap: var(--spacing-sm);
     background: rgba(157, 78, 221, 0.1);
@@ -1050,18 +1050,49 @@ body {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    background-color: var(--background-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    border-radius: var(--border-radius-sm);
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(0, 245, 212, 0.7);
+    color: var(--secondary);
+    border-radius: 0;
     padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 245, 212, 0.4), inset 0 0 5px rgba(0, 245, 212, 0.3);
+    font-family: monospace;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 75%,
+        85% 100%,
+        0 100%
+    );
+}
+
+.dropdown-btn::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 245, 212, 0.8);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
 }
 
 .dropdown-btn:hover {
-    background-color: var(--background-modal);
-    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--secondary);
+    box-shadow: 0 0 15px rgba(0, 245, 212, 0.6), inset 0 0 8px rgba(0, 245, 212, 0.4);
+}
+
+.dropdown-btn:hover::after {
+    left: 100%;
+    transition: left 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .dropdown-content {
@@ -2649,10 +2680,19 @@ body {
 }
 
 @media (max-width: 480px) {
-    /* Show contact button only on mobile */
-    .contact-btn-sidebar {
-        display: flex;
+    /* Show only the icon for contact button on mobile */
+    .contact-btn-sidebar span {
+        display: none;
     }
+    
+    .contact-btn-sidebar {
+        padding: var(--spacing-sm);
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
     .content {
         padding: var(--spacing-sm);
     }
