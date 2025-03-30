@@ -83,8 +83,9 @@ class App {
                 cursorDot.style.left = `${e.clientX}px`;
                 cursorDot.style.top = `${e.clientY}px`;
                 
-                cursorDotOutline.style.left = `${e.clientX}px`;
-                cursorDotOutline.style.top = `${e.clientY}px`;
+                // Follow the cursor dot with a slight delay for outline effect
+                cursorDotOutline.style.left = `${e.clientX - 12}px`;
+                cursorDotOutline.style.top = `${e.clientY - 12}px`;
             });
             
             // Calculate distance moved
@@ -100,13 +101,13 @@ class App {
         
         // Handle cursor for links and clickable elements
         document.addEventListener('mousedown', () => {
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(0.7)';
-            cursorDotOutline.style.transform = 'translate(-50%, -50%) scale(1.4)';
+            cursorDot.style.transform = 'scale(0.7)';
+            cursorDotOutline.style.transform = 'scale(1.4)';
         });
         
         document.addEventListener('mouseup', () => {
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorDotOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorDot.style.transform = 'scale(1)';
+            cursorDotOutline.style.transform = 'scale(1)';
         });
         
         // Handle elements that should have a different cursor
