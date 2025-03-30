@@ -434,26 +434,142 @@ body {
 .welcome-section {
     text-align: center;
     margin-bottom: var(--spacing-xl);
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
 }
 
-.welcome-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
+.glitch-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.glitch-text {
+    font-size: 3.5rem;
+    font-weight: 800;
     color: var(--primary);
-    margin-bottom: var(--spacing-sm);
-    text-shadow: var(--neon-glow);
+    text-shadow: 2px 2px var(--secondary);
+    position: relative;
+    animation: textGlitch 3s infinite;
 }
 
-.welcome-subheading {
-    font-size: 1.2rem;
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch-text::before {
+    text-shadow: -2px 0 var(--accent);
+    animation: glitch-1 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    text-shadow: 2px 0 var(--secondary);
+    animation: glitch-2 2s infinite linear alternate-reverse;
+}
+
+.glitch-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        transparent 0%,
+        rgba(157, 78, 221, 0.1) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    animation: scanlines 8s linear infinite;
+}
+
+.cyber-subheading {
+    font-size: 1.3rem;
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: rgba(157, 78, 221, 0.1);
+    border: 1px solid var(--primary);
+    animation: pulseBackground 4s infinite;
 }
 
-.welcome-creator {
-    font-size: 1rem;
-    color: var(--text-tertiary);
-    font-style: italic;
+.cyber-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.grid-line {
+    position: absolute;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(157, 78, 221, 0.2), 
+        transparent
+    );
+    width: 200%;
+    height: 1px;
+    animation: gridScan 3s linear infinite;
+    transform: translateX(-50%);
+}
+
+.grid-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+.grid-line:nth-child(2) { top: 50%; animation-delay: -1s; }
+.grid-line:nth-child(3) { top: 80%; animation-delay: -2s; }
+
+@keyframes textGlitch {
+    0%, 100% { transform: none; }
+    92% { transform: skew(2deg); }
+    94% { transform: skew(-2deg); }
+    96% { transform: skew(2deg); }
+    98% { transform: none; }
+}
+
+@keyframes glitch-1 {
+    0% { clip: rect(20px, 900px, 20px, 0); }
+    20% { clip: rect(20px, 900px, 20px, 0); }
+    21% { clip: rect(40px, 900px, 40px, 0); }
+    49% { clip: rect(40px, 900px, 40px, 0); }
+    50% { clip: rect(60px, 900px, 60px, 0); }
+    100% { clip: rect(60px, 900px, 60px, 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip: rect(10px, 900px, 10px, 0); }
+    20% { clip: rect(30px, 900px, 30px, 0); }
+    21% { clip: rect(50px, 900px, 50px, 0); }
+    49% { clip: rect(70px, 900px, 70px, 0); }
+    50% { clip: rect(90px, 900px, 90px, 0); }
+    100% { clip: rect(110px, 900px, 110px, 0); }
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes gridScan {
+    0% { transform: translateX(-150%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulseBackground {
+    0%, 100% { background: rgba(157, 78, 221, 0.1); }
+    50% { background: rgba(157, 78, 221, 0.2); }
 }
 
 .search-container {
