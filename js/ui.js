@@ -140,7 +140,6 @@ class UIManager {
         const searchContainer = document.querySelector('.search-container');
         const viewFilterContainer = document.querySelector('.view-filter-container');
         const welcomeSection = document.querySelector('.welcome-section');
-        const viewToggleBtns = document.querySelectorAll('.view-toggle button');
         const websitesContainer = document.querySelector('.websites-container');
 
         if (section === 'contact') {
@@ -149,10 +148,9 @@ class UIManager {
             if (viewFilterContainer) viewFilterContainer.style.display = 'none';
             if (welcomeSection) welcomeSection.style.display = 'none';
 
-            // Force list view for contact page by disabling grid view
+            // Render contact page separately
             if (websitesContainer) {
                 websitesContainer.classList.remove('grid-view');
-                websitesContainer.classList.add('list-view');
             }
 
             // Disable view toggle buttons for contact page
@@ -486,6 +484,12 @@ class UIManager {
     renderWebsites(searchQuery = '') {
         // Clear the container
         this.websitesContainer.innerHTML = '';
+        
+        // Always ensure grid view is applied except for contact page
+        if (this.currentSection !== 'contact') {
+            this.websitesContainer.classList.add('grid-view');
+            this.websitesContainer.classList.remove('list-view');
+        }
 
         // If we're on the contact page, render the contact page instead and exit
         if (this.currentSection === 'contact') {
