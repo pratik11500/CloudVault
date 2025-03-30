@@ -167,22 +167,23 @@ body {
     cursor: pointer;
     gap: var(--spacing-sm);
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     clip-path: polygon(
         calc(0% + 6px) 0%,
-        calc(100% - 6px) 0%,
+        calc(100% - 0px) 0%,
         100% 6px,
         100% calc(100% - 6px),
-        calc(100% - 6px) 100%,
+        calc(100% - 10px) 100%,
         6px 100%,
         0% calc(100% - 6px),
         0% 6px
     );
     font-size: 0.85rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(157, 78, 221, 0.05);
-    border: 1px solid rgba(157, 78, 221, 0.1);
+    background: rgba(157, 78, 221, 0.08);
+    border: 1px solid rgba(157, 78, 221, 0.2);
     overflow: visible;
+    backdrop-filter: blur(8px);
 }
 
 .nav-item::before {
@@ -196,34 +197,39 @@ body {
     clip-path: inherit;
 }
 
+/* Glowing border line */
 .nav-item::after {
     content: '';
     position: absolute;
     inset: -1px;
     background: linear-gradient(90deg,
         transparent 0%,
-        rgba(157, 78, 221, 0.2) 50%,
+        rgba(157, 78, 221, 0.6) 50%,
         transparent 100%
     );
     transform: translateX(-100%);
-    transition: transform 0.4s ease;
+    transition: transform 0.6s ease;
     clip-path: inherit;
+    filter: blur(2px);
 }
 
 .nav-item:hover::after {
     transform: translateX(100%);
 }
 
+/* Circuitry pattern background */
 .nav-item .circuit-lines {
     position: absolute;
     inset: 0;
     background: 
-        linear-gradient(90deg, transparent 50%, rgba(157, 78, 221, 0.1) 50%) 0 0 / 4px 1px,
-        linear-gradient(0deg, transparent 50%, rgba(157, 78, 221, 0.1) 50%) 0 0 / 1px 4px;
+        linear-gradient(90deg, transparent 50%, rgba(157, 78, 221, 0.2) 50%) 0 0 / 8px 1px,
+        linear-gradient(0deg, transparent 50%, rgba(157, 78, 221, 0.2) 50%) 0 0 / 1px 8px;
     opacity: 0;
     transition: opacity 0.4s ease;
+    mix-blend-mode: overlay;
 }
 
+/* Gradient background effect when hovered */
 .nav-item::before {
     content: '';
     position: absolute;
@@ -238,6 +244,7 @@ body {
     border-radius: inherit;
 }
 
+/* Light sweep effect */
 .nav-item::after {
     content: '';
     position: absolute;
@@ -247,63 +254,107 @@ body {
     height: 100%;
     background: linear-gradient(90deg, 
         rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.4),
         rgba(255, 255, 255, 0)
     );
     transition: 0.5s;
     z-index: 2;
 }
 
+/* Icon container with glow effect */
 .nav-icon-glow {
     position: relative;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 3;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    background: rgba(157, 78, 221, 0.1);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.nav-icon-glow:before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+/* Icon styling */
 .nav-item i {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 3;
     text-shadow: 0 0 0 rgba(255, 255, 255, 0);
 }
 
+/* Text label styling */
 .nav-item span {
     white-space: nowrap;
     color: var(--text-secondary);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 500;
     z-index: 3;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    transform: translateZ(0);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    position: relative;
+    padding-left: 2px;
 }
 
+/* Text underline effect */
+.nav-item span:after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--primary), transparent);
+    transition: width 0.3s ease;
+}
+
+/* Hover effect for the entire nav item */
 .nav-item:hover {
-    transform: translateX(8px) scale(1.02);
-    background: rgba(157, 78, 221, 0.1);
+    transform: translateX(12px) scale(1.05);
+    background: rgba(157, 78, 221, 0.15);
     border-color: var(--primary);
     box-shadow: 
-        0 0 20px rgba(157, 78, 221, 0.2),
-        inset 0 0 10px rgba(157, 78, 221, 0.1);
+        0 0 25px rgba(157, 78, 221, 0.3),
+        inset 0 0 15px rgba(157, 78, 221, 0.15);
+    backdrop-filter: blur(16px);
 }
 
+/* Gradient background animation on hover */
 .nav-item:hover::before {
-    opacity: 0.15;
+    opacity: 0.2;
     animation: glowPulse 2s infinite;
 }
 
+/* Circuit pattern animation on hover */
 .nav-item:hover .circuit-lines {
     opacity: 1;
-    animation: circuitFlow 3s linear infinite;
+    animation: circuitFlow 4s linear infinite;
+}
+
+/* Text underline effect on hover */
+.nav-item:hover span:after {
+    width: 100%;
 }
 
 @keyframes glowPulse {
-    0%, 100% { opacity: 0.15; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
 }
 
 @keyframes circuitFlow {
@@ -313,50 +364,161 @@ body {
     }
     50% { opacity: 1; }
     100% { 
-        background-position: 20px 20px;
+        background-position: 40px 40px;
         opacity: 0.3;
     }
 }
 
+/* Icon glow container effect on hover */
 .nav-item:hover .nav-icon-glow {
-    transform: scale(1.2) rotate(10deg);
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(157, 78, 221, 0.2);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
 }
 
+.nav-item:hover .nav-icon-glow:before {
+    opacity: 0.8;
+    animation: borderPulse 2s infinite;
+}
+
+@keyframes borderPulse {
+    0%, 100% { opacity: 0.5; filter: blur(2px); }
+    50% { opacity: 0.8; filter: blur(3px); }
+}
+
+/* Icon effect on hover */
 .nav-item:hover i {
-    color: var(--primary);
-    text-shadow: 0 0 15px var(--primary);
+    color: #fff;
+    text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+    animation: iconPulse 1.5s infinite alternate;
 }
 
+@keyframes iconPulse {
+    from { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary); }
+    to { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary); }
+}
+
+/* Text effect on hover */
 .nav-item:hover span {
-    color: var(--primary);
+    color: #fff;
+    text-shadow: 0 0 8px var(--primary);
     transform: translateX(5px);
+    letter-spacing: 1px;
 }
 
+/* Active state styling */
 .nav-item.active {
-    background: rgba(157, 78, 221, 0.15);
-    transform: translateX(8px);
+    background: rgba(157, 78, 221, 0.2);
+    transform: translateX(12px) scale(1.05);
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1;
+    box-shadow: 
+        0 0 20px rgba(157, 78, 221, 0.25),
+        inset 0 0 15px rgba(157, 78, 221, 0.15);
 }
 
+/* Active item gradient background */
 .nav-item.active::before {
-    opacity: 0.2;
+    opacity: 0.25;
+    animation: activeGlow 3s infinite;
 }
 
-.nav-item.active i,
-.nav-item.active span {
-    color: var(--primary);
+@keyframes activeGlow {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.4; }
 }
 
+/* Active item circuit lines */
+.nav-item.active .circuit-lines {
+    opacity: 0.8;
+    animation: activeBgPulse 4s linear infinite;
+}
+
+@keyframes activeBgPulse {
+    0% { 
+        background-position: 0 0;
+        opacity: 0.6;
+    }
+    50% { 
+        opacity: 0.8;
+        background-position: 20px 20px;
+    }
+    100% { 
+        background-position: 40px 40px;
+        opacity: 0.6;
+    }
+}
+
+/* Active icon glow */
+.nav-item.active .nav-icon-glow {
+    background: rgba(157, 78, 221, 0.3);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+.nav-item.active .nav-icon-glow:before {
+    opacity: 0.8;
+}
+
+/* Active icon */
 .nav-item.active i {
-    text-shadow: 0 0 15px var(--primary);
+    color: #fff;
+    text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+}
+
+/* Active text */
+.nav-item.active span {
+    color: #fff;
+    text-shadow: 0 0 8px var(--primary);
+    letter-spacing: 1px;
+}
+
+/* Underline for active item */
+.nav-item.active span:after {
+    width: 100%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    height: 2px;
+    animation: underlinePulse 2s infinite;
+}
+
+@keyframes underlinePulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
 }
 
 .sidebar-footer {
     padding: var(--spacing-md);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(157, 78, 221, 0.2);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
     margin-top: auto; /* Push to bottom of sidebar */
+    position: relative;
+    z-index: 10;
+}
+
+/* Add a pulsing glow line to the footer border */
+.sidebar-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--primary), 
+        var(--secondary), 
+        transparent
+    );
+    opacity: 0.7;
+    filter: blur(1px);
+    animation: footerGlow 4s infinite;
+}
+
+@keyframes footerGlow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 .contact-btn-sidebar {
@@ -365,47 +527,95 @@ body {
     gap: var(--spacing-sm);
     background: rgba(157, 78, 221, 0.1);
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-md);
     cursor: pointer;
-    border: 1px solid rgba(157, 78, 221, 0.2);
-    transition: all 0.3s ease;
-    text-decoration: none;
     margin-bottom: var(--spacing-sm);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Cyberpunk-styled clipped corners */
+    clip-path: polygon(
+        calc(0% + 6px) 0%,
+        calc(100% - 0px) 0%,
+        100% 6px,
+        100% calc(100% - 6px),
+        calc(100% - 10px) 100%,
+        6px 100%,
+        0% calc(100% - 6px),
+        0% 6px
+    );
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    backdrop-filter: blur(4px);
+}
+
+/* Light sweep effect on contact button */
+.contact-btn-sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.contact-btn-sidebar:hover::after {
+    left: 100%;
 }
 
 .contact-btn-sidebar:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.03);
     background: rgba(157, 78, 221, 0.2);
     border-color: var(--primary);
-    box-shadow: 0 5px 15px rgba(157, 78, 221, 0.2);
+    box-shadow: 
+        0 5px 15px rgba(157, 78, 221, 0.3),
+        inset 0 0 10px rgba(157, 78, 221, 0.2);
 }
 
 .contact-btn-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     background: var(--primary);
-    border-radius: 50%;
+    border-radius: 8px;
     color: var(--text-primary);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
 }
 
 .contact-btn-sidebar:hover .contact-btn-icon {
     transform: rotate(15deg) scale(1.1);
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6), 0 0 30px rgba(157, 78, 221, 0.4);
+    animation: iconPulse 1.5s infinite alternate;
 }
 
 .contact-btn-sidebar span {
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .contact-btn-sidebar:hover span {
-    color: var(--primary);
+    color: #fff;
+    text-shadow: 0 0 8px var(--primary);
+    transform: translateX(3px);
+    letter-spacing: 1px;
 }
 
 .creator-badge-sidebar {
@@ -414,41 +624,105 @@ body {
     gap: 12px;
     background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(0, 245, 212, 0.1));
     padding: 12px;
-    border-radius: 16px;
     cursor: pointer;
-    border: 1px solid rgba(157, 78, 221, 0.2);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    
+    /* Cyberpunk-styled clipped corners */
+    clip-path: polygon(
+        calc(0% + 8px) 0%,
+        calc(100% - 0px) 0%,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 12px) 100%,
+        8px 100%,
+        0% calc(100% - 8px),
+        0% 8px
+    );
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    backdrop-filter: blur(4px);
+}
+
+/* Light sweep effect on creator badge */
+.creator-badge-sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.creator-badge-sidebar:hover::after {
+    left: 100%;
+}
+
+/* Circuit pattern for creator badge */
+.creator-badge-sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(90deg, transparent 50%, rgba(157, 78, 221, 0.1) 50%) 0 0 / 8px 1px,
+        linear-gradient(0deg, transparent 50%, rgba(157, 78, 221, 0.1) 50%) 0 0 / 1px 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.creator-badge-sidebar:hover::before {
+    opacity: 1;
+    animation: circuitFlow 4s linear infinite;
 }
 
 .creator-badge-sidebar:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.03);
     background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(0, 245, 212, 0.2));
     border-color: var(--primary);
-    box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+    box-shadow: 
+        0 10px 20px rgba(157, 78, 221, 0.3),
+        inset 0 0 15px rgba(157, 78, 221, 0.15);
 }
 
 .creator-logo-sidebar {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 8px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
 }
 
 .creator-badge-sidebar:hover .creator-logo-sidebar {
     transform: rotate(360deg);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6), 0 0 30px rgba(157, 78, 221, 0.4);
 }
 
 .creator-info-sidebar {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
+    position: relative;
+    z-index: 2;
 }
 
 .creator-label-sidebar {
     font-size: 0.75rem;
     color: var(--text-tertiary);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .creator-name-sidebar {
@@ -456,11 +730,32 @@ body {
     font-weight: 600;
     color: var(--primary);
     text-shadow: 0 0 10px rgba(157, 78, 221, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.creator-name-sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+
+.creator-badge-sidebar:hover .creator-label-sidebar {
+    color: var(--text-secondary);
 }
 
 .creator-badge-sidebar:hover .creator-name-sidebar {
-    color: var(--primary-hover);
+    color: #fff;
     text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+.creator-badge-sidebar:hover .creator-name-sidebar::after {
+    width: 100%;
 }
 
 .theme-toggle span,
