@@ -576,6 +576,20 @@ class UIManager {
         category.className = `website-category category-${website.category.toLowerCase()}`;
         category.textContent = website.category;
         
+        const actions = document.createElement('div');
+        actions.className = 'website-actions';
+        
+        const visitBtn = document.createElement('button');
+        visitBtn.className = 'website-action-btn';
+        visitBtn.innerHTML = '<i class="fas fa-external-link-alt"></i>';
+        visitBtn.title = 'Visit Website';
+        visitBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(website.url, '_blank');
+        });
+        
+        actions.appendChild(visitBtn);
+        
         // Add category to categories container
         categories.appendChild(category);
         
