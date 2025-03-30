@@ -11,7 +11,7 @@ class App {
      * Initialize the application
      */
     init() {
-        // For testing purposes - clear local storage to reset data
+        // Always start with a clean slate for testing purposes
         localStorage.removeItem('linkVaultWebsites');
         
         // Render initial websites

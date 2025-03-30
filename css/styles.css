@@ -589,19 +589,21 @@ body {
 }
 
 .website-description {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     font-size: 0.95rem;
-    margin-bottom: var(--spacing-sm);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin: var(--spacing-sm) 0;
+    display: block !important;
+    max-height: none;
     line-height: 1.5;
     border-left: 3px solid var(--primary);
-    padding-left: var(--spacing-sm);
-    background-color: rgba(157, 78, 221, 0.05);
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-sm);
+    background-color: rgba(157, 78, 221, 0.1);
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .website-url {

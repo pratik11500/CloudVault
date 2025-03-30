@@ -552,6 +552,9 @@ class UIManager {
         const description = document.createElement('p');
         description.className = 'website-description';
         description.textContent = website.description || '';
+        description.style.display = 'block';
+        description.style.visibility = 'visible';
+        description.style.opacity = '1';
         
         const url = document.createElement('p');
         url.className = 'website-url';
