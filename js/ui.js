@@ -565,6 +565,11 @@ class UIManager {
         title.className = 'website-title';
         title.textContent = website.name;
         
+        // Add description if available
+        const description = document.createElement('p');
+        description.className = 'website-description';
+        description.textContent = website.description || '';
+        
         const url = document.createElement('p');
         url.className = 'website-url';
         url.textContent = website.url;
@@ -606,6 +611,7 @@ class UIManager {
         categories.appendChild(category);
         
         infoDiv.appendChild(title);
+        infoDiv.appendChild(description);
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
         infoDiv.appendChild(actions);
@@ -906,33 +912,18 @@ class UIManager {
     }
     
     /**
-     * Create starry background
+     * Create static starry background (removed animations)
      */
     createStars() {
         // Clear existing stars first
         this.starField.innerHTML = '';
         
-        // Add shooting stars
-        const shootingStar1 = document.createElement('div');
-        shootingStar1.className = 'shooting-star';
-        shootingStar1.style.top = `${Math.random() * 30}%`;
-        shootingStar1.style.left = `${Math.random() * 100}%`;
-        shootingStar1.style.animationDelay = `${Math.random() * 5}s`;
-        this.starField.appendChild(shootingStar1);
-        
-        const shootingStar2 = document.createElement('div');
-        shootingStar2.className = 'shooting-star';
-        shootingStar2.style.top = `${Math.random() * 30 + 40}%`;
-        shootingStar2.style.left = `${Math.random() * 100}%`;
-        shootingStar2.style.animationDelay = `${Math.random() * 5 + 5}s`;
-        this.starField.appendChild(shootingStar2);
-        
-        // Create random stars
-        const starCount = 80; // Total number of stars
+        // Create static stars
+        const starCount = 60; // Reduced number of stars
         
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
-            star.className = 'star';
+            star.className = 'star static';
             
             // Random position
             star.style.top = `${Math.random() * 100}%`;
@@ -942,12 +933,6 @@ class UIManager {
             const size = Math.random() * 2 + 1;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
-            
-            // Random animation duration between 3-7s
-            star.style.setProperty('--duration', `${Math.random() * 4 + 3}s`);
-            
-            // Random animation delay
-            star.style.animationDelay = `${Math.random() * 5}s`;
             
             // Assign different colors
             const colorType = Math.floor(Math.random() * 4);

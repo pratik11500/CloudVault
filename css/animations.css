@@ -31,8 +31,17 @@
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary);
-    animation: twinkle var(--duration, 4s) infinite ease-in-out;
     z-index: -1;
+}
+
+/* Static stars have no animation */
+.star.static {
+    opacity: 0.6;
+}
+
+/* For any non-static stars (backwards compatibility) */
+.star:not(.static) {
+    animation: twinkle var(--duration, 4s) infinite ease-in-out;
 }
 
 .star.star-purple {
@@ -62,36 +71,7 @@
     background: radial-gradient(circle at 50% 50%, rgba(10, 10, 27, 0.8) 0%, rgba(5, 5, 20, 0.95) 50%, rgba(1, 1, 10, 1) 100%);
 }
 
-.shooting-star {
-    position: absolute;
-    width: 150px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--primary), var(--secondary), transparent);
-    animation: shooting 5s linear infinite;
-    opacity: 0;
-    z-index: -1;
-}
-
-.shooting-star:nth-child(2) {
-    background: linear-gradient(to right, transparent, var(--secondary), var(--accent), transparent);
-}
-
-@keyframes shooting {
-    0% {
-        transform: translateX(-100px) translateY(0) rotate(15deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    20% {
-        transform: translateX(calc(100vw + 100px)) translateY(100px) rotate(15deg);
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+/* Shooting stars removed */
 
 /* Animation Utilities */
 @keyframes fadeIn {
