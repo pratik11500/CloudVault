@@ -186,7 +186,8 @@ class UIManager {
             case 'ai':
                 return storageManager.getWebsitesByCategory('ai');
             case 'contact':
-                // Contact section would have a different UI
+                // We'll handle the contact section differently
+                this.renderContactPage();
                 return [];
             case 'all':
                 // All websites from all categories
@@ -194,6 +195,127 @@ class UIManager {
             default: // 'all'
                 return storageManager.getAllWebsites();
         }
+    }
+    
+    /**
+     * Render the contact page
+     */
+    renderContactPage() {
+        // Clear the container
+        this.websitesContainer.innerHTML = '';
+        
+        // Create contact page container
+        const contactContainer = document.createElement('div');
+        contactContainer.className = 'contact-container';
+        
+        // Create header section
+        const headerSection = document.createElement('div');
+        headerSection.className = 'contact-header';
+        
+        const header = document.createElement('h1');
+        header.textContent = 'Connect With Us';
+        
+        const description = document.createElement('p');
+        description.textContent = 'Have questions or suggestions about LinkVault? We\'d love to hear from you! Choose how you\'d like to connect with our team below.';
+        
+        headerSection.appendChild(header);
+        headerSection.appendChild(description);
+        
+        // Create contact cards container
+        const contactCards = document.createElement('div');
+        contactCards.className = 'contact-cards';
+        
+        // Email contact card
+        const emailCard = this.createContactCard(
+            'fas fa-envelope', 
+            'Email Support', 
+            'support@linkvault.com', 
+            'Our support team typically responds within 24 hours to all inquiries. We\'re here to help with any questions about our service!'
+        );
+        
+        // GitHub card
+        const githubCard = this.createContactCard(
+            'fab fa-github', 
+            'GitHub', 
+            'github.com/linkvault', 
+            'Check out our open source projects, report bugs, or contribute to the development of LinkVault on our GitHub page.'
+        );
+        
+        // Twitter card
+        const twitterCard = this.createContactCard(
+            'fab fa-twitter', 
+            'Twitter', 
+            '@LinkVault', 
+            'Follow us for the latest updates, tips and tricks. You can also reach out to us directly through Twitter for quick responses.'
+        );
+        
+        // Discord card
+        const discordCard = this.createContactCard(
+            'fab fa-discord', 
+            'Discord Community', 
+            'discord.gg/linkvault', 
+            'Join our Discord community to chat with other users, share your website collections, and get help from our team.'
+        );
+        
+        // Append all cards to container
+        contactCards.appendChild(emailCard);
+        contactCards.appendChild(githubCard);
+        contactCards.appendChild(twitterCard);
+        contactCards.appendChild(discordCard);
+        
+        // Create social links section
+        const socialLinks = document.createElement('div');
+        socialLinks.className = 'social-links';
+        
+        // Add social media links
+        const socialPlatforms = [
+            { icon: 'fab fa-github', url: 'https://github.com' },
+            { icon: 'fab fa-twitter', url: 'https://twitter.com' },
+            { icon: 'fab fa-discord', url: 'https://discord.com' },
+            { icon: 'fab fa-youtube', url: 'https://youtube.com' },
+            { icon: 'fab fa-reddit', url: 'https://reddit.com' }
+        ];
+        
+        socialPlatforms.forEach(platform => {
+            const link = document.createElement('a');
+            link.className = 'social-link';
+            link.href = platform.url;
+            link.target = '_blank';
+            link.innerHTML = `<i class="${platform.icon}"></i>`;
+            socialLinks.appendChild(link);
+        });
+        
+        // Append all elements to the contact container
+        contactContainer.appendChild(headerSection);
+        contactContainer.appendChild(contactCards);
+        contactContainer.appendChild(socialLinks);
+        
+        // Append contact container to the main container
+        this.websitesContainer.appendChild(contactContainer);
+    }
+    
+    /**
+     * Create a contact card for the contact page
+     * @param {String} iconClass FontAwesome icon class
+     * @param {String} title Card title
+     * @param {String} info Contact information
+     * @param {String} description Card description
+     * @returns {HTMLElement} Created contact card
+     */
+    createContactCard(iconClass, title, info, description) {
+        const card = document.createElement('div');
+        card.className = 'contact-card';
+        
+        card.innerHTML = `
+            <div class="contact-card-icon">
+                <i class="${iconClass}"></i>
+            </div>
+            <h3>${title}</h3>
+            <div class="contact-info">${info}</div>
+            <p>${description}</p>
+        `;
+        
+        return card;
     }
 
     /**

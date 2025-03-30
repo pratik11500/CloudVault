@@ -1,3 +1,78 @@
+/* Twinkling Stars Animation */
+@keyframes twinkle {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.2;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.star {
+    position: absolute;
+    background-color: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+    animation: twinkle var(--duration, 4s) infinite ease-in-out;
+    z-index: -1;
+}
+
+.star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
+    animation: shooting 5s linear infinite;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(-100px) translateY(0) rotate(15deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(calc(100vw + 100px)) translateY(100px) rotate(15deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Animation Utilities */
 @keyframes fadeIn {
     from {
@@ -67,12 +142,15 @@
 @keyframes pulse {
     0% {
         transform: scale(1);
+        opacity: 0.8;
     }
-    50% {
-        transform: scale(1.05);
+    70% {
+        transform: scale(1.5);
+        opacity: 0;
     }
     100% {
-        transform: scale(1);
+        transform: scale(1.5);
+        opacity: 0;
     }
 }
 
@@ -329,6 +407,56 @@
 }
 
 /* Search Bar Animation */
+.mega-search-bar {
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mega-search-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(0, 255, 0, 0.1), 
+        transparent
+    );
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.mega-search-bar:focus-within::after {
+    left: 100%;
+}
+
+.mega-search-bar:focus-within {
+    box-shadow: 0 0 30px var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.02);
+}
+
+.mega-search-bar input {
+    transition: all 0.3s ease;
+}
+
+.mega-search-bar:focus-within input {
+    color: var(--primary);
+}
+
+.mega-search-bar i {
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.mega-search-bar:focus-within i {
+    transform: scale(1.2);
+    text-shadow: 0 0 10px var(--primary);
+}
+
 .search-bar {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -421,4 +549,60 @@
 
 .website-card:hover .website-category::before {
     left: 100%;
+}
+
+/* Contact Section Animations */
+.contact-header h1 {
+    animation: fadeIn 0.8s ease-out forwards, slideInUp 0.8s ease-out forwards;
+}
+
+.contact-header p {
+    animation: fadeIn 1s ease-out 0.3s forwards, slideInUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.contact-card {
+    animation: fadeIn 1.2s ease-out forwards;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.contact-cards .contact-card:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.contact-cards .contact-card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.contact-cards .contact-card:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.contact-cards .contact-card:nth-child(4) {
+    animation-delay: 1s;
+}
+
+.social-links {
+    animation: fadeIn 1.5s ease-out 1.2s forwards;
+    opacity: 0;
+}
+
+.social-links a {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.contact-card-icon {
+    animation: float 4s ease-in-out infinite;
 }
