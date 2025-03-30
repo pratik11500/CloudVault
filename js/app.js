@@ -41,6 +41,12 @@ class App {
         const cursorDotOutline = document.createElement('div');
         cursorDotOutline.className = 'cursor-dot-outline';
         
+        // Set initial position to prevent flicker
+        cursorDot.style.left = '50%';
+        cursorDot.style.top = '50%';
+        cursorDotOutline.style.left = '50%';
+        cursorDotOutline.style.top = '50%';
+        
         // Create trail container
         const trailsContainer = document.createElement('div');
         trailsContainer.id = 'trails-container';
