@@ -18,13 +18,13 @@ class UIManager {
         this.editWebsiteForm = document.getElementById('editWebsiteForm');
         this.toastContainer = document.getElementById('toastContainer');
         this.starField = document.getElementById('starField');
-        
+
         // Current state
         this.currentSection = 'all'; // all, favorites, recent, etc.
         this.currentFilter = 'all'; // all, work, personal, etc.
         this.currentSort = 'date-new'; // name-asc, name-desc, date-new, date-old
         this.currentWebsiteId = null; // For editing
-        
+
         // Init
         this.initEventListeners();
         this.createStars();
@@ -35,13 +35,13 @@ class UIManager {
      */
     initEventListeners() {
         // View toggle removed as per user request
-        
+
         // Logo toggle for sidebar
         document.getElementById('sidebarToggle').addEventListener('click', () => this.toggleSidebar());
-        
+
         // Search input
         this.searchInput.addEventListener('input', () => this.handleSearch());
-        
+
         // Navigation
         this.navItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -49,12 +49,12 @@ class UIManager {
                 this.changeSection(section);
             });
         });
-        
+
         // Window resize event for stars regeneration
         window.addEventListener('resize', () => {
             this.createStars();
         });
-        
+
         // Filter and Sort
         document.querySelectorAll('[data-filter]').forEach(element => {
             element.addEventListener('click', (e) => {
@@ -62,25 +62,25 @@ class UIManager {
                 this.applyFilter(element.dataset.filter);
             });
         });
-        
+
         document.querySelectorAll('[data-sort]').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.applySort(element.dataset.sort);
             });
         });
-        
+
         // Add Website is removed as per user request
         document.getElementById('closeAddModal').addEventListener('click', () => this.closeAddWebsiteModal());
         document.getElementById('cancelAddWebsite').addEventListener('click', () => this.closeAddWebsiteModal());
         this.addWebsiteForm.addEventListener('submit', (e) => this.handleAddWebsite(e));
-        
+
         // Edit Website
         document.getElementById('closeEditModal').addEventListener('click', () => this.closeEditWebsiteModal());
         document.getElementById('cancelEditWebsite').addEventListener('click', () => this.closeEditWebsiteModal());
         this.editWebsiteForm.addEventListener('submit', (e) => this.handleEditWebsite(e));
         document.getElementById('deleteWebsite').addEventListener('click', () => this.openConfirmDeleteModal());
-        
+
         // Confirm Delete
         document.getElementById('closeConfirmModal').addEventListener('click', () => this.closeConfirmDeleteModal());
         document.getElementById('cancelDelete').addEventListener('click', () => this.closeConfirmDeleteModal());
@@ -95,7 +95,7 @@ class UIManager {
         // Always use grid view as per user request
         this.websitesContainer.classList.remove('list-view');
         this.websitesContainer.classList.add('grid-view');
-        
+
         this.renderWebsites(); // Re-render to adjust layouts
     }
 
@@ -104,13 +104,13 @@ class UIManager {
      */
     toggleSidebar() {
         this.sidebar.classList.toggle('sidebar-collapsed');
-        
+
         // Toggle active class on the logo for visual feedback
         const logo = document.getElementById('sidebarToggle');
         if (logo) {
             logo.classList.toggle('active');
         }
-        
+
         // Adjust content margin
         const content = document.querySelector('.content');
         if (this.sidebar.classList.contains('sidebar-collapsed')) {
@@ -126,7 +126,7 @@ class UIManager {
      */
     changeSection(section) {
         if (this.currentSection === section) return;
-        
+
         // Update active nav item
         this.navItems.forEach(item => {
             if (item.dataset.section === section) {
@@ -135,26 +135,26 @@ class UIManager {
                 item.classList.remove('active');
             }
         });
-        
+
         // Hide/show search bar and filter options depending on section
         const searchContainer = document.querySelector('.search-container');
         const viewFilterContainer = document.querySelector('.view-filter-container');
         const welcomeSection = document.querySelector('.welcome-section');
         const viewToggleBtns = document.querySelectorAll('.view-toggle button');
         const websitesContainer = document.querySelector('.websites-container');
-        
+
         if (section === 'contact') {
             // Hide search bar, welcome section and filter options on contact page
             if (searchContainer) searchContainer.style.display = 'none';
             if (viewFilterContainer) viewFilterContainer.style.display = 'none';
             if (welcomeSection) welcomeSection.style.display = 'none';
-            
+
             // Force list view for contact page by disabling grid view
             if (websitesContainer) {
                 websitesContainer.classList.remove('grid-view');
                 websitesContainer.classList.add('list-view');
             }
-            
+
             // Disable view toggle buttons for contact page
             if (viewToggleBtns) {
                 viewToggleBtns.forEach(btn => {
@@ -163,7 +163,7 @@ class UIManager {
                     btn.style.cursor = 'not-allowed';
                 });
             }
-            
+
             // Render contact page
             this.currentSection = section;
             this.renderContactPage();
@@ -173,7 +173,7 @@ class UIManager {
             if (searchContainer) searchContainer.style.display = 'flex';
             if (viewFilterContainer) viewFilterContainer.style.display = 'flex';
             if (welcomeSection) welcomeSection.style.display = 'block';
-            
+
             // Re-enable view toggle buttons
             if (viewToggleBtns) {
                 viewToggleBtns.forEach(btn => {
@@ -182,7 +182,7 @@ class UIManager {
                     btn.style.cursor = 'pointer';
                 });
             }
-            
+
             // Apply current view setting
             if (websitesContainer) {
                 if (this.currentView === 'grid') {
@@ -194,7 +194,7 @@ class UIManager {
                 }
             }
         }
-        
+
         this.currentSection = section;
         this.renderWebsites();
     }
@@ -250,22 +250,22 @@ class UIManager {
                 return storageManager.getAllWebsites();
         }
     }
-    
+
     /**
      * Render the contact page
      */
     renderContactPage() {
         // Clear the container
         this.websitesContainer.innerHTML = '';
-        
+
         // Create contact page container
         const contactContainer = document.createElement('div');
         contactContainer.className = 'contact-container';
-        
+
         // Create hero section with animated background
         const heroSection = document.createElement('div');
         heroSection.className = 'contact-hero';
-        
+
         // Create animated background
         const animatedBg = document.createElement('div');
         animatedBg.className = 'contact-animated-bg';
@@ -275,27 +275,27 @@ class UIManager {
             circle.style.animationDelay = `${i * 0.5}s`;
             animatedBg.appendChild(circle);
         }
-        
+
         // Create hero content
         const heroContent = document.createElement('div');
         heroContent.className = 'contact-hero-content';
-        
+
         const header = document.createElement('h1');
         header.textContent = 'Get In Touch';
         header.className = 'contact-hero-title';
-        
+
         const subtitle = document.createElement('span');
         subtitle.textContent = 'We\'d love to hear from you';
         subtitle.className = 'contact-hero-subtitle';
-        
+
         const description = document.createElement('p');
         description.textContent = 'Have questions or suggestions about LinkVault? Our team is just a click away. Connect with us through any of these channels.';
         description.className = 'contact-hero-description';
-        
+
         // Create social links tabs
         const socialTabs = document.createElement('div');
         socialTabs.className = 'social-tabs';
-        
+
         // Add social media links with labels
         const socialPlatforms = [
             { icon: 'fab fa-github', name: 'GitHub', url: 'https://github.com' },
@@ -306,7 +306,7 @@ class UIManager {
             { icon: 'fab fa-youtube', name: 'YouTube', url: 'https://youtube.com' },
             { icon: 'fab fa-reddit', name: 'Reddit', url: 'https://reddit.com' }
         ];
-        
+
         socialPlatforms.forEach(platform => {
             const tab = document.createElement('a');
             tab.className = 'social-tab';
@@ -320,30 +320,30 @@ class UIManager {
             `;
             socialTabs.appendChild(tab);
         });
-        
+
         // Append hero content elements
         heroContent.appendChild(header);
         heroContent.appendChild(subtitle);
         heroContent.appendChild(description);
         heroContent.appendChild(socialTabs);
-        
+
         // Append hero elements
         heroSection.appendChild(animatedBg);
         heroSection.appendChild(heroContent);
-        
+
         // Create contact methods section
         const contactMethods = document.createElement('div');
         contactMethods.className = 'contact-methods';
-        
+
         // Create section title
         const methodsTitle = document.createElement('h2');
         methodsTitle.textContent = 'Ways to Connect';
         methodsTitle.className = 'contact-methods-title';
-        
+
         // Create contact cards grid
         const contactCards = document.createElement('div');
         contactCards.className = 'contact-cards';
-        
+
         // Create contact cards with hover effects and thumbnails
         const contactOptions = [
             {
@@ -379,23 +379,23 @@ class UIManager {
                 thumbnail: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             }
         ];
-        
+
         contactOptions.forEach(option => {
             const card = document.createElement('div');
             card.className = `contact-card contact-card-${option.color}`;
-            
+
             // Create thumbnail background
             const thumbnail = document.createElement('div');
             thumbnail.className = 'contact-card-thumbnail';
             thumbnail.style.backgroundImage = `url(${option.thumbnail})`;
-            
+
             // Create gradient overlay that matches the card color
             const overlay = document.createElement('div');
             overlay.className = `contact-card-overlay contact-card-overlay-${option.color}`;
-            
+
             card.appendChild(thumbnail);
             card.appendChild(overlay);
-            
+
             // Create content
             const content = document.createElement('div');
             content.className = 'contact-card-content';
@@ -407,29 +407,29 @@ class UIManager {
                 <div class="contact-info">${option.info}</div>
                 <p>${option.description}</p>
             `;
-            
+
             // Add shine effect
             const shine = document.createElement('div');
             shine.className = 'contact-card-shine';
-            
+
             card.appendChild(content);
             card.appendChild(shine);
-            
+
             contactCards.appendChild(card);
         });
-        
+
         // Create feedback form section
         const feedbackSection = document.createElement('div');
         feedbackSection.className = 'contact-feedback';
-        
+
         const feedbackTitle = document.createElement('h2');
         feedbackTitle.textContent = 'Leave Feedback';
         feedbackTitle.className = 'feedback-title';
-        
+
         const feedbackMsg = document.createElement('p');
         feedbackMsg.textContent = 'We value your input. Share your thoughts about LinkVault and help us improve your experience.';
         feedbackMsg.className = 'feedback-description';
-        
+
         const feedbackBtn = document.createElement('button');
         feedbackBtn.className = 'feedback-button';
         feedbackBtn.textContent = 'Send Feedback';
@@ -437,24 +437,24 @@ class UIManager {
             <span>Send Feedback</span>
             <i class="fas fa-paper-plane"></i>
         `;
-        
+
         feedbackSection.appendChild(feedbackTitle);
         feedbackSection.appendChild(feedbackMsg);
         feedbackSection.appendChild(feedbackBtn);
-        
+
         // Append methods section elements
         contactMethods.appendChild(methodsTitle);
         contactMethods.appendChild(contactCards);
-        
+
         // Append all sections to contact container
         contactContainer.appendChild(heroSection);
         contactContainer.appendChild(contactMethods);
         contactContainer.appendChild(feedbackSection);
-        
+
         // Append contact container to the main container
         this.websitesContainer.appendChild(contactContainer);
     }
-    
+
     /**
      * Create a contact card for the contact page
      * @param {String} iconClass FontAwesome icon class
@@ -466,7 +466,7 @@ class UIManager {
     createContactCard(iconClass, title, info, description) {
         const card = document.createElement('div');
         card.className = 'contact-card';
-        
+
         card.innerHTML = `
             <div class="contact-card-icon">
                 <i class="${iconClass}"></i>
@@ -475,7 +475,7 @@ class UIManager {
             <div class="contact-info">${info}</div>
             <p>${description}</p>
         `;
-        
+
         return card;
     }
 
@@ -486,39 +486,39 @@ class UIManager {
     renderWebsites(searchQuery = '') {
         // Clear the container
         this.websitesContainer.innerHTML = '';
-        
+
         // If we're on the contact page, render the contact page instead and exit
         if (this.currentSection === 'contact') {
             this.renderContactPage();
             return;
         }
-        
+
         // Get websites based on section
         let websites = this.getWebsitesByCurrentSection();
-        
+
         // Apply search if query exists
         if (searchQuery) {
             websites = storageManager.searchWebsites(searchQuery);
         }
-        
+
         // Apply filter if in the home page section
         if (this.currentSection === 'all') {
             websites = storageManager.filterWebsites(websites, this.currentFilter);
         }
-        
+
         // Apply sort
         websites = storageManager.sortWebsites(websites, this.currentSort);
-        
+
         // Show empty state if no websites (but not on contact page)
         if (websites.length === 0) {
             this.emptyState.style.display = 'flex';
             this.websitesContainer.appendChild(this.emptyState);
             return;
         }
-        
+
         // Hide empty state
         this.emptyState.style.display = 'none';
-        
+
         // Render each website
         websites.forEach(website => {
             const websiteCard = this.createWebsiteCard(website);
@@ -535,24 +535,24 @@ class UIManager {
         const card = document.createElement('div');
         card.className = 'website-card';
         card.dataset.id = website.id;
-        
+
         // Create thumbnail - now positioned at the top of the card
         const thumbnail = thumbnailManager.createThumbnail(website);
         card.appendChild(thumbnail);
-        
+
         // Create info section - now positioned below the thumbnail
         const infoDiv = document.createElement('div');
         infoDiv.className = 'website-info';
-        
+
         const title = document.createElement('h3');
         title.className = 'website-title';
         title.textContent = website.name;
-        
+
         // Add description if available (with stronger visibility enforcement)
         const description = document.createElement('p');
         description.className = 'website-description';
         description.textContent = website.description || 'No description available';
-        
+
         // Force display through multiple approaches for maximum compatibility
         description.style.display = 'block !important';
         description.style.visibility = 'visible !important';
@@ -562,37 +562,34 @@ class UIManager {
         description.style.margin = '10px 0';
         description.style.padding = '8px 10px';
         description.style.backgroundColor = 'rgba(157, 78, 221, 0.15)';
-        
+
         const url = document.createElement('p');
         url.className = 'website-url';
         url.textContent = website.url;
-        
+
         // Create categories container
         const categories = document.createElement('div');
         categories.className = 'website-categories';
-        
+
         // Add the category tag with proper styling
         const category = document.createElement('span');
         category.className = `website-category category-${website.category.toLowerCase()}`;
         category.textContent = website.category;
-        
+
         // Add category to categories container
         categories.appendChild(category);
-        
-        // Reorder elements: Title -> Description -> URL -> Categories -> Actions
         infoDiv.appendChild(title);
         infoDiv.appendChild(description); // Description immediately after title
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
-        infoDiv.appendChild(actions);
-        
+
         card.appendChild(infoDiv);
-        
+
         // Open website when clicking on the card (except when clicking buttons)
         card.addEventListener('click', () => {
             window.open(website.url, '_blank');
         });
-        
+
         return card;
     }
 
@@ -602,13 +599,13 @@ class UIManager {
      */
     toggleFavorite(id) {
         const updatedWebsite = storageManager.toggleFavorite(id);
-        
+
         if (updatedWebsite) {
             // Update UI
             const card = document.querySelector(`.website-card[data-id="${id}"]`);
             if (card) {
                 const favoriteBtn = card.querySelector('.website-favorite');
-                
+
                 if (updatedWebsite.isFavorite) {
                     favoriteBtn.classList.add('active');
                     this.showToast('Added to favorites', 'success');
@@ -617,7 +614,7 @@ class UIManager {
                     this.showToast('Removed from favorites', 'info');
                 }
             }
-            
+
             // If in favorites section, we might need to re-render
             if (this.currentSection === 'favorites') {
                 this.renderWebsites();
@@ -638,7 +635,7 @@ class UIManager {
      */
     closeAddWebsiteModal() {
         this.addWebsiteModal.classList.add('modal-closing');
-        
+
         setTimeout(() => {
             this.addWebsiteModal.classList.remove('show');
             this.addWebsiteModal.classList.remove('modal-closing');
@@ -651,25 +648,25 @@ class UIManager {
      */
     handleAddWebsite(e) {
         e.preventDefault();
-        
+
         const name = document.getElementById('websiteName').value;
         const url = document.getElementById('websiteUrl').value;
         const category = document.getElementById('websiteCategory').value;
         const thumbnailUrl = document.getElementById('websiteThumbnailUrl')?.value || '';
-        
+
         const newWebsite = storageManager.addWebsite({
             name,
             url,
             category,
             thumbnailUrl: thumbnailUrl.trim() || null
         });
-        
+
         // Close modal
         this.closeAddWebsiteModal();
-        
+
         // Show success toast
         this.showToast(`Added "${name}" successfully`, 'success');
-        
+
         // Re-render websites
         this.renderWebsites();
     }
@@ -680,27 +677,27 @@ class UIManager {
      */
     openEditWebsiteModal(id) {
         const website = storageManager.getWebsiteById(id);
-        
+
         if (!website) {
             this.showToast('Website not found', 'error');
             return;
         }
-        
+
         // Store current ID
         this.currentWebsiteId = id;
-        
+
         // Set form values
         document.getElementById('editWebsiteId').value = id;
         document.getElementById('editWebsiteName').value = website.name;
         document.getElementById('editWebsiteUrl').value = website.url;
         document.getElementById('editWebsiteCategory').value = website.category;
-        
+
         // Set thumbnail URL if available
         const thumbnailUrlField = document.getElementById('editWebsiteThumbnailUrl');
         if (thumbnailUrlField) {
             thumbnailUrlField.value = website.thumbnailUrl || '';
         }
-        
+
         // Show modal
         this.editWebsiteModal.classList.add('show');
     }
@@ -710,7 +707,7 @@ class UIManager {
      */
     closeEditWebsiteModal() {
         this.editWebsiteModal.classList.add('modal-closing');
-        
+
         setTimeout(() => {
             this.editWebsiteModal.classList.remove('show');
             this.editWebsiteModal.classList.remove('modal-closing');
@@ -724,27 +721,27 @@ class UIManager {
      */
     handleEditWebsite(e) {
         e.preventDefault();
-        
+
         const id = document.getElementById('editWebsiteId').value;
         const name = document.getElementById('editWebsiteName').value;
         const url = document.getElementById('editWebsiteUrl').value;
         const category = document.getElementById('editWebsiteCategory').value;
         const thumbnailUrl = document.getElementById('editWebsiteThumbnailUrl')?.value || '';
-        
+
         const updatedWebsite = storageManager.updateWebsite(id, {
             name,
             url,
             category,
             thumbnailUrl: thumbnailUrl.trim() || null
         });
-        
+
         if (updatedWebsite) {
             // Close modal
             this.closeEditWebsiteModal();
-            
+
             // Show success toast
             this.showToast(`Updated "${name}" successfully`, 'success');
-            
+
             // Re-render websites
             this.renderWebsites();
         } else {
@@ -764,7 +761,7 @@ class UIManager {
      */
     closeConfirmDeleteModal() {
         this.confirmDeleteModal.classList.add('modal-closing');
-        
+
         setTimeout(() => {
             this.confirmDeleteModal.classList.remove('show');
             this.confirmDeleteModal.classList.remove('modal-closing');
@@ -776,26 +773,26 @@ class UIManager {
      */
     handleDeleteWebsite() {
         const id = this.currentWebsiteId;
-        
+
         if (!id) {
             this.showToast('No website selected for deletion', 'error');
             this.closeConfirmDeleteModal();
             return;
         }
-        
+
         // Get website info before deletion for toast message
         const website = storageManager.getWebsiteById(id);
         const name = website ? website.name : 'Website';
-        
+
         // Delete website
         const success = storageManager.deleteWebsite(id);
-        
+
         if (success) {
             // Add deleting animation to card
             const card = document.querySelector(`.website-card[data-id="${id}"]`);
             if (card) {
                 card.classList.add('deleting');
-                
+
                 setTimeout(() => {
                     // Re-render after animation
                     this.renderWebsites();
@@ -803,10 +800,10 @@ class UIManager {
             } else {
                 this.renderWebsites();
             }
-            
+
             // Show success toast
             this.showToast(`Deleted "${name}" successfully`, 'success');
-            
+
             // Close modals
             this.closeConfirmDeleteModal();
             this.closeEditWebsiteModal();
@@ -825,7 +822,7 @@ class UIManager {
     showToast(message, type = 'info', duration = 3000) {
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
-        
+
         let icon = '';
         switch (type) {
             case 'success':
@@ -840,26 +837,26 @@ class UIManager {
             default: // info
                 icon = '<i class="fas fa-info-circle"></i>';
         }
-        
+
         toast.innerHTML = `
             ${icon}
             <span>${message}</span>
             <button class="toast-close"><i class="fas fa-times"></i></button>
         `;
-        
+
         // Add close button event
         toast.querySelector('.toast-close').addEventListener('click', () => {
             this.dismissToast(toast);
         });
-        
+
         // Add to container
         this.toastContainer.appendChild(toast);
-        
+
         // Trigger animation
         setTimeout(() => {
             toast.classList.add('show');
         }, 10);
-        
+
         // Auto dismiss
         toast.timeoutId = setTimeout(() => {
             this.dismissToast(toast);
@@ -873,40 +870,40 @@ class UIManager {
     dismissToast(toast) {
         clearTimeout(toast.timeoutId);
         toast.classList.add('hiding');
-        
+
         setTimeout(() => {
             if (toast.parentNode) {
                 toast.parentNode.removeChild(toast);
             }
         }, 500);
     }
-    
+
     /**
      * Create static starry background (removed animations)
      */
     createStars() {
         // Clear existing stars first
         this.starField.innerHTML = '';
-        
+
         // Create static stars (no animation)
         const starCount = 100; // More stars for better effect
-        
+
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.className = 'star static'; // Add static class to disable animation
-            
+
             // Random position
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
-            
+
             // Random size between 1-4px with larger stars
             const size = Math.random() * 3 + 1;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
-            
+
             // Random opacity for depth effect
             star.style.opacity = Math.random() * 0.5 + 0.3;
-            
+
             // Assign different colors
             const colorType = Math.floor(Math.random() * 4);
             if (colorType === 0) {
@@ -916,7 +913,7 @@ class UIManager {
             } else if (colorType === 2) {
                 star.classList.add('star-orange');
             }
-            
+
             this.starField.appendChild(star);
         }
     }
