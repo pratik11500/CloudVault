@@ -31,6 +31,9 @@ class App {
      * Add web-related websites to the collection
      */
     addWebWebsites() {
+        // First clear any existing websites in the 'web' category
+        this.clearWebCategory();
+        
         const webWebsites = [
             // Icon websites
             {
@@ -162,6 +165,18 @@ class App {
         }
     }
 
+    /**
+     * Clear all websites in the web category
+     */
+    clearWebCategory() {
+        const allWebsites = storageManager.getAllWebsites();
+        const nonWebWebsites = allWebsites.filter(website => website.category !== 'web');
+        
+        // Replace all websites with only non-web websites
+        storageManager.websites = nonWebWebsites;
+        storageManager.saveWebsites();
+    }
+    
     /**
      * Initialize sample websites if none exist
      */

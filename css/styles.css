@@ -1576,6 +1576,18 @@ body {
     border-color: rgba(0, 176, 255, 0.2);
 }
 
+.website-category.category-web {
+    background-color: rgba(255, 0, 128, 0.1);
+    color: #ff0080;
+    box-shadow: 0 0 5px rgba(255, 0, 128, 0.3);
+    text-shadow: 0 0 4px rgba(255, 0, 128, 0.3);
+    border-color: rgba(255, 0, 128, 0.2);
+}
+
+.website-category.category-web::before {
+    background: linear-gradient(135deg, #ff0080, #7928ca);
+}
+
 .website-categories {
     display: flex;
     flex-wrap: wrap;
