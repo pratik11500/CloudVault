@@ -569,6 +569,30 @@ class UIManager {
         infoDiv.appendChild(categories);
         card.appendChild(infoDiv);
 
+        // Mouse movement effect
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / card.offsetWidth) * 100;
+            const y = ((e.clientY - rect.top) / card.offsetHeight) * 100;
+            
+            card.style.setProperty('--mouse-x', `${x}%`);
+            card.style.setProperty('--mouse-y', `${y}%`);
+            
+            // 3D rotation effect
+            const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+            const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+            
+            card.style.transform = `
+                translateY(-15px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+
         // Card click handler
         card.addEventListener('click', () => {
             window.open(website.url, '_blank');

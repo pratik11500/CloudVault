@@ -861,43 +861,62 @@ body {
     backdrop-filter: blur(10px);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-sm);
     position: relative;
-    border: 2px solid rgba(157, 78, 221, 0.3);
+    border: 2px solid rgba(157, 78, 221, 0.1);
     transform-style: preserve-3d;
-    perspective: 1000px;
+    perspective: 1500px;
+    isolation: isolate;
 }
 
 .website-card::before {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: linear-gradient(
+        45deg,
+        var(--primary),
+        var(--secondary),
+        var(--accent),
+        var(--primary)
+    );
+    background-size: 400% 400%;
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.5s ease;
     border-radius: inherit;
+    animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .website-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(157, 78, 221, 0.1) 0%,
-        rgba(0, 245, 212, 0.1) 100%
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(157, 78, 221, 0.15) 0%,
+        transparent 60%
     );
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.5s ease;
     border-radius: inherit;
+    mix-blend-mode: overlay;
 }
 
 .website-card:hover {
-    transform: translateY(-8px) rotateX(5deg);
-    border-color: var(--primary);
-    box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+    transform: translateY(-15px) rotateX(10deg) rotateY(5deg);
+    border-color: transparent;
+    box-shadow: 
+        0 25px 50px -12px rgba(157, 78, 221, 0.4),
+        0 0 20px rgba(157, 78, 221, 0.2),
+        inset 0 0 20px rgba(157, 78, 221, 0.1);
 }
 
 .website-card:hover::before {
