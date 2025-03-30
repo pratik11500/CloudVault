@@ -28,6 +28,7 @@ class UIManager {
         // Init
         this.initEventListeners();
         this.createStars();
+        this.updateCategoryCounts(); // Initialize counter on page load
     }
 
     /**
@@ -203,6 +204,7 @@ class UIManager {
 
         this.currentSection = section;
         this.renderWebsites();
+        this.updateCategoryCounts();
     }
 
     /**
@@ -211,6 +213,7 @@ class UIManager {
     handleSearch() {
         const query = this.searchInput.value;
         this.renderWebsites(query);
+        this.updateCategoryCounts();
     }
 
     /**
@@ -220,6 +223,7 @@ class UIManager {
     applyFilter(filter) {
         this.currentFilter = filter;
         this.renderWebsites();
+        this.updateCategoryCounts();
     }
 
     /**
@@ -229,6 +233,7 @@ class UIManager {
     applySort(sort) {
         this.currentSort = sort;
         this.renderWebsites();
+        this.updateCategoryCounts();
     }
 
     /**
@@ -688,6 +693,9 @@ class UIManager {
 
         // Re-render websites
         this.renderWebsites();
+        
+        // Update counter
+        this.updateCategoryCounts();
     }
 
     /**
@@ -763,6 +771,9 @@ class UIManager {
 
             // Re-render websites
             this.renderWebsites();
+            
+            // Update counter
+            this.updateCategoryCounts();
         } else {
             this.showToast('Error updating website', 'error');
         }
@@ -815,9 +826,11 @@ class UIManager {
                 setTimeout(() => {
                     // Re-render after animation
                     this.renderWebsites();
+                    this.updateCategoryCounts();
                 }, 500);
             } else {
                 this.renderWebsites();
+                this.updateCategoryCounts();
             }
 
             // Show success toast
@@ -898,19 +911,47 @@ class UIManager {
     }
 
     /**
-     * Update category counts in the filter dropdown
+     * Update category counter based on the current filter
      */
     updateCategoryCounts() {
-        // Get all websites
-        const allWebsites = storageManager.getAllWebsites();
-        document.getElementById('count-all').textContent = allWebsites.length;
+        const currentCountElement = document.getElementById('current-count');
+        let count = 0;
+        let countText = '';
         
-        // Count websites in each category
-        const categories = ['photos', 'videos', 'hacks', 'ai', 'web'];
-        categories.forEach(category => {
-            const count = storageManager.getWebsitesByCategory(category).length;
-            document.getElementById(`count-${category}`).textContent = count;
-        });
+        if (this.currentSection === 'all') {
+            if (this.currentFilter === 'all') {
+                // Display total website count
+                count = storageManager.getAllWebsites().length;
+                countText = `${count}`;
+            } else {
+                // Display count for the selected category
+                count = storageManager.getWebsitesByCategory(this.currentFilter).length;
+                countText = `${count}`;
+            }
+        } else if (this.currentSection === 'recent') {
+            count = storageManager.getRecentWebsites().length;
+            countText = `${count}`;
+        } else if (this.currentSection === 'favorites') {
+            count = storageManager.getFavoriteWebsites().length;
+            countText = `${count}`;
+        } else {
+            count = storageManager.getWebsitesByCategory(this.currentSection).length;
+            countText = `${count}`;
+        }
+        
+        // Get the element and update the count with a nice animation
+        const oldCount = parseInt(currentCountElement.textContent) || 0;
+        
+        // If the count has changed, add animation
+        if (oldCount !== count) {
+            currentCountElement.classList.add('count-updating');
+            setTimeout(() => {
+                currentCountElement.textContent = countText;
+                currentCountElement.classList.remove('count-updating');
+            }, 300);
+        } else {
+            currentCountElement.textContent = countText;
+        }
     }
 
     /**

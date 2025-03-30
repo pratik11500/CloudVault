@@ -1086,20 +1086,65 @@ body {
     display: block;
 }
 
-.category-count {
-    display: inline-flex;
+.websites-counter {
+    display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 22px;
-    height: 22px;
-    padding: 0 6px;
-    margin-left: 8px;
-    background-color: rgba(157, 78, 221, 0.2);
-    color: var(--text-primary);
-    border-radius: 12px;
-    font-size: 0.8rem;
+    height: 40px;
+    min-width: 40px;
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(0, 245, 212, 0.2));
+    margin-left: 15px;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+    overflow: hidden;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.websites-counter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(0, 245, 212, 0.2));
+    opacity: 0.5;
+    z-index: -1;
+    animation: gradientMove 8s ease infinite;
+}
+
+.websites-counter::after {
+    content: '';
+    position: absolute;
+    left: -180%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.websites-counter:hover::after {
+    left: 0%;
+}
+
+#current-count {
+    font-size: 1.2rem;
     font-weight: 700;
-    box-shadow: 0 0 5px rgba(157, 78, 221, 0.2);
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    padding: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.count-updating {
+    transform: scale(1.3);
+    opacity: 0.3;
+    text-shadow: 0 0 20px var(--primary);
 }
 
 .add-website-btn {
