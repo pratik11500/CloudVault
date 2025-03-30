@@ -13,7 +13,6 @@ class UIManager {
         this.menuToggle = document.getElementById('menuToggle');
         this.sidebar = document.querySelector('.sidebar');
         this.navItems = document.querySelectorAll('.nav-item');
-        this.addWebsiteBtn = document.getElementById('addWebsiteBtn');
         this.addWebsiteModal = document.getElementById('addWebsiteModal');
         this.editWebsiteModal = document.getElementById('editWebsiteModal');
         this.confirmDeleteModal = document.getElementById('confirmDeleteModal');
@@ -69,8 +68,7 @@ class UIManager {
             });
         });
         
-        // Add Website
-        this.addWebsiteBtn.addEventListener('click', () => this.openAddWebsiteModal());
+        // Add Website is removed as per user request
         document.getElementById('closeAddModal').addEventListener('click', () => this.closeAddWebsiteModal());
         document.getElementById('cancelAddWebsite').addEventListener('click', () => this.closeAddWebsiteModal());
         this.addWebsiteForm.addEventListener('submit', (e) => this.handleAddWebsite(e));
@@ -121,9 +119,9 @@ class UIManager {
         // Adjust content margin
         const content = document.querySelector('.content');
         if (this.sidebar.classList.contains('sidebar-collapsed')) {
-            content.style.marginRight = 'var(--sidebar-collapsed-width)';
+            content.style.marginLeft = 'var(--sidebar-collapsed-width)';
         } else {
-            content.style.marginRight = 'var(--sidebar-width)';
+            content.style.marginLeft = 'var(--sidebar-width)';
         }
     }
 
@@ -276,8 +274,13 @@ class UIManager {
         url.className = 'website-url';
         url.textContent = website.url;
         
+        // Create categories container
+        const categories = document.createElement('div');
+        categories.className = 'website-categories';
+        
+        // Add the category tag with proper styling
         const category = document.createElement('span');
-        category.className = 'website-category';
+        category.className = `website-category category-${website.category.toLowerCase()}`;
         category.textContent = website.category;
         
         const actions = document.createElement('div');
@@ -304,9 +307,12 @@ class UIManager {
         actions.appendChild(visitBtn);
         actions.appendChild(editBtn);
         
+        // Add category to categories container
+        categories.appendChild(category);
+        
         infoDiv.appendChild(title);
         infoDiv.appendChild(url);
-        infoDiv.appendChild(category);
+        infoDiv.appendChild(categories);
         infoDiv.appendChild(actions);
         
         card.appendChild(infoDiv);

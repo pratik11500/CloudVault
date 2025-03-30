@@ -39,8 +39,96 @@ class App {
         const websites = storageManager.getAllWebsites();
         
         if (websites.length === 0) {
-            // No sample data by default, user will create their own
-            // This follows the guideline to not include mock/example data
+            // Add sample websites for each category
+            const sampleWebsites = [
+                // AI Category
+                {
+                    name: 'OpenAI',
+                    url: 'https://openai.com',
+                    category: 'ai',
+                    isFavorite: true
+                },
+                {
+                    name: 'Google Bard',
+                    url: 'https://bard.google.com',
+                    category: 'ai',
+                    isFavorite: false
+                },
+                {
+                    name: 'Hugging Face',
+                    url: 'https://huggingface.co',
+                    category: 'ai',
+                    isFavorite: false
+                },
+                
+                // Photos Category
+                {
+                    name: 'Unsplash',
+                    url: 'https://unsplash.com',
+                    category: 'photos',
+                    isFavorite: true
+                },
+                {
+                    name: 'Pexels',
+                    url: 'https://pexels.com',
+                    category: 'photos',
+                    isFavorite: false
+                },
+                {
+                    name: 'Flickr',
+                    url: 'https://flickr.com',
+                    category: 'photos',
+                    isFavorite: false
+                },
+                
+                // Videos Category
+                {
+                    name: 'YouTube',
+                    url: 'https://youtube.com',
+                    category: 'videos',
+                    isFavorite: true
+                },
+                {
+                    name: 'Vimeo',
+                    url: 'https://vimeo.com',
+                    category: 'videos',
+                    isFavorite: false
+                },
+                {
+                    name: 'TikTok',
+                    url: 'https://tiktok.com',
+                    category: 'videos',
+                    isFavorite: false
+                },
+                
+                // Hacks Category
+                {
+                    name: 'GitHub',
+                    url: 'https://github.com',
+                    category: 'hacks',
+                    isFavorite: true
+                },
+                {
+                    name: 'Stack Overflow',
+                    url: 'https://stackoverflow.com',
+                    category: 'hacks',
+                    isFavorite: false
+                },
+                {
+                    name: 'CodePen',
+                    url: 'https://codepen.io',
+                    category: 'hacks',
+                    isFavorite: false
+                }
+            ];
+            
+            // Add all sample websites
+            sampleWebsites.forEach(website => {
+                storageManager.addWebsite(website);
+            });
+            
+            // Re-render the website display
+            uiManager.renderWebsites();
         }
     }
 }
