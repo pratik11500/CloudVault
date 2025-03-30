@@ -81,66 +81,16 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
-    cursor: none; /* Hide default cursor */
+    cursor: default; /* Use default cursor */
 }
 
-/* Custom cursor styles */
-.cursor-dot,
-.cursor-dot-outline {
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    z-index: 9999;
-    transform: translate(0, 0);
-    transition: opacity 0.1s ease;
-    will-change: left, top, opacity;
+/* Cursor styles for different elements */
+a, button, .website-card, .sidebar-item, input[type="submit"], select, .dropdown-btn, label {
+    cursor: pointer;
 }
 
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--secondary);
-    box-shadow: 0 0 10px var(--secondary), 0 0 5px var(--primary);
-    margin-left: -4px;
-    margin-top: -4px;
-}
-
-.cursor-dot-outline {
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    border: 2px solid var(--secondary);
-    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
-    transition: transform 0.3s ease;
-    margin-left: -12px;
-    margin-top: -12px;
-}
-
-.cursor-trail {
-    position: absolute;
-    pointer-events: none;
-    width: 5px;
-    height: 5px;
-    background-color: var(--primary);
-    border-radius: 50%;
-    margin-left: -2.5px;
-    margin-top: -2.5px;
-    transition: width 0.6s, height 0.6s, opacity 0.6s;
-    z-index: 9996;
-    box-shadow: 0 0 10px var(--primary), 0 0 5px var(--secondary);
-}
-
-/* Style for clickable elements */
-body.clickable-active .cursor-dot {
-    transform: scale(1.5);
-    background-color: var(--secondary);
-}
-
-body.clickable-active .cursor-dot-outline {
-    transform: scale(0.7);
-    background-color: rgba(157, 78, 221, 0.1);
+input[type="text"], input[type="url"], textarea {
+    cursor: text;
 }
 
 /* Enhanced Custom Scrollbar - Cyberpunk Style */
@@ -3209,9 +3159,9 @@ body.clickable-active .cursor-dot-outline {
     box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
 }
 
-/* Hide default cursor */
+/* Default cursor styles */
 body {
-    cursor: none;
+    cursor: default;
 }
 
 /* Add specific cursor for text selection */

@@ -14,9 +14,6 @@ class App {
         // Always start with a clean slate for testing purposes
         localStorage.removeItem('linkVaultWebsites');
         
-        // Initialize custom cursor with glowing trail
-        this.initCustomCursor();
-        
         // Render initial websites
         uiManager.renderWebsites();
         
@@ -31,147 +28,11 @@ class App {
     }
     
     /**
-     * Initialize custom cursor with glowing trail
+     * Initialize custom cursor with glowing trail - disabled as per user request
      */
     initCustomCursor() {
-        // Create cursor elements
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'cursor-dot';
-        
-        const cursorDotOutline = document.createElement('div');
-        cursorDotOutline.className = 'cursor-dot-outline';
-        
-        // Hide cursors initially until mouse moves
-        cursorDot.style.opacity = '0';
-        cursorDotOutline.style.opacity = '0';
-        
-        // Create trail container
-        const trailsContainer = document.createElement('div');
-        trailsContainer.id = 'trails-container';
-        trailsContainer.style.position = 'fixed';
-        trailsContainer.style.top = '0';
-        trailsContainer.style.left = '0';
-        trailsContainer.style.width = '100%';
-        trailsContainer.style.height = '100%';
-        trailsContainer.style.pointerEvents = 'none';
-        trailsContainer.style.zIndex = '9997';
-        trailsContainer.style.overflow = 'hidden';
-        
-        // Add elements to body
-        document.body.appendChild(trailsContainer);
-        document.body.appendChild(cursorDot);
-        document.body.appendChild(cursorDotOutline);
-        
-        // Initialize variables for trails
-        let lastX = 0;
-        let lastY = 0;
-        let trailElements = [];
-        const MAX_TRAILS = 15;
-        let isFirstMove = true;
-        
-        // Handle mouse movement
-        document.addEventListener('mousemove', (e) => {
-            // Show cursors on first mouse move
-            if (isFirstMove) {
-                cursorDot.style.opacity = '1';
-                cursorDotOutline.style.opacity = '1';
-                isFirstMove = false;
-            }
-            
-            // Update cursor position exactly at the mouse pointer
-            requestAnimationFrame(() => {
-                cursorDot.style.left = `${e.clientX}px`;
-                cursorDot.style.top = `${e.clientY}px`;
-                
-                // Follow the cursor dot with a slight delay for outline effect
-                cursorDotOutline.style.left = `${e.clientX - 12}px`;
-                cursorDotOutline.style.top = `${e.clientY - 12}px`;
-            });
-            
-            // Calculate distance moved
-            const dist = Math.sqrt(Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2));
-            
-            // Create trail if moved enough distance
-            if (dist > 15) {
-                createTrail(e.clientX, e.clientY);
-                lastX = e.clientX;
-                lastY = e.clientY;
-            }
-        });
-        
-        // Handle cursor for links and clickable elements
-        document.addEventListener('mousedown', () => {
-            cursorDot.style.transform = 'scale(0.7)';
-            cursorDotOutline.style.transform = 'scale(1.4)';
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursorDot.style.transform = 'scale(1)';
-            cursorDotOutline.style.transform = 'scale(1)';
-        });
-        
-        // Handle elements that should have a different cursor
-        document.addEventListener('mouseover', (e) => {
-            const targetElement = e.target;
-            
-            if (targetElement.closest('a, button, .website-card, .sidebar-item, input[type="submit"], select, .dropdown-btn, label')) {
-                document.body.classList.add('clickable-active');
-            } else {
-                document.body.classList.remove('clickable-active');
-            }
-        });
-        
-        // Handle window blur/focus
-        document.addEventListener('mouseout', () => {
-            cursorDot.style.opacity = '0';
-            cursorDotOutline.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseover', () => {
-            cursorDot.style.opacity = '1';
-            cursorDotOutline.style.opacity = '1';
-        });
-        
-        // Function to create trail element
-        function createTrail(x, y) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = `${x}px`;
-            trail.style.top = `${y}px`;
-            
-            // Add some randomization to the trail
-            const size = Math.random() * 5 + 3; // Random size between 3-8px
-            const opacity = Math.random() * 0.4 + 0.2; // Random opacity
-            
-            trail.style.width = `${size}px`;
-            trail.style.height = `${size}px`;
-            trail.style.opacity = opacity.toString();
-            
-            trailsContainer.appendChild(trail);
-            trailElements.push(trail);
-            
-            // Fade out and remove
-            setTimeout(() => {
-                trail.style.opacity = '0';
-                trail.style.width = '1px';
-                trail.style.height = '1px';
-                
-                setTimeout(() => {
-                    if (trail.parentNode === trailsContainer) {
-                        trailsContainer.removeChild(trail);
-                    }
-                    trailElements = trailElements.filter(e => e !== trail);
-                }, 600);
-            }, 100);
-            
-            // Limit max trails
-            if (trailElements.length > MAX_TRAILS) {
-                if (trailElements[0].parentNode === trailsContainer) {
-                    trailsContainer.removeChild(trailElements[0]);
-                }
-                trailElements.shift();
-            }
-        }
+        // Custom cursor functionality has been completely removed
+        // Now using default browser cursors
     }
     
     /**

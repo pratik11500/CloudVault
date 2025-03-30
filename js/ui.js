@@ -1088,10 +1088,10 @@ class UIManager {
         // Clear existing stars first
         this.starField.innerHTML = '';
 
-        // Create a rich starfield with various types of stars
-        const staticStarCount = 150; // Background static stars
-        const floatingStarCount = 60; // Stars with floating animation
-        const shootingStarCount = 10; // Shooting stars that move across the screen
+        // Create an enhanced starfield with various types of stars
+        const staticStarCount = 220; // Increased background static stars
+        const floatingStarCount = 90; // Increased stars with floating animation
+        const shootingStarCount = 15; // Increased shooting stars that move across the screen
 
         // 1. Create Static Stars (with subtle pulse animation)
         for (let i = 0; i < staticStarCount; i++) {
@@ -1102,25 +1102,25 @@ class UIManager {
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
 
-            // Random size between 1-3px
-            const size = Math.random() * 2 + 1;
+            // Random size between 1-4px (slightly larger)
+            const size = Math.random() * 3 + 1;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
 
             // Random opacity for depth effect
-            star.style.opacity = Math.random() * 0.5 + 0.3;
+            star.style.opacity = Math.random() * 0.6 + 0.4; // Slightly brighter
 
-            // Assign different colors
-            const colorType = Math.floor(Math.random() * 5);
-            if (colorType === 0) {
+            // Assign different colors with more variety
+            const colorType = Math.floor(Math.random() * 7); // More color options
+            if (colorType === 0 || colorType === 5) {
                 star.classList.add('star-purple');
             } else if (colorType === 1) {
                 star.classList.add('star-teal');
             } else if (colorType === 2) {
                 star.classList.add('star-orange');
-            } else if (colorType === 3) {
+            } else if (colorType === 3 || colorType === 6) {
                 star.classList.add('star-blue');
-            } else if (colorType === 4) {
+            } else {
                 star.classList.add('star-pink');
             }
 
@@ -1136,23 +1136,25 @@ class UIManager {
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
 
-            // Random size between 2-5px for more visible floating stars
-            const size = Math.random() * 3 + 2;
+            // Random size between 2-6px for more visible floating stars
+            const size = Math.random() * 4 + 2;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
 
             // Random animation durations for more natural movement
-            star.style.setProperty('--twinkle-duration', `${Math.random() * 3 + 2}s`);
-            star.style.setProperty('--float-duration', `${Math.random() * 15 + 10}s`);
+            star.style.setProperty('--twinkle-duration', `${Math.random() * 4 + 1.5}s`); // Faster twinkling
+            star.style.setProperty('--float-duration', `${Math.random() * 18 + 8}s`); // Diverse float times
 
             // Assign different colors - make these more likely to be colorful
-            const colorType = Math.floor(Math.random() * 5);
-            if (colorType <= 1) {
+            const colorType = Math.floor(Math.random() * 7);
+            if (colorType <= 1 || colorType === 6) {
                 star.classList.add('star-purple');
             } else if (colorType === 2) {
                 star.classList.add('star-teal');
             } else if (colorType === 3) {
                 star.classList.add('star-blue');
+            } else if (colorType === 5) {
+                star.classList.add('star-orange');
             } else {
                 star.classList.add('star-pink');
             }
@@ -1165,16 +1167,34 @@ class UIManager {
             const star = document.createElement('div');
             star.className = 'star shooting';
 
-            // Random starting position on the left side of the screen
-            star.style.top = `${Math.random() * 70}%`;
-            star.style.left = '0';
+            // Random starting position (more variety in starting points)
+            const topPosition = Math.random() * 80;
+            const startSide = Math.random() > 0.3; // 70% from left, 30% from right
             
-            // Random animation duration
-            star.style.setProperty('--shooting-duration', `${Math.random() * 2 + 1}s`);
+            if (startSide) {
+                // From left side
+                star.style.top = `${topPosition}%`;
+                star.style.left = '-5%'; // Start slightly off-screen
+                star.style.transform = `rotate(${Math.random() * 35 + 15}deg)`; // 15-50 degree angle
+            } else {
+                // From right side
+                star.style.top = `${topPosition}%`;
+                star.style.left = '105%'; // Start slightly off-screen
+                star.style.transform = `rotate(${Math.random() * 35 + 150}deg)`; // 150-185 degree angle
+            }
             
-            // Random transform angle for different trajectories
-            const angle = Math.random() * 45;
-            star.style.transform = `rotate(${angle}deg)`;
+            // Random animation duration for varied speeds
+            star.style.setProperty('--shooting-duration', `${Math.random() * 1.5 + 0.8}s`);
+            
+            // Random color for shooting stars too
+            const colorType = Math.floor(Math.random() * 5);
+            if (colorType === 0) {
+                star.classList.add('star-purple');
+            } else if (colorType === 1) {
+                star.classList.add('star-blue');
+            } else if (colorType === 2) {
+                star.classList.add('star-pink');
+            }
 
             this.starField.appendChild(star);
             
@@ -1188,15 +1208,15 @@ class UIManager {
 
         // Initial shooting stars
         for (let i = 0; i < shootingStarCount; i++) {
-            setTimeout(() => createShootingStar(), Math.random() * 5000);
+            setTimeout(() => createShootingStar(), Math.random() * 3000); // Create them faster initially
         }
 
         // Continue creating shooting stars periodically
         setInterval(() => {
-            if (Math.random() > 0.7) { // Only 30% chance to create a new shooting star
+            if (Math.random() > 0.5) { // 50% chance to create a new shooting star (increased frequency)
                 createShootingStar();
             }
-        }, 3000);
+        }, 2000); // Faster interval between shooting stars
     }
 }
 
