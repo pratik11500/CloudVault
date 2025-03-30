@@ -10,7 +10,7 @@ class UIManager {
         this.searchInput = document.getElementById('search-input');
         this.gridViewBtn = document.getElementById('grid-view');
         this.listViewBtn = document.getElementById('list-view');
-        this.menuToggle = document.getElementById('menuToggle');
+        // this.menuToggle removed as per user request
         this.sidebar = document.querySelector('.sidebar');
         this.navItems = document.querySelectorAll('.nav-item');
         this.addWebsiteModal = document.getElementById('addWebsiteModal');
@@ -41,8 +41,8 @@ class UIManager {
         this.gridViewBtn.addEventListener('click', () => this.changeView('grid'));
         this.listViewBtn.addEventListener('click', () => this.changeView('list'));
         
-        // Menu toggle
-        this.menuToggle.addEventListener('click', () => this.toggleSidebar());
+        // Logo toggle for sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', () => this.toggleSidebar());
         
         // Search input
         this.searchInput.addEventListener('input', () => this.handleSearch());
@@ -121,7 +121,12 @@ class UIManager {
      */
     toggleSidebar() {
         this.sidebar.classList.toggle('sidebar-collapsed');
-        this.menuToggle.classList.toggle('active');
+        
+        // Toggle active class on the logo for visual feedback
+        const logo = document.getElementById('sidebarToggle');
+        if (logo) {
+            logo.classList.toggle('active');
+        }
         
         // Adjust content margin
         const content = document.querySelector('.content');

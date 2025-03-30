@@ -131,6 +131,19 @@ body {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    background-color: var(--background-modal);
+    transform: scale(1.05);
+}
+
+.logo.active {
+    background-color: var(--primary-light);
 }
 
 .logo h1 {
@@ -138,65 +151,14 @@ body {
     font-weight: 700;
     color: var(--primary);
     white-space: nowrap;
+    transition: color 0.3s ease;
 }
 
-.menu-toggle {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    border-radius: 50%;
-    transition: background-color var(--transition-fast);
+.logo:hover h1 {
+    color: var(--primary-hover);
 }
 
-.menu-toggle:hover {
-    background-color: var(--primary-light);
-}
-
-.menu-toggle span {
-    width: 24px;
-    height: 3px;
-    background-color: var(--primary);
-    border-radius: 5px;
-    transition: var(--transition-fast);
-    position: relative;
-}
-
-.menu-toggle span::before,
-.menu-toggle span::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    background-color: var(--primary);
-    border-radius: 5px;
-    transition: var(--transition-fast);
-}
-
-.menu-toggle span::before {
-    transform: translateY(-8px);
-}
-
-.menu-toggle span::after {
-    transform: translateY(8px);
-}
-
-.menu-toggle.active span {
-    background-color: transparent;
-}
-
-.menu-toggle.active span::before {
-    transform: rotate(45deg);
-}
-
-.menu-toggle.active span::after {
-    transform: rotate(-45deg);
-}
+/* Menu toggle removed as per user request */
 
 .nav-links {
     display: flex;
