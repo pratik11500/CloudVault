@@ -123,7 +123,7 @@ class App {
                 name: 'UI Shadcn',
                 url: 'https://ui.shadcn.com/',
                 category: 'web',
-                description: 'Shadcn's beautiful UI components',
+                description: 'Shadcn beautiful UI components',
                 thumbnailUrl: 'https://images.pexels.com/photos/11035384/pexels-photo-11035384.jpeg?auto=compress&cs=tinysrgb&w=600'
             },
             {
