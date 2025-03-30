@@ -10,7 +10,7 @@
     --accent: #FF8500;
     --accent-hover: #FF9E2A;
     --accent-light: rgba(255, 133, 0, 0.1);
-    
+
     --background-dark: #0A0A1B;
     --background-card: #10101F;
     --background-modal: #16162A;
@@ -18,16 +18,16 @@
     --text-secondary: #B8B8D0;
     --text-tertiary: #7B7B8F;
     --border-color: #2D2D3A;
-    
+
     --danger: #FF2957;
     --success: #00E676;
     --warning: #FFD600;
     --info: #00B0FF;
-    
+
     --gradient-1: linear-gradient(135deg, #9D4EDD, #00F5D4);
     --gradient-2: linear-gradient(135deg, #7B2CBF, #00B0FF);
     --gradient-3: linear-gradient(135deg, #FF8500, #9D4EDD);
-    
+
     --neon-glow: 0 0 10px rgba(157, 78, 221, 0.5), 0 0 20px rgba(157, 78, 221, 0.3), 0 0 30px rgba(157, 78, 221, 0.2);
     --neon-glow-secondary: 0 0 10px rgba(0, 245, 212, 0.5), 0 0 20px rgba(0, 245, 212, 0.3), 0 0 30px rgba(0, 245, 212, 0.2);
     --neon-glow-accent: 0 0 10px rgba(255, 133, 0, 0.5), 0 0 20px rgba(255, 133, 0, 0.3), 0 0 30px rgba(255, 133, 0, 0.2);
@@ -38,7 +38,7 @@
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
     --shadow-glow: 0 0 15px rgba(157, 78, 221, 0.3);
     --shadow-glow-secondary: 0 0 15px rgba(0, 245, 212, 0.3);
-    
+
     /* Sizes */
     --sidebar-width: 280px;
     --sidebar-collapsed-width: 80px;
@@ -52,7 +52,7 @@
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
-    
+
     /* Transitions */
     --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -112,7 +112,7 @@ body {
     overflow-x: hidden;
     left: 0;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px); /* Increased blur for better readability with full transparency */
+    
 }
 
 .sidebar-collapsed {
@@ -311,7 +311,7 @@ body {
     position: relative;
     z-index: 10;
     overflow: hidden;
-    backdrop-filter: blur(2px);
+    
 }
 
 .mega-search-bar::before {
@@ -485,7 +485,7 @@ body {
     box-shadow: var(--shadow-sm);
     position: relative;
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(5px);
+    
 }
 
 .website-card::after {
@@ -513,7 +513,7 @@ body {
     border-color: transparent;
     border-image: var(--gradient-1);
     border-image-slice: 1;
-    backdrop-filter: blur(4px);
+    
 }
 
 .website-card:hover::after {
@@ -634,7 +634,7 @@ body {
     border: 1px solid rgba(157, 78, 221, 0.2);
     transition: all var(--transition-normal);
     z-index: 2;
-    backdrop-filter: blur(3px);
+    
     letter-spacing: 0.5px;
 }
 
@@ -1022,7 +1022,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(157, 78, 221, 0.3);
 }
@@ -1046,7 +1046,7 @@ body {
         rgba(255, 133, 0, 0.4)
     );
     animation: float 10s infinite ease-in-out;
-    filter: blur(60px);
+    
     opacity: 0.5;
 }
 
@@ -1177,7 +1177,7 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border: 1px solid rgba(157, 78, 221, 0.3);
-    backdrop-filter: blur(5px);
+    
     gap: 10px;
 }
 
@@ -1254,7 +1254,7 @@ body {
     transition: all 0.4s ease;
     border: 1px solid rgba(157, 78, 221, 0.2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
+    
 }
 
 /* Thumbnail background for contact cards */
@@ -1405,7 +1405,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.8rem;
     position: relative;
-    backdrop-filter: blur(3px);
+    
 }
 
 .contact-card-icon::after {
@@ -1435,7 +1435,7 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     display: inline-block;
-    backdrop-filter: blur(5px);
+    
 }
 
 .contact-card p {
@@ -1454,7 +1454,7 @@ body {
     text-align: center;
     margin-bottom: 50px;
     border: 1px solid rgba(157, 78, 221, 0.2);
-    backdrop-filter: blur(5px);
+    
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
@@ -1581,15 +1581,15 @@ body {
     .sidebar {
         width: var(--sidebar-collapsed-width);
     }
-    
+
     .content {
         margin-left: var(--sidebar-collapsed-width);
     }
-    
+
     .sidebar.expanded {
         width: var(--sidebar-width);
     }
-    
+
     .sidebar:not(.expanded) .logo h1,
     .sidebar:not(.expanded) .nav-item span,
     .sidebar:not(.expanded) .theme-toggle span,
@@ -1603,43 +1603,43 @@ body {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .search-bar {
         max-width: 100%;
         width: 100%;
     }
-    
+
     .filter-sort {
         width: 100%;
         justify-content: space-between;
     }
-    
+
     .add-website-btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     .grid-view {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-    
+
     /* Contact page responsive styles */
     .contact-hero {
         min-height: 350px;
     }
-    
+
     .contact-hero-title {
         font-size: 3rem;
     }
-    
+
     .contact-hero-description {
         font-size: 1rem;
     }
-    
+
     .social-tabs {
         flex-wrap: wrap;
     }
-    
+
     .contact-cards {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
@@ -1649,80 +1649,80 @@ body {
     .content {
         padding: var(--spacing-sm);
     }
-    
+
     .grid-view {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-md);
     }
-    
+
     .website-card {
         max-width: 100%;
     }
-    
+
     .modal-content {
         width: 95%;
     }
-    
+
     .website-description {
         font-size: 0.85rem;
         line-height: 1.4;
         padding: var(--spacing-xs);
     }
-    
+
     /* Contact page responsive styles */
     .contact-hero {
         min-height: 300px;
         border-radius: 16px;
     }
-    
+
     .contact-hero-content {
         padding: 20px;
         width: 95%;
     }
-    
+
     .contact-hero-title {
         font-size: 2.5rem;
     }
-    
+
     .contact-hero-subtitle {
         font-size: 1rem;
         letter-spacing: 3px;
     }
-    
+
     .contact-hero-description {
         font-size: 0.9rem;
         line-height: 1.5;
     }
-    
+
     .social-tabs {
         gap: 10px;
     }
-    
+
     .social-tab {
         padding: 8px 15px;
     }
-    
+
     .contact-cards {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-card {
         height: 250px;
     }
-    
+
     .contact-methods-title,
     .feedback-title {
         font-size: 2rem;
     }
-    
+
     .feedback-description {
         font-size: 1rem;
     }
-    
+
     .feedback-button {
         width: 100%;
     }
-    
+
     .animated-circle {
         filter: blur(40px);
     }
