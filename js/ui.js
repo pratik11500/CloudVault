@@ -493,6 +493,10 @@ class UIManager {
             return;
         }
 
+        // Always ensure grid view
+        this.websitesContainer.classList.remove('list-view');
+        this.websitesContainer.classList.add('grid-view');
+
         // Get websites based on section
         let websites = this.getWebsitesByCurrentSection();
 
@@ -533,7 +537,7 @@ class UIManager {
      */
     createWebsiteCard(website) {
         const card = document.createElement('div');
-        card.className = 'website-card grid-view';
+        card.className = 'website-card';
         card.dataset.id = website.id;
 
         // Create thumbnail
