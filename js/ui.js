@@ -363,14 +363,6 @@ class UIManager {
                 thumbnail: 'https://images.unsplash.com/photo-1611746869696-d09bce200020?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
             },
             {
-                icon: 'fas fa-phone-alt',
-                title: 'Call Us',
-                info: '+1 (555) 123-4567',
-                description: 'Speak directly with our customer support team for urgent matters.',
-                color: 'accent',
-                thumbnail: 'https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400'
-            },
-            {
                 icon: 'fas fa-map-marker-alt',
                 title: 'Visit Us',
                 info: 'Tech Plaza, Suite 404',
