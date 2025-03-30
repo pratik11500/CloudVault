@@ -588,17 +588,7 @@ class UIManager {
             window.open(website.url, '_blank');
         });
         
-        const editBtn = document.createElement('button');
-        editBtn.className = 'website-action-btn';
-        editBtn.innerHTML = '<i class="fas fa-edit"></i>';
-        editBtn.title = 'Edit Website';
-        editBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.openEditWebsiteModal(website.id);
-        });
-        
         actions.appendChild(visitBtn);
-        actions.appendChild(editBtn);
         
         // Add category to categories container
         categories.appendChild(category);
