@@ -215,24 +215,21 @@ body {
     gap: var(--spacing-md);
 }
 
-.help-bot {
+.sidebar-logo {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: var(--spacing-md);
-    cursor: pointer;
     padding: var(--spacing-sm) 0;
-    color: var(--text-secondary);
-    transition: var(--transition-fast);
 }
 
-.help-bot:hover {
-    color: var(--primary);
+.sidebar-logo img {
+    width: 40px;
+    height: 40px;
+    transition: transform var(--transition-fast);
 }
 
-.help-bot i {
-    font-size: 1.2rem;
-    min-width: 24px;
-    text-align: center;
+.sidebar-logo img:hover {
+    transform: scale(1.1);
 }
 
 .theme-toggle span,
