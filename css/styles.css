@@ -101,7 +101,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: rgba(16, 16, 31, 0.75);
+    background-color: rgba(16, 16, 31, 0); /* Fully transparent background */
     border-right: 1px solid rgba(157, 78, 221, 0.2);
     display: flex;
     flex-direction: column;
@@ -111,8 +111,8 @@ body {
     z-index: 1000;
     overflow-x: hidden;
     left: 0;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px); /* Increased blur for better readability with full transparency */
 }
 
 .sidebar-collapsed {
@@ -1124,6 +1124,16 @@ body {
     justify-content: center;
     gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
+}
+
+/* New inline social links for contact page */
+.social-links-inline {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
 .social-link {

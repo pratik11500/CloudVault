@@ -177,26 +177,14 @@ class StorageManager {
     }
 
     /**
-     * Sort websites by specified criteria
-     * @param {Array} websites Array of website objects to sort
-     * @param {String} sortBy Sort criterion ('name-asc', 'name-desc', 'date-new', 'date-old')
-     * @returns {Array} Sorted array of website objects
+     * Sort websites - this functionality is now disabled as per user's request
+     * @param {Array} websites Array of website objects
+     * @param {String} sortBy Ignored parameter (kept for API compatibility)
+     * @returns {Array} Array of website objects in original order
      */
     sortWebsites(websites, sortBy) {
-        const websitesCopy = [...websites];
-        
-        switch (sortBy) {
-            case 'name-asc':
-                return websitesCopy.sort((a, b) => a.name.localeCompare(b.name));
-            case 'name-desc':
-                return websitesCopy.sort((a, b) => b.name.localeCompare(a.name));
-            case 'date-new':
-                return websitesCopy.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
-            case 'date-old':
-                return websitesCopy.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
-            default:
-                return websitesCopy;
-        }
+        // Simply return a copy of the websites array without sorting
+        return [...websites];
     }
 
     /**

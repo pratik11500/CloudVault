@@ -153,6 +153,23 @@ class UIManager {
             }
         });
         
+        // Hide/show search bar and filter options depending on section
+        const searchContainer = document.querySelector('.search-container');
+        const viewFilterContainer = document.querySelector('.view-filter-container');
+        const welcomeSection = document.querySelector('.welcome-section');
+        
+        if (section === 'contact') {
+            // Hide search bar, welcome section and filter options on contact page
+            if (searchContainer) searchContainer.style.display = 'none';
+            if (viewFilterContainer) viewFilterContainer.style.display = 'none';
+            if (welcomeSection) welcomeSection.style.display = 'none';
+        } else {
+            // Show them on other pages
+            if (searchContainer) searchContainer.style.display = 'flex';
+            if (viewFilterContainer) viewFilterContainer.style.display = 'flex';
+            if (welcomeSection) welcomeSection.style.display = 'block';
+        }
+        
         this.currentSection = section;
         this.renderWebsites();
     }
@@ -230,8 +247,33 @@ class UIManager {
         const description = document.createElement('p');
         description.textContent = 'Have questions or suggestions about LinkVault? We\'d love to hear from you! Choose how you\'d like to connect with our team below.';
         
+        // Create social links section (now right after the header)
+        const socialLinks = document.createElement('div');
+        socialLinks.className = 'social-links-inline';
+        
+        // Add social media links
+        const socialPlatforms = [
+            { icon: 'fab fa-github', url: 'https://github.com' },
+            { icon: 'fab fa-twitter', url: 'https://twitter.com' },
+            { icon: 'fab fa-discord', url: 'https://discord.com' },
+            { icon: 'fab fa-youtube', url: 'https://youtube.com' },
+            { icon: 'fab fa-reddit', url: 'https://reddit.com' },
+            { icon: 'fab fa-instagram', url: 'https://instagram.com' },
+            { icon: 'fab fa-linkedin', url: 'https://linkedin.com' }
+        ];
+        
+        socialPlatforms.forEach(platform => {
+            const link = document.createElement('a');
+            link.className = 'social-link';
+            link.href = platform.url;
+            link.target = '_blank';
+            link.innerHTML = `<i class="${platform.icon}"></i>`;
+            socialLinks.appendChild(link);
+        });
+        
         headerSection.appendChild(header);
         headerSection.appendChild(description);
+        headerSection.appendChild(socialLinks);
         
         // Create contact cards container
         const contactCards = document.createElement('div');
@@ -275,32 +317,9 @@ class UIManager {
         contactCards.appendChild(twitterCard);
         contactCards.appendChild(discordCard);
         
-        // Create social links section
-        const socialLinks = document.createElement('div');
-        socialLinks.className = 'social-links';
-        
-        // Add social media links
-        const socialPlatforms = [
-            { icon: 'fab fa-github', url: 'https://github.com' },
-            { icon: 'fab fa-twitter', url: 'https://twitter.com' },
-            { icon: 'fab fa-discord', url: 'https://discord.com' },
-            { icon: 'fab fa-youtube', url: 'https://youtube.com' },
-            { icon: 'fab fa-reddit', url: 'https://reddit.com' }
-        ];
-        
-        socialPlatforms.forEach(platform => {
-            const link = document.createElement('a');
-            link.className = 'social-link';
-            link.href = platform.url;
-            link.target = '_blank';
-            link.innerHTML = `<i class="${platform.icon}"></i>`;
-            socialLinks.appendChild(link);
-        });
-        
         // Append all elements to the contact container
         contactContainer.appendChild(headerSection);
         contactContainer.appendChild(contactCards);
-        contactContainer.appendChild(socialLinks);
         
         // Append contact container to the main container
         this.websitesContainer.appendChild(contactContainer);
