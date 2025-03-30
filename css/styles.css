@@ -101,8 +101,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: var(--sidebar-width);
-    background: rgba(16, 16, 31, 0.3);
-    backdrop-filter: blur(15px);
+    background: transparent;
     display: flex;
     flex-direction: column;
     transition: all var(--transition-normal);
