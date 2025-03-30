@@ -662,15 +662,7 @@ class UIManager {
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
         
-        // Add edit icon in top-right corner
-        const editIcon = document.createElement('div');
-        editIcon.className = 'edit-icon';
-        editIcon.innerHTML = '<i class="fas fa-edit"></i>';
-        editIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.openEditWebsiteModal(website.id);
-        });
-        card.appendChild(editIcon);
+        // Edit functionality removed as per user request
         
         // Add card elements
         card.appendChild(circuitLines);
