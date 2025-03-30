@@ -19,6 +19,7 @@ class UIManager {
         this.addWebsiteForm = document.getElementById('addWebsiteForm');
         this.editWebsiteForm = document.getElementById('editWebsiteForm');
         this.toastContainer = document.getElementById('toastContainer');
+        this.starField = document.getElementById('starField');
         
         // Current state
         this.currentView = 'grid'; // grid or list
@@ -29,6 +30,7 @@ class UIManager {
         
         // Init
         this.initEventListeners();
+        this.createStars();
     }
 
     /**
@@ -51,6 +53,11 @@ class UIManager {
                 const section = item.dataset.section;
                 this.changeSection(section);
             });
+        });
+        
+        // Window resize event for stars regeneration
+        window.addEventListener('resize', () => {
+            this.createStars();
         });
         
         // Filter and Sort
@@ -725,6 +732,64 @@ class UIManager {
                 toast.parentNode.removeChild(toast);
             }
         }, 500);
+    }
+    
+    /**
+     * Create starry background
+     */
+    createStars() {
+        // Clear existing stars first
+        this.starField.innerHTML = '';
+        
+        // Add shooting stars
+        const shootingStar1 = document.createElement('div');
+        shootingStar1.className = 'shooting-star';
+        shootingStar1.style.top = `${Math.random() * 30}%`;
+        shootingStar1.style.left = `${Math.random() * 100}%`;
+        shootingStar1.style.animationDelay = `${Math.random() * 5}s`;
+        this.starField.appendChild(shootingStar1);
+        
+        const shootingStar2 = document.createElement('div');
+        shootingStar2.className = 'shooting-star';
+        shootingStar2.style.top = `${Math.random() * 30 + 40}%`;
+        shootingStar2.style.left = `${Math.random() * 100}%`;
+        shootingStar2.style.animationDelay = `${Math.random() * 5 + 5}s`;
+        this.starField.appendChild(shootingStar2);
+        
+        // Create random stars
+        const starCount = 80; // Total number of stars
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Random position
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            
+            // Random size between 1-3px
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Random animation duration between 3-7s
+            star.style.setProperty('--duration', `${Math.random() * 4 + 3}s`);
+            
+            // Random animation delay
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            
+            // Assign different colors
+            const colorType = Math.floor(Math.random() * 4);
+            if (colorType === 0) {
+                star.classList.add('star-purple');
+            } else if (colorType === 1) {
+                star.classList.add('star-teal');
+            } else if (colorType === 2) {
+                star.classList.add('star-orange');
+            }
+            
+            this.starField.appendChild(star);
+        }
     }
 }
 
