@@ -548,13 +548,20 @@ class UIManager {
         title.className = 'website-title';
         title.textContent = website.name;
         
-        // Add description if available
+        // Add description if available (with stronger visibility enforcement)
         const description = document.createElement('p');
         description.className = 'website-description';
-        description.textContent = website.description || '';
-        description.style.display = 'block';
-        description.style.visibility = 'visible';
-        description.style.opacity = '1';
+        description.textContent = website.description || 'No description available';
+        
+        // Force display through multiple approaches for maximum compatibility
+        description.style.display = 'block !important';
+        description.style.visibility = 'visible !important';
+        description.style.opacity = '1 !important';
+        description.style.height = 'auto';
+        description.style.overflow = 'visible';
+        description.style.margin = '10px 0';
+        description.style.padding = '8px 10px';
+        description.style.backgroundColor = 'rgba(157, 78, 221, 0.15)';
         
         const url = document.createElement('p');
         url.className = 'website-url';
@@ -596,8 +603,9 @@ class UIManager {
         // Add category to categories container
         categories.appendChild(category);
         
+        // Reorder elements: Title -> Description -> URL -> Categories -> Actions
         infoDiv.appendChild(title);
-        infoDiv.appendChild(description);
+        infoDiv.appendChild(description); // Description immediately after title
         infoDiv.appendChild(url);
         infoDiv.appendChild(categories);
         infoDiv.appendChild(actions);

@@ -89,6 +89,7 @@ class StorageManager {
             name: websiteData.name.trim(),
             url: this.formatUrl(websiteData.url),
             category: websiteData.category,
+            description: websiteData.description || '',
             dateAdded: new Date().toISOString(),
             thumbnailUrl: websiteData.thumbnailUrl || null // Custom thumbnail URL
         };
@@ -116,6 +117,7 @@ class StorageManager {
             name: websiteData.name.trim(),
             url: this.formatUrl(websiteData.url),
             category: websiteData.category,
+            description: websiteData.description || this.websites[index].description || '',
             dateModified: new Date().toISOString()
         };
         
