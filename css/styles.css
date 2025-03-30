@@ -926,17 +926,11 @@ body {
 }
 
 .website-card {
-    background: linear-gradient(135deg, rgba(16, 16, 31, 0.9), rgba(22, 22, 40, 0.95));
-    backdrop-filter: blur(10px);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--shadow-sm);
+    background: rgba(16, 16, 31, 0.9);
+    border: 2px solid var(--primary);
     position: relative;
-    border: 2px solid rgba(157, 78, 221, 0.1);
-    transform-style: preserve-3d;
-    perspective: 2000px;
-    isolation: isolate;
+    overflow: hidden;
+    transition: all 0.3s ease;
     clip-path: polygon(
         0 10px,
         10px 0,
@@ -953,32 +947,49 @@ body {
 .website-card::after {
     content: '';
     position: absolute;
-    inset: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
+    inset: -2px;
+    background: var(--primary);
+    z-index: -1;
 }
 
 .website-card::before {
-    background: 
-        linear-gradient(45deg, transparent 48%, var(--primary) 50%, transparent 52%) 0 0 / 10px 10px,
-        linear-gradient(-45deg, transparent 48%, var(--secondary) 50%, transparent 52%) 0 0 / 10px 10px;
-    opacity: 0.3;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 55%);
+    transform: translate(-120%, 0);
+    animation: glitch-1 2.5s infinite linear alternate-reverse;
 }
 
 .website-card::after {
-    background: 
-        linear-gradient(90deg, var(--primary) 1px, transparent 1px) 0 0 / 20px 20px,
-        linear-gradient(0deg, var(--secondary) 1px, transparent 1px) 0 0 / 20px 20px;
-    opacity: 0.1;
+    clip-path: polygon(0 60%, 100% 50%, 100% 100%, 0 100%);
+    transform: translate(120%, 0);
+    animation: glitch-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-2%, 0); }
+    70% { transform: translate(3%, 0); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(2%, 0); }
+    70% { transform: translate(-3%, 0); }
 }
 
 .website-card:hover {
-    transform: translateY(-10px) rotateX(10deg);
-    border-color: var(--primary);
+    transform: scale(1.02);
     box-shadow: 
-        0 15px 30px rgba(157, 78, 221, 0.3),
-        0 0 0 1px rgba(157, 78, 221, 0.3),
-        inset 0 0 30px rgba(157, 78, 221, 0.2);
+        0 0 20px var(--primary),
+        0 0 40px rgba(157, 78, 221, 0.3),
+        0 0 60px rgba(157, 78, 221, 0.2);
+}
+
+.website-card:hover::before {
+    animation: glitch-1 0.4s infinite linear alternate-reverse;
+}
+
+.website-card:hover::after {
+    animation: glitch-2 0.3s infinite linear alternate-reverse;
 }
 
 .website-card:hover::before {
