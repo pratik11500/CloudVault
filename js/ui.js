@@ -432,7 +432,7 @@ class UIManager {
         feedbackTitle.className = 'feedback-title';
 
         const feedbackMsg = document.createElement('p');
-        feedbackMsg.textContent = 'We value your input. Share your thoughts about LinkVault and help us improve your experience.';
+        feedbackMsg.textContent = 'We value your input. Share your thoughts about CloudVault and help us improve your experience.';
         feedbackMsg.className = 'feedback-description';
 
         const feedbackBtn = document.createElement('button');
