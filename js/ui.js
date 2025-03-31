@@ -302,7 +302,7 @@ class UIManager {
         subtitle.className = 'contact-hero-subtitle';
 
         const description = document.createElement('p');
-        description.textContent = 'Have questions or suggestions about LinkVault? Our team is just a click away. Connect with us through any of these channels.';
+        description.textContent = 'Have questions or suggestions about CloudVault? Our team is just a click away. Connect with us through any of these channels.';
         description.className = 'contact-hero-description';
 
         // Create social links tabs
