@@ -1,3 +1,28 @@
+
+@keyframes starFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Keep your existing star color classes */
+
 /* Enhanced Twinkling Stars Animation */
 @keyframes twinkle {
     0% {

@@ -13,35 +13,76 @@ class App {
     init() {
         // Always start with a clean slate for testing purposes
         localStorage.removeItem('linkVaultWebsites');
-        
+
         // Render initial websites
         uiManager.renderWebsites();
-        
+
         // Add demo data if first time
         this.checkFirstRun();
-        
+
         // Initialize sample websites if none exist
         this.initSampleIfEmpty();
-        
+
         // Add web category websites
         this.addWebWebsites();
+
+        // Initialize continuous star animation
+        this.initStarAnimation();
     }
-    
+
+    initStarAnimation() {
+        const starField = document.getElementById('starField');
+        const createStar = () => {
+            const star = document.createElement('div');
+            star.className = 'star';
+
+            // Random starting position across full width
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = '-5px';  // Start just above viewport
+
+            // Random size
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+
+            // Random speed
+            const duration = Math.random() * 3 + 2;
+            star.style.animation = `starFall ${duration}s linear`;
+
+            // Random color
+            const colors = ['star-purple', 'star-teal', 'star-orange', 'star-blue', 'star-pink'];
+            star.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+
+            starField.appendChild(star);
+
+            // Remove star after animation completes
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+        };
+
+        // Create stars continuously
+        setInterval(createStar, 100);  // Create a new star every 100ms
+    }
+
     /**
-     * Initialize custom cursor with glowing trail - disabled as per user request
+     * Check if this is the first run of the application
      */
-    initCustomCursor() {
-        // Custom cursor functionality has been completely removed
-        // Now using default browser cursors
+    checkFirstRun() {
+        if (!localStorage.getItem('linkVaultFirstRun')) {
+            // Show welcome toast
+            uiManager.showToast('Welcome to LinkVault! Hover over items to see animations and features.', 'info', 5000);
+            localStorage.setItem('linkVaultFirstRun', 'done');
+        }
     }
-    
+
     /**
      * Add web-related websites to the collection
      */
     addWebWebsites() {
         // First clear any existing websites in the 'web' category
         this.clearWebCategory();
-        
+
         const webWebsites = [
             // Icon websites
             {
@@ -93,7 +134,7 @@ class App {
                 description: 'Beautiful, customizable icons',
                 thumbnailUrl: 'https://images.pexels.com/photos/5926395/pexels-photo-5926395.jpeg?auto=compress&cs=tinysrgb&w=600'
             },
-            
+
             // UI Framework websites
             {
                 name: 'Chakra UI',
@@ -152,25 +193,14 @@ class App {
                 thumbnailUrl: 'https://images.pexels.com/photos/11035383/pexels-photo-11035383.jpeg?auto=compress&cs=tinysrgb&w=600'
             }
         ];
-        
+
         // Add all web websites
         webWebsites.forEach(website => {
             storageManager.addWebsite(website);
         });
-        
+
         // Re-render the website display
         uiManager.renderWebsites();
-    }
-
-    /**
-     * Check if this is the first run of the application
-     */
-    checkFirstRun() {
-        if (!localStorage.getItem('linkVaultFirstRun')) {
-            // Show welcome toast
-            uiManager.showToast('Welcome to LinkVault! Hover over items to see animations and features.', 'info', 5000);
-            localStorage.setItem('linkVaultFirstRun', 'done');
-        }
     }
 
     /**
@@ -179,18 +209,18 @@ class App {
     clearWebCategory() {
         const allWebsites = storageManager.getAllWebsites();
         const nonWebWebsites = allWebsites.filter(website => website.category !== 'web');
-        
+
         // Replace all websites with only non-web websites
         storageManager.websites = nonWebWebsites;
         storageManager.saveWebsites();
     }
-    
+
     /**
      * Initialize sample websites if none exist
      */
     initSampleIfEmpty() {
         const websites = storageManager.getAllWebsites();
-        
+
         if (websites.length === 0) {
             // Add sample websites for each category
             const sampleWebsites = [
@@ -223,7 +253,7 @@ class App {
                     description: 'Advanced AI assistant focused on being helpful, harmless, and honest.',
                     thumbnailUrl: 'https://images.pexels.com/photos/8294554/pexels-photo-8294554.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
-                
+
                 // Photos Category
                 {
                     name: 'Unsplash',
@@ -253,7 +283,7 @@ class App {
                     description: 'Over 2.6 million high-quality stock images, videos and music shared by community.',
                     thumbnailUrl: 'https://images.pexels.com/photos/3534924/pexels-photo-3534924.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
-                
+
                 // Videos Category
                 {
                     name: 'YouTube',
@@ -283,7 +313,7 @@ class App {
                     description: 'Subscription-based streaming service with movies, TV shows, and originals.',
                     thumbnailUrl: 'https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
-                
+
                 // Hacks Category
                 {
                     name: 'GitHub',
@@ -314,12 +344,12 @@ class App {
                     thumbnailUrl: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600'
                 }
             ];
-            
+
             // Add all sample websites
             sampleWebsites.forEach(website => {
                 storageManager.addWebsite(website);
             });
-            
+
             // Re-render the website display
             uiManager.renderWebsites();
         }
