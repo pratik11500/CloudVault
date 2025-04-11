@@ -646,18 +646,8 @@ class UIManager {
         } else if (website.category.toLowerCase() === 'web') {
             iconClass = 'fa-globe';
         } else if (website.category.toLowerCase() === 'others') {
-            // Use specific social media icons for each platform
-            if (website.name === 'Instagram') {
-                iconClass = 'fa-instagram';
-            } else if (website.name === 'Facebook') {
-                iconClass = 'fa-facebook-f';
-            } else if (website.name === 'Twitter') {
-                iconClass = 'fa-twitter';
-            } else if (website.name === 'LinkedIn') {
-                iconClass = 'fa-linkedin-in';
-            } else {
-                iconClass = 'fa-thumbs-up'; // Default "like" icon for other social media
-            }
+            // Use star icon for others category
+            iconClass = 'fa-star';
         }
         
         categoryIcon.className = `fas ${iconClass} category-icon`;
@@ -665,12 +655,8 @@ class UIManager {
         
         const categoryText = document.createElement('span');
         categoryText.className = 'category-text';
-        // Change the display text for 'others' category to 'Social'
-        if (website.category.toLowerCase() === 'others') {
-            categoryText.textContent = 'Social';
-        } else {
-            categoryText.textContent = website.category;
-        }
+        // Just use the category name directly
+        categoryText.textContent = website.category;
         category.appendChild(categoryText);
 
         // Build card structure with enhanced elements
