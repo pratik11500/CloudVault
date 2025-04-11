@@ -283,6 +283,34 @@ class App {
                     description: 'Digital distribution platform for PC gaming with thousands of games available.',
                     thumbnailUrl: 'https://images.pexels.com/photos/3977908/pexels-photo-3977908.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
+                {
+                    name: 'Netflix',
+                    url: 'https://netflix.com',
+                    category: 'others',
+                    description: 'Subscription-based streaming service with movies, TV shows, and originals.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'YouTube',
+                    url: 'https://youtube.com',
+                    category: 'others',
+                    description: 'World\'s largest video sharing platform with billions of videos.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/3379942/pexels-photo-3379942.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Reddit',
+                    url: 'https://reddit.com',
+                    category: 'others',
+                    description: 'Network of communities based on people\'s interests, featuring news, discussions, and content sharing.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/4219538/pexels-photo-4219538.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Discord',
+                    url: 'https://discord.com',
+                    category: 'others',
+                    description: 'Voice, video and text communication service used by communities and friends.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
 
                 // Hacks Category
                 {
