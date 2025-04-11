@@ -252,6 +252,8 @@ class UIManager {
                 return storageManager.getWebsitesByCategory('ai');
             case 'web':
                 return storageManager.getWebsitesByCategory('web');
+            case 'others':
+                return storageManager.getWebsitesByCategory('others');
             case 'contact':
                 // We'll handle the contact section differently
                 this.renderContactPage();
