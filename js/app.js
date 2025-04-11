@@ -256,60 +256,11 @@ class App {
 
                 // Others Category
                 {
-                    name: 'Pinterest',
-                    url: 'https://pinterest.com',
+                    name: 'Instagram',
+                    url: 'https://instagram.com',
                     category: 'others',
-                    description: 'Visual discovery engine for finding ideas like recipes, home decor, style inspiration and more.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/4549416/pexels-photo-4549416.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Goodreads',
-                    url: 'https://goodreads.com',
-                    category: 'others',
-                    description: 'Social cataloging website for book reviews, recommendations, and tracking reading habits.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Spotify',
-                    url: 'https://spotify.com',
-                    category: 'others',
-                    description: 'Digital music streaming service with millions of songs, podcasts, and playlists.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/2388639/pexels-photo-2388639.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Steam',
-                    url: 'https://store.steampowered.com',
-                    category: 'others',
-                    description: 'Digital distribution platform for PC gaming with thousands of games available.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3977908/pexels-photo-3977908.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Netflix',
-                    url: 'https://netflix.com',
-                    category: 'others',
-                    description: 'Subscription-based streaming service with movies, TV shows, and originals.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'YouTube',
-                    url: 'https://youtube.com',
-                    category: 'others',
-                    description: 'World\'s largest video sharing platform with billions of videos.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3379942/pexels-photo-3379942.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Reddit',
-                    url: 'https://reddit.com',
-                    category: 'others',
-                    description: 'Network of communities based on people\'s interests, featuring news, discussions, and content sharing.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/4219538/pexels-photo-4219538.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Discord',
-                    url: 'https://discord.com',
-                    category: 'others',
-                    description: 'Voice, video and text communication service used by communities and friends.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    description: 'Photo and video sharing social networking service owned by Meta Platforms.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
 
                 // Hacks Category

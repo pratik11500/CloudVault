@@ -646,7 +646,11 @@ class UIManager {
         } else if (website.category.toLowerCase() === 'web') {
             iconClass = 'fa-globe';
         } else if (website.category.toLowerCase() === 'others') {
-            iconClass = 'fa-star';
+            if (website.name === 'Instagram') {
+                iconClass = 'fa-instagram';
+            } else {
+                iconClass = 'fa-star';
+            }
         }
         
         categoryIcon.className = `fas ${iconClass} category-icon`;
