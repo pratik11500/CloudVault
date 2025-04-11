@@ -1085,6 +1085,48 @@ class UIManager {
         } else {
             currentCountElement.textContent = countText;
         }
+        
+        // Update sidebar category counters
+        this.updateSidebarCategoryCounts();
+    }
+    
+    /**
+     * Update the counters in sidebar for each category
+     */
+    updateSidebarCategoryCounts() {
+        // Update All/Home count
+        const allCount = storageManager.getAllWebsites().length;
+        this.updateSidebarCounter('all', allCount);
+        
+        // Update category-specific counts
+        const categories = ['hacks', 'ai', 'web', 'others'];
+        categories.forEach(category => {
+            const count = storageManager.getWebsitesByCategory(category).length;
+            this.updateSidebarCounter(category, count);
+        });
+    }
+    
+    /**
+     * Update a specific sidebar counter with animation
+     * @param {String} category The category ID
+     * @param {Number} count The count to display
+     */
+    updateSidebarCounter(category, count) {
+        const counterElement = document.getElementById(`${category}-count`);
+        if (!counterElement) return;
+        
+        const oldCount = parseInt(counterElement.textContent) || 0;
+        
+        // If the count has changed, add animation
+        if (oldCount !== count) {
+            counterElement.classList.add('count-updating');
+            setTimeout(() => {
+                counterElement.textContent = count;
+                counterElement.classList.remove('count-updating');
+            }, 300);
+        } else {
+            counterElement.textContent = count;
+        }
     }
 
     /**

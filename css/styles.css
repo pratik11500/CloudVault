@@ -347,6 +347,24 @@ input[type="text"], input[type="url"], textarea {
     padding-left: 2px;
 }
 
+/* Category count badges */
+.category-count {
+    position: absolute;
+    right: 15px;
+    background: rgba(0, 255, 200, 0.2);
+    border: 1px solid rgba(0, 255, 200, 0.4);
+    color: #00ffc8;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    min-width: 28px;
+    text-align: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 8px rgba(0, 255, 200, 0.3);
+    z-index: 5;
+}
+
 /* Text underline effect */
 .nav-item span:after {
     content: '';
