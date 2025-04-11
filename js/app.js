@@ -254,64 +254,34 @@ class App {
                     thumbnailUrl: 'https://images.pexels.com/photos/8294554/pexels-photo-8294554.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
 
-                // Photos Category
+                // Others Category
                 {
-                    name: 'Unsplash',
-                    url: 'https://unsplash.com',
-                    category: 'photos',
-                    description: 'Beautiful, free photos contributed by creators around the world.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/1496373/pexels-photo-1496373.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    name: 'Pinterest',
+                    url: 'https://pinterest.com',
+                    category: 'others',
+                    description: 'Visual discovery engine for finding ideas like recipes, home decor, style inspiration and more.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/4549416/pexels-photo-4549416.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
-                    name: 'Pexels',
-                    url: 'https://pexels.com',
-                    category: 'photos',
-                    description: 'Free stock photos, royalty-free images & videos shared by creators.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3817676/pexels-photo-3817676.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    name: 'Goodreads',
+                    url: 'https://goodreads.com',
+                    category: 'others',
+                    description: 'Social cataloging website for book reviews, recommendations, and tracking reading habits.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
-                    name: 'Flickr',
-                    url: 'https://flickr.com',
-                    category: 'photos',
-                    description: 'Photo-sharing platform and community with millions of images.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3844788/pexels-photo-3844788.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    name: 'Spotify',
+                    url: 'https://spotify.com',
+                    category: 'others',
+                    description: 'Digital music streaming service with millions of songs, podcasts, and playlists.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/2388639/pexels-photo-2388639.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
                 {
-                    name: 'Pixabay',
-                    url: 'https://pixabay.com',
-                    category: 'photos',
-                    description: 'Over 2.6 million high-quality stock images, videos and music shared by community.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3534924/pexels-photo-3534924.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-
-                // Videos Category
-                {
-                    name: 'YouTube',
-                    url: 'https://youtube.com',
-                    category: 'videos',
-                    description: 'World\'s largest video sharing platform with billions of videos.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/3379942/pexels-photo-3379942.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Vimeo',
-                    url: 'https://vimeo.com',
-                    category: 'videos',
-                    description: 'High-quality video hosting platform for professionals and creators.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/7257770/pexels-photo-7257770.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'TikTok',
-                    url: 'https://tiktok.com',
-                    category: 'videos',
-                    description: 'Short-form, video-sharing app for trending clips and challenges.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/6953868/pexels-photo-6953868.jpeg?auto=compress&cs=tinysrgb&w=600'
-                },
-                {
-                    name: 'Netflix',
-                    url: 'https://netflix.com',
-                    category: 'videos',
-                    description: 'Subscription-based streaming service with movies, TV shows, and originals.',
-                    thumbnailUrl: 'https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    name: 'Steam',
+                    url: 'https://store.steampowered.com',
+                    category: 'others',
+                    description: 'Digital distribution platform for PC gaming with thousands of games available.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/3977908/pexels-photo-3977908.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
 
                 // Hacks Category

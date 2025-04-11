@@ -645,6 +645,8 @@ class UIManager {
             iconClass = 'fa-gamepad';
         } else if (website.category.toLowerCase() === 'web') {
             iconClass = 'fa-globe';
+        } else if (website.category.toLowerCase() === 'others') {
+            iconClass = 'fa-star';
         }
         
         categoryIcon.className = `fas ${iconClass} category-icon`;

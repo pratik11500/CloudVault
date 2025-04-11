@@ -3288,28 +3288,16 @@ a, button, .website-card, .sidebar-item, input[type="submit"], select, .dropdown
     border-color: rgba(157, 78, 221, 0.2);
 }
 
-.website-category.category-photos {
-    background-color: rgba(0, 245, 212, 0.1);
-    color: var(--secondary);
-    box-shadow: 0 0 5px rgba(0, 245, 212, 0.3);
-    text-shadow: 0 0 4px rgba(0, 245, 212, 0.3);
-    border-color: rgba(0, 245, 212, 0.2);
+.website-category.category-others {
+    background-color: rgba(255, 214, 0, 0.1);
+    color: var(--warning);
+    box-shadow: 0 0 5px rgba(255, 214, 0, 0.3);
+    text-shadow: 0 0 4px rgba(255, 214, 0, 0.3);
+    border-color: rgba(255, 214, 0, 0.2);
 }
 
-.website-category.category-photos::before {
-    background: var(--gradient-2);
-}
-
-.website-category.category-videos {
-    background-color: rgba(255, 133, 0, 0.1);
-    color: var(--accent);
-    box-shadow: 0 0 5px rgba(255, 133, 0, 0.3);
-    text-shadow: 0 0 4px rgba(255, 133, 0, 0.3);
-    border-color: rgba(255, 133, 0, 0.2);
-}
-
-.website-category.category-videos::before {
-    background: var(--gradient-3);
+.website-category.category-others::before {
+    background: linear-gradient(135deg, #FFD600, #FF9E2A);
 }
 
 .website-category.category-hacks {
