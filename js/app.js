@@ -254,13 +254,34 @@ class App {
                     thumbnailUrl: 'https://images.pexels.com/photos/8294554/pexels-photo-8294554.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
 
-                // Others Category
+                // Others Category (Social Media platforms with "like" functionality)
                 {
                     name: 'Instagram',
                     url: 'https://instagram.com',
                     category: 'others',
-                    description: 'Photo and video sharing social networking service owned by Meta Platforms.',
+                    description: 'Photo and video sharing social networking service with like functionality.',
                     thumbnailUrl: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Facebook',
+                    url: 'https://facebook.com',
+                    category: 'others',
+                    description: 'Social networking platform where users can connect and like content.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/5836/yellow-metal-design-decoration.jpg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'Twitter',
+                    url: 'https://twitter.com',
+                    category: 'others',
+                    description: 'Microblogging platform where users can like and share short posts called tweets.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/1579747/pexels-photo-1579747.jpeg?auto=compress&cs=tinysrgb&w=600'
+                },
+                {
+                    name: 'LinkedIn',
+                    url: 'https://linkedin.com',
+                    category: 'others',
+                    description: 'Professional networking platform where users can like and share professional content.',
+                    thumbnailUrl: 'https://images.pexels.com/photos/3850256/pexels-photo-3850256.jpeg?auto=compress&cs=tinysrgb&w=600'
                 },
 
                 // Hacks Category
