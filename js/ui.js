@@ -259,10 +259,12 @@ class UIManager {
                 this.renderContactPage();
                 return [];
             case 'all':
-                // All websites from all categories
-                return storageManager.getAllWebsites();
+                // All websites from all categories, randomly mixed
+                const websites = storageManager.getAllWebsites();
+                return websites.sort(() => Math.random() - 0.5);
             default: // 'all'
-                return storageManager.getAllWebsites();
+                const allWebsites = storageManager.getAllWebsites();
+                return allWebsites.sort(() => Math.random() - 0.5);
         }
     }
 
